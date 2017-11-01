@@ -5,7 +5,7 @@
  */
 package service.Implements.Evento;
 
-import VO.EventoVO;
+import dto.EventoVO;
 import service.Interface.Evento.IserviceCrearEvento;
 
 /**
@@ -15,9 +15,8 @@ import service.Interface.Evento.IserviceCrearEvento;
 public class serviceCrearEvento implements IserviceCrearEvento{
 
     @Override
-    public EventoVO crearEvento() throws Exception {
+    public void crearEvento(EventoVO evento) {
         
-        return null;
     }
     
 }

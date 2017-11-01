@@ -5,14 +5,12 @@
  */
 package service.Interface.Evento;
 
-import VO.EventoVO;
+import dto.EventoVO;
 
 /**
  *
  * @author rolando
  */
 public interface IserviceCrearEvento {
-    
-    public EventoVO crearEvento() throws Exception;
-    
+    public void crearEvento(EventoVO evento);
 }

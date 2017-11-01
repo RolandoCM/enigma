@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>This is how we can have properties as xml</comment>
+<entry key="version">1.0</entry>
+<entry key="name">javaCodeGeeks</entry>
+<entry key="ide">eclipse</entry>
+<entry key="article">JavaProperties</entry>
+</properties>

@@ -5,7 +5,7 @@
  */
 package dao.Implements.Evento;
 
-import VO.EventoVO;
+import dto.EventoVO;
 import dao.Interface.Evento.IcrearEventoDAO;
 
 /**
@@ -15,8 +15,9 @@ import dao.Interface.Evento.IcrearEventoDAO;
 public class crearEventoDAO implements IcrearEventoDAO {
 
     @Override
-    public EventoVO crearEvento() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void crearEvento(EventoVO evento) {
+        String sql = ""; //terminar consulta
+        
     }
-    
+
 }

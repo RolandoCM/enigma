@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VO;
+package dto;
 
 /**
  *
  * @author rolando
  */
 public class EventoVO {
-    String nombre;
-    String fecha; // revisar fecha no es string 
-    String descripcion;
-    String destinatarios; // revisar destinatarios
-    String programa;  // definir prgrama
-    String Instructor;
-    String Lugar;
-    String Ciudad;
-    String pais;
-    int capacidad;
-    double precio;
-    double promocion;
+    private String nombre;
+    private String fecha; // revisar fecha no es string 
+    private String descripcion;
+    private String destinatarios; // revisar destinatarios
+    private String programa;  // definir prgrama
+    private String Instructor;
+    private String Lugar;
+    private String Ciudad;
+    private String pais;
+    private int capacidad;
+    private double precio;
+    private double promocion;
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
