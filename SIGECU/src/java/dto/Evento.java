@@ -4,24 +4,33 @@
  * and open the template in the editor.
  */
 package dto;
-
+import dto.Instructor;
 /**
  *
  * @author rolando
  */
-public class EventoVO {
+public class Evento {
     private String nombre;
     private String fecha; // revisar fecha no es string 
     private String descripcion;
     private String destinatarios; // revisar destinatarios
     private String programa;  // definir prgrama
-    private String Instructor;
+    private Instructor instructor;
     private String Lugar;
     private String Ciudad;
     private String pais;
     private int capacidad;
     private double precio;
     private double promocion;
+    private short tipo;
+
+    public void setTipo(short tipo) {
+        this.tipo = tipo;
+    }
+
+    public short getTipo() {
+        return tipo;
+    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -43,8 +52,8 @@ public class EventoVO {
         this.programa = programa;
     }
 
-    public void setInstructor(String Instructor) {
-        this.Instructor = Instructor;
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
 
     public void setLugar(String Lugar) {
@@ -91,8 +100,8 @@ public class EventoVO {
         return programa;
     }
 
-    public String getInstructor() {
-        return Instructor;
+    public Instructor getInstructor() {
+        return instructor;
     }
 
     public String getLugar() {

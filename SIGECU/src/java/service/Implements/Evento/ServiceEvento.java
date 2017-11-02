@@ -3,21 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao.Implements.Evento;
+package service.Implements.Evento;
 
-import dto.EventoVO;
-import dao.Interface.Evento.IcrearEventoDAO;
+import dto.Evento;
+import service.Interface.Evento.IServiceEvento;
 
 /**
  *
  * @author rolando
  */
-public class crearEventoDAO implements IcrearEventoDAO {
+public class ServiceEvento implements IServiceEvento{
 
     @Override
-    public void crearEvento(EventoVO evento) {
-        String sql = ""; //terminar consulta
+    public void crearEvento(Evento evento) {
         
     }
-
+    
 }

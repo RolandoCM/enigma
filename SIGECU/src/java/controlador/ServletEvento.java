@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author rolando
  */
-public class crearEventoServlet extends HttpServlet{
+public class ServletEvento extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

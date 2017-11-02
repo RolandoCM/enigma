@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao.Interface.Evento;
+package service.Interface.Evento;
 
-import dto.EventoVO;
+import dto.Evento;
 
 /**
  *
  * @author rolando
  */
-public interface IcrearEventoDAO {
-    public void crearEvento(EventoVO evento);
+public interface IServiceEvento {
+    public void crearEvento(Evento evento);
 }
