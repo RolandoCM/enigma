@@ -76,6 +76,9 @@ public class EventoDAO implements IEventoDAO {
         List<Evento> eventosConfirmados= null;
         String sql="SELECT nombre ciudad pais FROM eventos WHERE status==1"; //revisar consulta ******
         Connection connection = database.getConnection();
+        Evento eventos = new Evento();
+        eventos.setNombre("nombre");
+        eventosConfirmados.add(eventos);
         if(connection!=null)
         {
             try
@@ -94,7 +97,8 @@ public class EventoDAO implements IEventoDAO {
                 ps.close();
             }catch(SQLException ex)
             {
-                
+                ex.printStackTrace();
+                ex.getMessage();
             }
         }
         return eventosConfirmados;

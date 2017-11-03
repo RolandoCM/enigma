@@ -1,0 +1,1 @@
+<% response.sendRedirect("pages/eventos/Eventos?accion=LEC"); %>
