@@ -9,11 +9,11 @@ import dto.Evento;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
 import jdbc.ConectionDB;
 import dao.Interface.Evento.IEventoDAO;
+import exception.BusinessException;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,121 +26,118 @@ public class EventoDAO implements IEventoDAO {
         this.database = new ConectionDB();
     }
     @Override
-    public void crearEvento(Evento evento) {
+    public void crearEvento(Evento evento) throws BusinessException{
         
         List<Evento> lista = null;
-        String sql = "INSERT INTO eventos (nombre, fecha, descripcion,"
-                + "destinatarios, programa, instructor, lugar, ciudad,"
-                + " pais, capacidad, precios, promociones, tipo, status)"
-                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; //terminar consulta  *******
-        Connection conection = database.getConnection();
+        String sql = "INSERT INTO eventos (nombre, fechaInicio, descripcion,"
+                + "programa, i_idinstructor, lugar, c_idCiudad,"
+                + "capacidad,tipo,estatus, costo, t_idtempletes, p_idpromociones)"
+                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"; //terminar consulta  *******
         
-        if(conection!=null)
+        try
         {
-            try
+            Connection conection = database.getConnection();
+            PreparedStatement ps = conection.prepareStatement(sql);
+            ps.setString(1, evento.getNombre());
+            ps.setString(2, evento.getFecha());
+            ps.setString(3, evento.getDescripcion());
+            ps.setString(5, evento.getPrograma());
+            ps.setString(6, evento.getInstructor().getNombre());
+            ps.setString(7, evento.getLugar());
+            ps.setString(8, evento.getCiudad());
+            ps.setInt(9, evento.getCapacidad());
+            ps.setString(10, evento.getTipo());
+            ps.setString(11, evento.getStatus());
+            ps.setInt(12, evento.getTemplete());
+            ps.setDouble(13, evento.getPromocion());
+              
+            int exec = ps.executeUpdate();
+              
+            if(exec==0)
             {
-                PreparedStatement ps = conection.prepareStatement(sql);
-                ps.setString(1, evento.getNombre());
-                ps.setString(2, evento.getFecha());
-                ps.setString(3, evento.getDescripcion());
-                ps.setString(4, evento.getDestinatarios());
-                ps.setString(5, evento.getPrograma());
-                ps.setString(6, evento.getInstructor().getNombre());
-                ps.setString(7, evento.getLugar());
-                ps.setString(8, evento.getCiudad());
-                ps.setString(9, evento.getPais());
-                ps.setInt(10, evento.getCapacidad());
-                ps.setDouble(11, evento.getPrecio());
-                ps.setDouble(12, evento.getPromocion());
-                ps.setShort(13, evento.getTipo());
-                
-                int exec = ps.executeUpdate();
-                
-                if(exec==0)
-                {
-                    throw new SQLException();
-                }
-                ps.close();
-                
+                throw new BusinessException();
             }
-            catch(SQLException ex)
-            {
-                
-            }
+            ps.close();
+            conection.close();
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setMensaje("error en la capa de base de datos");
+            be.setIdException("001");
+            throw be;
         }
         
     }
 
     @Override
-    public List<Evento> listarEventoCondirmado() {
-        List<Evento> eventosConfirmados= null;
+    public List<Evento> listarEventoCondirmado() throws BusinessException{
+        List<Evento> eventosConfirmados= new ArrayList<>();
         String sql="SELECT nombre ciudad pais FROM eventos WHERE status==1"; //revisar consulta ******
-        Connection connection = database.getConnection();
-        Evento eventos = new Evento();
-        eventos.setNombre("nombre");
-        eventosConfirmados.add(eventos);
-        if(connection!=null)
+        try
         {
-            try
+            Connection connection = database.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet result = ps.executeQuery();
+            while(result.next())
             {
-                PreparedStatement ps = connection.prepareStatement(sql);
-                ResultSet result = ps.executeQuery();
-                eventosConfirmados = new LinkedList<Evento>();
-                while(result.next())
-                {
-                    Evento evento = new Evento();
-                    evento.setNombre(result.getString(1));
-                    evento.setCiudad(result.getString(2));
-                    evento.setPais(result.getString(3));
-                    eventosConfirmados.add(evento);
-                }
-                ps.close();
-            }catch(SQLException ex)
-            {
-                ex.printStackTrace();
-                ex.getMessage();
+                Evento evento = new Evento();
+                evento.setNombre(result.getString(1));
+                evento.setCiudad(result.getString(2));
+                eventosConfirmados.add(evento);
             }
+            connection.close();
+            ps.close();
+            return eventosConfirmados;
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.printStackTrace();
+            be.setMensaje("Error en la capa de base de datos");
+            be.setIdException("0001");
+            throw be;
         }
-        return eventosConfirmados;
     }
 
     @Override
-    public void actualizarEventoConfirmado(Evento evento) {
+    public void actualizarEventoConfirmado(Evento evento) throws BusinessException {
         
     }
 
     @Override
-    public String cancelarEventoConfirmado(Evento evento) {
+    public String cancelarEventoConfirmado(int idEvento) throws BusinessException {
         
         return null;
     }
 
     @Override
-    public Evento detallesEvento(int idEvento) {
+    public Evento detallesEvento(int idEvento) throws BusinessException{
         Evento evento= null;
         String sql="SELECT idEvento, nombre, fecha, descripcion, destinatarios, programa, instructor, "
                 + "lugar, ciudad, pais, precios, promociones FROM eventos WHERE idEvento=? AND tipo=1"; // revisar consulta
-        Connection connection = database.getConnection();
-        if(connection != null)
-        {
-            PreparedStatement ps;
-            try {
-                ps = connection.prepareStatement(sql);
-                ps.setInt(1, idEvento);
-                
-                int exec = ps.executeUpdate();
-                
-                if(exec ==0)
-                {
-                    throw new SQLException();
-                }
-                ps.close();
-            } catch (SQLException ex) {
-            }
-            
-        }
         
-        return evento;
+        try {
+            Connection connection = database.getConnection();
+            PreparedStatement ps;
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, idEvento);
+              
+            int exec = ps.executeUpdate();
+               
+            if(exec ==0)
+            {
+                throw new BusinessException();
+            }
+            ps.close();
+            connection.close();
+            return evento;
+        } catch (Exception ex) {
+            BusinessException be = new BusinessException();
+            be.setIdException("0001");
+            be.setMensaje("Error en la capa de base de datos");
+            throw be;
+        }
     }
 
 

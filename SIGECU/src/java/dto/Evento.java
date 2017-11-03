@@ -12,24 +12,69 @@ public class Evento {
     private String nombre;
     private String fecha; // revisar fecha no es string 
     private String descripcion;
-    private String destinatarios; // revisar destinatarios
     private String programa;  // definir prgrama
     private Instructor instructor;
-    private String Lugar;
-    private String Ciudad;
-    private String pais;
+    private String lugar;
+    private String ciudad;
     private int capacidad;
-    private double precio;
+    private String tipo;
+    private String status;
+    private double costo;
+    private int templete;
     private double promocion;
-    private short tipo;
 
-    public void setTipo(short tipo) {
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
-    public short getTipo() {
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setCosto(double costo) {
+        this.costo = costo;
+    }
+
+    public void setTemplete(int templete) {
+        this.templete = templete;
+    }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public String getTipo() {
         return tipo;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public double getCosto() {
+        return costo;
+    }
+
+    public int getTemplete() {
+        return templete;
+    }
+
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -43,10 +88,6 @@ public class Evento {
         this.descripcion = descripcion;
     }
 
-    public void setDestinatarios(String destinatarios) {
-        this.destinatarios = destinatarios;
-    }
-
     public void setPrograma(String programa) {
         this.programa = programa;
     }
@@ -55,24 +96,8 @@ public class Evento {
         this.instructor = instructor;
     }
 
-    public void setLugar(String Lugar) {
-        this.Lugar = Lugar;
-    }
-
-    public void setCiudad(String Ciudad) {
-        this.Ciudad = Ciudad;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
-
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
     }
 
     public void setPromocion(double promocion) {
@@ -91,10 +116,6 @@ public class Evento {
         return descripcion;
     }
 
-    public String getDestinatarios() {
-        return destinatarios;
-    }
-
     public String getPrograma() {
         return programa;
     }
@@ -102,27 +123,6 @@ public class Evento {
     public Instructor getInstructor() {
         return instructor;
     }
-
-    public String getLugar() {
-        return Lugar;
-    }
-
-    public String getCiudad() {
-        return Ciudad;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public int getCapacidad() {
-        return capacidad;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
     public double getPromocion() {
         return promocion;
     }

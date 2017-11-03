@@ -6,6 +6,7 @@
 package dao.Interface.Evento;
 
 import dto.Evento;
+import exception.BusinessException;
 import java.util.List;
 
 /**
@@ -13,11 +14,11 @@ import java.util.List;
  * @author rolando
  */
 public interface IEventoDAO {
-    public void crearEvento(Evento evento);
-    public List<Evento> listarEventoCondirmado(); 
-    public void actualizarEventoConfirmado(Evento evento);
-    public String cancelarEventoConfirmado(Evento evento); // por confirmar regreso de dato
-    public Evento detallesEvento(int idEvento);
+    public void crearEvento(Evento evento) throws BusinessException;
+    public List<Evento> listarEventoCondirmado() throws BusinessException; 
+    public void actualizarEventoConfirmado(Evento evento) throws BusinessException;
+    public String cancelarEventoConfirmado(int idEvento) throws BusinessException; // por confirmar regreso de dato
+    public Evento detallesEvento(int idEvento) throws BusinessException;
     
     
 }

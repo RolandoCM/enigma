@@ -6,6 +6,8 @@
 package controlador;
 
 import dto.Evento;
+import dto.MensajesDTO;
+import exception.BusinessException;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,7 +25,7 @@ import service.Interface.Evento.IServiceEvento;
  *
  * @author rolando
  */
-@WebServlet({ "/Eventos", "/pages/eventos/Eventos" })
+@WebServlet({ "/Eventos", "/vistas/eventos/Eventos" })
 public class ServletEvento extends HttpServlet{
     private String direccionar = null;
     protected void service (HttpServletRequest request, HttpServletResponse response) 
@@ -69,17 +71,37 @@ public class ServletEvento extends HttpServlet{
     }
     private void listarEventosConfirmados(IServiceEvento evento, HttpServletRequest request, HttpServletResponse response) 
     {
-        List<Evento> listaEventos = evento.listarEventoConfirmado();
- 
-        request.setAttribute("listaEvento", listaEventos);
-
-        direccionar = "listarEventosConfirmados.jsp";
+        MensajesDTO msjDTO = new MensajesDTO();
+        try {
+            List<Evento> listaEventos = evento.listarEventoConfirmado();
+            request.setAttribute("listaEvento", listaEventos); 
+            msjDTO.setId("000");
+            msjDTO.setMensaje("Ejecuxion OK");
+            request.setAttribute("msj", msjDTO);
+        } catch (BusinessException ex) {
+            msjDTO.setId(ex.getIdException());
+            msjDTO.setMensaje(ex.getMensaje());
+            request.setAttribute("msj", msjDTO);
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            msjDTO.setId("301");
+            msjDTO.setMensaje("Error en la llamada de recursos");
+            request.setAttribute("msj", msjDTO);
+        }
+        finally{
+            direccionar = "listarEventosConfirmados.jsp";
+        }
     }
 
     private void crearEvento(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response)  {
-        Evento evento = new Evento();
-        
-        eventoService.crearEvento(evento);
+        try {
+            Evento evento = new Evento();
+            
+            eventoService.crearEvento(evento);
+        } catch (BusinessException ex) {
+            Logger.getLogger(ServletEvento.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 
@@ -92,10 +114,25 @@ public class ServletEvento extends HttpServlet{
     }
 
     private void detallesEvento(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response)  {
-        int idEvento= Integer.parseInt(request.getParameter("id"));
-        Evento evento = eventoService.detallesEvento(idEvento);
-
-        direccionar = "detallesEvento.jsp";
+        MensajesDTO msjDTO = new MensajesDTO();
+        try
+        {
+            int idEvento= Integer.parseInt(request.getParameter("id"));
+            Evento evento = eventoService.detallesEvento(idEvento);
+        } catch (BusinessException ex) {
+            msjDTO.setId(ex.getIdException());
+            msjDTO.setMensaje(ex.getMensaje());
+            request.setAttribute("msj", msjDTO);
+        }catch(NumberFormatException e)
+        {
+            e.printStackTrace();
+            msjDTO.setId("301");
+            msjDTO.setMensaje("Error en la llamada de recursos");
+            request.setAttribute("msj", msjDTO);
+        }finally
+        {
+            direccionar = "detallesEvento.jsp";
+        }
     }
     private String verificar(HttpServletRequest request, Evento evento)
     {

@@ -15,6 +15,8 @@
     </head>
     <body>
         <h1>Listo</h1>
+
+				 
          <table id="example" class="display table-responsive" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
@@ -32,5 +34,9 @@
                             </tbody>
                         </table>
                     </div>
+                 ${msj.id}<br/>
+				 ${msj.mensaje}<br/>		
+                                 
+                                 <div>${msj2}</div>
     </body>
 </html>

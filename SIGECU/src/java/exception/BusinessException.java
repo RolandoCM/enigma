@@ -3,36 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dto;
+package exception;
 
 /**
  *
  * @author rolando
  */
-public class Message {
-    private String id;
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
+public class BusinessException extends Exception{
+    private String idException;
     private String mensaje;
 
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
 
+    public void setIdException(String idException) {
+        this.idException = idException;
+    }
+
     public String getMensaje() {
         return mensaje;
     }
 
-    public void getMensaje(String mensajeEx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getIdException() {
+        return idException;
     }
-    
-    
-    
 }
