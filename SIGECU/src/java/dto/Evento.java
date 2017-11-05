@@ -20,8 +20,8 @@ public class Evento {
     private String tipo;
     private String status;
     private double costo;
-    private int templete;
-    private double promocion;
+    private String templete;
+    private String promocion;
 
     public void setLugar(String lugar) {
         this.lugar = lugar;
@@ -43,7 +43,7 @@ public class Evento {
         this.costo = costo;
     }
 
-    public void setTemplete(int templete) {
+    public void setTemplete(String templete) {
         this.templete = templete;
     }
 
@@ -71,7 +71,7 @@ public class Evento {
         return costo;
     }
 
-    public int getTemplete() {
+    public String getTemplete() {
         return templete;
     }
 
@@ -100,7 +100,7 @@ public class Evento {
         this.capacidad = capacidad;
     }
 
-    public void setPromocion(double promocion) {
+    public void setPromocion(String promocion) {
         this.promocion = promocion;
     }
 
@@ -123,7 +123,7 @@ public class Evento {
     public Instructor getInstructor() {
         return instructor;
     }
-    public double getPromocion() {
+    public String getPromocion() {
         return promocion;
     }
 }

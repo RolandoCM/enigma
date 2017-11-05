@@ -9,8 +9,17 @@ package dto;
  *
  * @author rolando
  */
-public class Instructor extends Usuario {
-    private String id;    
+public class IdentificadoresEvento {
+    private String id;
+    private String nombre;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public String getId() {
         return id;
@@ -19,4 +28,5 @@ public class Instructor extends Usuario {
     public void setId(String id) {
         this.id = id;
     }
+    
 }

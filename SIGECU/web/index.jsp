@@ -1,1 +1,1 @@
-<% response.sendRedirect("vistas/eventos/Eventos?accion=LEC"); %>
+<% response.sendRedirect("vistas/eventos/Eventos?accion=CE"); %>

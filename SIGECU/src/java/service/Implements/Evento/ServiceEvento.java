@@ -8,6 +8,7 @@ package service.Implements.Evento;
 import dao.Implements.Evento.EventoDAO;
 import dao.Interface.Evento.IEventoDAO;
 import dto.Evento;
+import dto.IdentificadoresEvento;
 import exception.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
@@ -121,6 +122,29 @@ public class ServiceEvento implements IServiceEvento{
             be.setMensaje("Erroe eb la capa de negocio, conexion a detalles de Evento");
             throw be;
             
+        }
+    }
+
+    @Override
+    public List<List<IdentificadoresEvento>> consultaDatosCrearEvento() throws BusinessException {
+        List<List<IdentificadoresEvento>> datosParaEvento = new ArrayList<>();
+        try
+        {
+            IEventoDAO eventoDAO = new EventoDAO();
+            datosParaEvento = eventoDAO.consultaDatosCrearEvento();
+            return datosParaEvento;
+            
+        }catch (BusinessException e)
+        {
+            throw e;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setIdException("201");
+            be.setMensaje("Error en la capa de negocio, conexion a datos para crear evento");
+            throw be;
         }
     }
     

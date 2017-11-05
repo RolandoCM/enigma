@@ -6,6 +6,7 @@
 package service.Interface.Evento;
 
 import dto.Evento;
+import dto.IdentificadoresEvento;
 import exception.BusinessException;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @author rolando
  */
 public interface IServiceEvento {
+    public List<List<IdentificadoresEvento>> consultaDatosCrearEvento() throws BusinessException;
     public void crearEvento(Evento evento) throws BusinessException;
     public List<Evento> listarEventoConfirmado() throws BusinessException; 
     public void actualizarEventoConfirmado(Evento evento) throws BusinessException;

@@ -25,7 +25,7 @@ public class ConectionDB {
     }
 
     public ConectionDB() {
-        this.database = "escela";
+        this.database = "db_sigecu";
     }
 
     public ConectionDB(String database) {
