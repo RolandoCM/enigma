@@ -629,13 +629,10 @@
     
 <section class="content">
         <div class="container-fluid">
-            <div class="block-header">
-                <h2></h2>
-            </div>
+            
             <!-- Input -->
+          
             <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                           <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
@@ -653,116 +650,112 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="body">
-                            <form id="form_advanced_validation" method="POST">
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" name="nombre" maxlength="10" minlength="3" required value="${EventoVO.nombre}">
-                                        <label class="form-label"> Nombre</label>
-                                    </div>
-                                    <div class="help-info">Solo texto</div>
-                                </div>
-                                
-                                   <div class="form-group">
+                        
+                            
+                            <div class="row clearfix">
+                                <div class="col-md-3 col-md-offset-1">
+                                    <p>
+                                        <b>Input Group Large</b>
+                                    </p>
+                                    <div class="input-group input-group-lg">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">person</i>
+                                        </span>
                                         <div class="form-line">
-                                            <input type="text" class="datepicker form-control" placeholder="Elige la fecha" value="${EventoVO.fecha}">
+                                            <input type="text" class="form-control" placeholder="Username">
                                         </div>
                                     </div>
-                                    
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="Texto" class="form-control" name="descripcion" required value="${EventoVO.descripcion}">
-                                        <label class="form-label">Descripcion</label>
-                                    </div>
-                                    <div class="help-info">Definicion de el evento</div>
                                 </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" name="programa" required value="${EventoVO.programa}">
-                                        <label class="form-label">Programa</label>
+                                <div class="col-md-3">
+                                    <p>
+                                        <b>Input Group Default</b>
+                                    </p>
+                                    <div class="input-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" placeholder="Message">
+                                        </div>
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">send</i>
+                                        </span>
                                     </div>
-                                    <div class="help-info">Detalles del programa</div>
                                 </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line ">
-                                        <select class=" form-control show-tick" name="instructor" required value="${EventoVO.Instructor}">
-                                            <option></option>
-                                            <option>Intructor 1</option>
-                                            <option>Intructor 2</option>
-                                        </select>
-                                       
-                                       
+                                <div class="col-md-3">
+                                    <p>
+                                        <b>Input Group Small</b>
+                                    </p>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">person</i>
+                                        </span>
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" placeholder="Recipient's username">
+                                        </div>
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">send</i>
+                                        </span>
                                     </div>
-                                    <div class="help-info">Seleccione el Instructor</div>
                                 </div>
-                                             <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" name="lugar" required value="${EventoVO.lugar}">
-                                        <label class="form-label">Lugar</label>
-                                    </div>
-                                    <div class="help-info">Direccion</div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <label class="">Ciudad</label>
-                                        <select class="form-control show-tick" name="ciudad" required value="${EventoVO.ciudad}">
-                                            <option></option>
-                                            <option></option>
-                                        </select>
-                                    </div>
-                                    <div class="help-info">Ciudad</div>
-                                </div>
-                                             <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" name="pais" required value="${EventoVO.pais}">
-                                        <label class="form-label">Pais</label>
-                                    </div>
-                                    <div class="help-info">Pais</div>
-                                </div>
-                                         <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="number" class="form-control" name="capacidad" required value="${EventoVO.capacidad}">
-                                        <label class="form-label">Capacidad</label>
-                                    </div>
-                                    <div class="help-info">Numero de posibles alumnos</div>
-                                </div>
-                                      
-                                         <div class="demo-radio-button">
-                                             <input name="group1" type="radio" id="radio_1" checked value="privado" />
-                                <label for="radio_1">Privado</label>
-                                <input name="group1" type="radio" id="radio_2" value="publico"/>
-                                <label for="radio_2">publico</label>
-                                <br>
-                                <br>
                             </div>
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <label class="">Templates</label>
-                                                <select class="form-control show-tick" name="template" id="template" required >
-                                                    <option value="${EventoVO.ciudad}"></option>
-                                                    <option></option>
-                                                </select>
-                                                
-                                            </div>
-                                   
-                                </div>
-                                            <div class="form-group form-float">
-                                    <div class="form-line">
-                                         <div class="demo-switch-title">Confirmacion</div>
-                                        <div class="switch">
-                                            <label><input type="checkbox" checked><span class="lever switch-col-red"></span></label>
+                            <div class="row clearfix">
+                                <div class="col-md-4">
+                                    <div class="input-group input-group-lg">
+                                        <span class="input-group-addon">@</span>
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" placeholder="Username">
                                         </div>
+                                    </div>
                                 </div>
-                                            </div>
-                                                   
-                                <button class="btn btn-block btn-lg btn-primary waves-effect" type="submit">SUBMIT</button>
-                                                    
-                            </form>
-                        </div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" placeholder="Recipient's username">
+                                        </div>
+                                        <span class="input-group-addon">@example.com</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-addon">$</span>
+                                        <div class="form-line">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <span class="input-group-addon">.00</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2 class="card-inside-title">Radio & Checkbox</h2>
+                            <div class="row clearfix">
+                                <div class="col-md-6">
+                                    <div class="input-group input-group-lg">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox" class="filled-in" id="ig_checkbox">
+                                            <label for="ig_checkbox"></label>
+                                        </span>
+                                        <div class="form-line">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group input-group-lg">
+                                        <span class="input-group-addon">
+                                            <input type="radio" class="with-gap" id="ig_radio">
+                                            <label for="ig_radio"></label>
+                                        </span>
+                                        <div class="form-line">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
-            </div>
-            
+                           </div>
+               
+        </div>
+</section>
+   
 
 
 
@@ -801,6 +794,6 @@
     <script src="../../js/demo.js"></script>
 </body>
     
-</body>
+
 
 </html>
