@@ -9,6 +9,7 @@ package dto;
  * @author rolando
  */
 public class Evento {
+    private String id;
     private String nombre;
     private String fecha; // revisar fecha no es string 
     private String descripcion;
@@ -22,6 +23,32 @@ public class Evento {
     private double costo;
     private String templete;
     private String promocion;
+    private String nombreCiudad;
+    private String nombrePais;
+    
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setNombrePais(String nombrePais) {
+        this.nombrePais = nombrePais;
+    }
+
+    public void setNombreCiudad(String nombreCiudad) {
+        this.nombreCiudad = nombreCiudad;
+    }
+
+    public String getNombrePais() {
+        return nombrePais;
+    }
+
+    public String getNombreCiudad() {
+        return nombreCiudad;
+    }
 
     public void setLugar(String lugar) {
         this.lugar = lugar;

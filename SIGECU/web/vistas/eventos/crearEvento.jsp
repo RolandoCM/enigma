@@ -24,6 +24,8 @@
     <!-- Bootstrap Core Css -->
     <link href="../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
+    <!--WaitMe Css-->
+    <link href="../../plugins/waitme/waitMe.css" rel="stylesheet" />
     <!-- Waves Effect Css -->
     <link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
 
@@ -39,35 +41,9 @@
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="../../css/themes/all-themes.css" rel="stylesheet" />
     
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core Js -->
-    <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
-
-    <!-- Select Plugin Js -->
-    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
-
-    <!-- Slimscroll Plugin Js -->
-    <script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-
-    <!-- Waves Effect Plugin Js -->
-    <script src="../../plugins/node-waves/waves.js"></script>
-
-    <!-- Autosize Plugin Js -->
-    <script src="../../plugins/autosize/autosize.js"></script>
-
-    <!-- Moment Plugin Js -->
-    <script src="../../plugins/momentjs/moment.js"></script>
-
-    <!-- Bootstrap Material Datetime Picker Plugin Js -->
-    <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-
-    <!-- Custom Js -->
-    <script src="../../js/admin.js"></script>
-    <script src="../../js/pages/forms/basic-form-elements.js"></script>
-
+   
     <!-- Demo Js -->
-    <script src="../../js/demo.js"></script>
+    
     
 
 </head>
@@ -658,164 +634,211 @@
         <!-- #END# Right Sidebar -->
     </section>
     
-<section class="content">
+    <section class="content">
         <div class="container-fluid">
-            <div class="block-header">
-                <h2></h2>
-            </div>
+            
             <!-- Input -->
             <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                           <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
-                        <div class="header">
-                            <h2>CREAR EVENTO</h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                <div class="header">
+                                    <h2>CREAR EVENTO</h2>
+                                    <ul class="header-dropdown m-r--5">
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                <i class="material-icons">more_vert</i>
+                                            </a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li><a href="javascript:void(0);">Action</a></li>
+                                                <li><a href="javascript:void(0);">Another action</a></li>
+                                                <li><a href="javascript:void(0);">Something else here</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="body">
-                            <form id="form_advanced_validation" action="Eventos" method="POST">
-                                <input type="hidden" name="accion" value="CE"/>
-                                
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" name="nombreEvento" maxlength="10" minlength="3" required>
-                                        <label class="form-label"> Nombre</label>
-                                    </div>
-                                    <div class="help-info">Solo texto</div>
                                 </div>
-                                
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input name="fechaEvento" type="text" id="date" class="form-control" placeholder="Elige la fecha">
-                                        
-                                    </div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="Texto" class="form-control" name="descripcionEvento" required>
-                                        <label class="form-label">Descripcion</label>
-                                    </div>
-                                    <div class="help-info">Definicion de el evento</div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" name="programaEvento" required>
-                                        <label class="form-label">Programa</label>
-                                    </div>
-                                    <div class="help-info">Detalles del programa</div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line ">
-                                        <select class=" form-control show-tick" name="instructorEvento"  required>
-                                            <option value="">Ninguno</option>
-                                            <c:forEach var="ins" items="${datosParaEvento.get(0)}">
-                                                <option  value="${ins.id}">${ins.nombre}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                <div class="help-info">Seleccione el Instructor</div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" name="lugarEvento" required>
-                                        <label class="form-label">Lugar</label>
-                                    </div>
-                                <div class="help-info">Direccion</div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <label class="">Ciudad</label>
-                                        <select class="form-control show-tick" name="ciudadEvento" required>
-                                            <c:forEach var="ins" items="${datosParaEvento.get(1)}">
-                                                <option value="${ins.id}">${ins.nombre}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                    <div class="help-info">Ciudad</div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" name="paisEvento" required>
-                                        <label class="form-label">Pais</label>
-                                    </div>
-                                    <div class="help-info">Pais</div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="number" class="form-control" name="capacidadEvento" required>
-                                        <label class="form-label">Capacidad</label>
-                                    </div>
-                                    <div class="help-info">Numero de posibles alumnos</div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="number" class="form-control" name="costoEvento" required>
-                                        <label class="form-label">Precio</label>
-                                    </div>
-                                    <div class="help-info">Costo de entrada</div>
-                                </div>
-                                      
-                                <div class="demo-radio-button">
-                                    <input name="tipoEvento" type="radio" id="radio_1" checked value="privado" />
-                                    <label for="radio_1">Privado</label>
-                                    <input name="tipoEvento" type="radio" id="radio_2" value="publico"/>
-                                    <label for="radio_2">Público</label>
-                                    <br>
-                                    <br>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <label class="">Templates</label>
-                                        <select name="templateEvento" class="form-control show-tick"  required >
-                                            <c:forEach var="ins" items="${datosParaEvento.get(2)}">
-                                                <option value="${ins.id}">${ins.nombre}</option>
-                                            </c:forEach>
-                                        </select>          
-                                    </div>
-                                </div>
-                                            
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <label class="">Promoción</label>
-                                        <select name="promocionEvento" class="form-control show-tick" required >
-                                            <c:forEach var="ins" items="${datosParaEvento.get(3)}">
-                                                <option value="${ins.id}">${ins.nombre}</option>
-                                            </c:forEach>
-                                        </select>                
-                                    </div>
-                                </div>
-                                            
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <div class="demo-switch-title">Confirmacion</div>
-                                        <div class="switch">
-                                            <label><input name="statusEvento" type="checkbox" checked><span class="lever switch-col-red"></span></label>
+                                <div class="body">
+                                    <form id="form_advanced_validation" action="Eventos" method="POST">
+                                        <input type="hidden" name="accion" value="CE">
+                                        <div class="row clearfix">
+                                        <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="nombreEvento" maxlength="10" minlength="3" required>
+                                                    <label class="form-label"> Nombre</label>
+                                                </div>
+                                                <div class="help-info">Solo texto</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>                                       
-                                <button class="btn btn-block btn-lg btn-primary waves-effect" type="submit">ENVIAR</button>              
-                            </form>
-                            <div>hola
-                                ${mensaje.mensaje}</div>
-                        </div>
-                        <div>${mensajeCrear.mensaje}</div>
-                        <div>${mensajeDebug}</div>
-                    </div>
+                                       
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input name="fechaEvento" type="text" id="date" class="form-control" placeholder="Elige la fecha">
+                                                    <div class="help-info">Fecha del Evento</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                        <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="Texto" class="form-control" name="descripcionEvento" required>
+                                                    <label class="form-label">Descripcion</label>
+                                                </div>
+                                                <div class="help-info">Definicion de el evento</div>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="programaEvento" required>
+                                                    <label class="form-label">Programa</label>
+                                                </div>
+                                                <div class="help-info">Detalles del programa</div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                        <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line ">
+                                                    <select class=" form-control show-tick" name="instructorEvento"  required>
+                                                        <option value="">Ninguno</option>
+                                                        <c:forEach var="ins" items="${datosParaEvento.get(0)}">
+                                                            <option  value="${ins.id}">${ins.nombre}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                                <div class="help-info">Seleccione el Instructor</div>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="lugarEvento" required>
+                                                    <label class="form-label">Lugar</label>
+                                                </div>
+                                                <div class="help-info">Direccion</div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                        <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <label class="">Ciudad</label>
+                                                    <select class="form-control show-tick" name="ciudadEvento" required>
+                                                        <c:forEach var="ins" items="${datosParaEvento.get(1)}">
+                                                            <option value="${ins.id}">${ins.nombre}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                                <div class="help-info">Ciudad</div>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="paisEvento" required>
+                                                    <label class="form-label">Pais</label>
+                                                </div>
+                                                <div class="help-info">Pais</div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                        <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="number" class="form-control" name="capacidadEvento" required>
+                                                    <label class="form-label">Capacidad</label>
+                                                </div>
+                                                <div class="help-info">Numero de posibles alumnos</div>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="number" class="form-control" name="costoEvento" required>
+                                                    <label class="form-label">Precio</label>
+                                                </div>
+                                                <div class="help-info">Costo de entrada</div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                        <div class="col-md-6">
+                                            <div class="demo-radio-button">
+                                                <input name="tipoEvento" type="radio" id="radio_1" checked value="privado" />
+                                                <label for="radio_1">Privado</label>
+                                                <input name="tipoEvento" type="radio" id="radio_2" value="publico"/>
+                                                <label for="radio_2">Público</label>
+                                                <br>
+                                                <br>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <label class="">Templates</label>
+                                                    <select name="templateEvento" class="form-control show-tick"  required >
+                                                        <c:forEach var="ins" items="${datosParaEvento.get(2)}">
+                                                            <option value="${ins.id}">${ins.nombre}</option>
+                                                        </c:forEach>
+                                                    </select>          
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                        <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <label class="">Promoción</label>
+                                                    <select name="promocionEvento" class="form-control show-tick" required >
+                                                        <c:forEach var="ins" items="${datosParaEvento.get(3)}">
+                                                            <option value="${ins.id}">${ins.nombre}</option>
+                                                        </c:forEach>
+                                                    </select>                
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <div class="demo-switch-title">Confirmacion</div>
+                                                    <div class="switch">
+                                                        <label><input name="statusEvento" type="checkbox" checked><span class="lever switch-col-red"></span></label>
+                                                    </div>
+                                                </div>
+                                            </div>      
+                                        </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                        <div class="col-md-12">
+                                            <button class="btn btn-block btn-lg btn-primary waves-effect" type="submit">ENVIAR</button>              
+                                        </div>
+                                        </div>
+                                    </form>
+                                    <div>${mensaje.mensaje}</div>
+                                    <div>${mensajeCrear.mensaje}</div>
+                                    <div>${mensajeDebug}</div>
+                                   
+                                </div>
+                            </div>
                 </div>
+                                
             </div>
-            
+        </div>
+    </section>
+                
 
 
 
@@ -824,8 +847,35 @@
 
 
 
-</body>
-    
-</body>
+<script src="../../plugins/jquery/jquery.min.js"></script>
 
+    <!-- Bootstrap Core Js -->
+    <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="../../plugins/node-waves/waves.js"></script>
+
+    <!-- Autosize Plugin Js -->
+    <script src="../../plugins/autosize/autosize.js"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="../../plugins/momentjs/moment.js"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+    <!-- Custom Js -->
+    <script src="../../js/admin.js"></script>
+    <script src="../../js/pages/forms/basic-form-elements.js"></script>
+
+    <!-- Demo Js -->
+    <script src="../../js/demo.js"></script>
+
+    </body>
 </html>

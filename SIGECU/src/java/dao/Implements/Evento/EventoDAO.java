@@ -14,6 +14,7 @@ import jdbc.ConectionDB;
 import dao.Interface.Evento.IEventoDAO;
 import dto.IdentificadoresEvento;
 import exception.BusinessException;
+import extras.Convierte;
 import java.util.ArrayList;
 
 /**
@@ -68,10 +69,13 @@ public class EventoDAO implements IEventoDAO {
         
     }
 
+    /*Metodo para listar eventos*/
     @Override
     public List<Evento> listarEventoCondirmado() throws BusinessException{
         List<Evento> eventosConfirmados= new ArrayList<>();
-        String sql="SELECT nombre, c_idCiudad FROM eventos"; //revisar consulta ******
+        String sql="SELECT e.idevento, e.nombre, c.nombre, p.nombre, e.fechaInicio FROM eventos e, ciudad c,"
+                + "pais p WHERE c.idCiudad = e.c_idCiudad AND p.idPais=c.p_idPais ";
+               // + "AND e.estatus IS NOT NULL;";
         try
         {
             Connection connection = database.getConnection();
@@ -80,8 +84,11 @@ public class EventoDAO implements IEventoDAO {
             while(result.next())
             {
                 Evento evento = new Evento();
-                evento.setNombre(result.getString(1));
-                evento.setCiudad(result.getString(2));
+                evento.setId(result.getString(1));
+                evento.setNombre(result.getString(2));
+                evento.setNombreCiudad(result.getString(3));
+                evento.setNombrePais(result.getString(4));              
+                //evento.setFecha(Convierte.fechaString(result.getDate(4)));
                 eventosConfirmados.add(evento);
             }
             connection.close();

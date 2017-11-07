@@ -1,5 +1,8 @@
 package extras;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 public class Convierte {
 
 	public Convierte() {
@@ -29,6 +32,10 @@ public class Convierte {
         }
 
         return result;
+    }
+    public static String fechaString(Date fecha)
+    {
+        return  new SimpleDateFormat("yyyy-MM-dd").format(fecha);
     }
 	
 }

@@ -12,6 +12,7 @@ import dto.MensajesDTO;
 import exception.BusinessException;
 import extras.Convierte;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -63,6 +64,8 @@ public class ServletEvento extends HttpServlet{
                 case "DE":
                     detallesEvento(evento, request, response);
                     break;
+                case "LEW":
+                    listarEventosWeb(evento,request, response);
                 default:
                     break;
             }
@@ -132,15 +135,16 @@ public class ServletEvento extends HttpServlet{
                 msjDTO.setId("000");
             msjDTO.setMensaje("Exceute OK");
             request.setAttribute("mensajeCrear", msjDTO);
-            request.setAttribute("mensajeDebug", request.getParameter("nombreEvento")+ " "+ request.getParameter("fechaEvento")+
-                    " "+request.getParameter("descripcionEvento")+" "+request.getParameter("programaEvento")+
-                    " "+request.getParameter("lugarEvento")+
-                    " "+request.getParameter("instructorEvento")+" "+request.getParameter("ciudadEvento")+
-                    " "+request.getParameter("capacidadEvento")+" "+request.getParameter("tipoEvento")+
-                    " "+request.getParameter("statusEvento")+ " "+request.getParameter("costoEvento")+
-                    " "+request.getParameter("templateEvento")+" "+request.getParameter("promocionEvento"));
+//            request.setAttribute("mensajeDebug", request.getParameter("nombreEvento")+ " "+ request.getParameter("fechaEvento")+
+//                    " "+request.getParameter("descripcionEvento")+" "+request.getParameter("programaEvento")+
+//                    " "+request.getParameter("lugarEvento")+
+//                    " "+request.getParameter("instructorEvento")+" "+request.getParameter("ciudadEvento")+
+//                    " "+request.getParameter("capacidadEvento")+" "+request.getParameter("tipoEvento")+
+//                    " "+request.getParameter("statusEvento")+ " "+request.getParameter("costoEvento")+
+//                    " "+request.getParameter("templateEvento")+" "+request.getParameter("promocionEvento"));
             int capacidadEvento = Convierte.aInteger(request.getParameter("capacidadEvento"));
             double costoEvento = Convierte.aDouble(request.getParameter("costoEvento"));
+
             
             evento.setNombre(request.getParameter("nombreEvento"));
             evento.setFecha(request.getParameter("fechaEvento"));
@@ -182,7 +186,19 @@ public class ServletEvento extends HttpServlet{
     }
 
     private void actualizarEventoConfirmado(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response) {
+        Integer id = Convierte.aInteger(request.getParameter("idEvento"));
+        List<Evento> evento = new ArrayList<>();
         
+        if(id!=null)
+        {
+            request.setAttribute("msj", request.getParameter("idEvento"));
+            //evento = eventoService.actualizarEventoConfirmado();
+        }
+        else
+        {
+            
+        }
+        direccionar = "listarEvento.jsp";
     }
 
     private void cancelarEventoConfirmado(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response) {
@@ -223,6 +239,16 @@ public class ServletEvento extends HttpServlet{
         else
             mensaje=".";
         return mensaje;
+    }
+
+    private void listarEventosWeb(IServiceEvento evento, HttpServletRequest request, HttpServletResponse response) {
+//        try
+//        {
+//            
+//        }catch(BusinessException ex)
+//        {
+//            
+//        }
     }
     
 }

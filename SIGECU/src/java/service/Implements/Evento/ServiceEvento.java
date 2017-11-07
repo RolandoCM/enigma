@@ -147,5 +147,11 @@ public class ServiceEvento implements IServiceEvento{
             throw be;
         }
     }
+
+    /*Metodo para listar eventos en el sitio web*/
+    @Override
+    public List<List<Evento>> listarEventosWeb() throws BusinessException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    } //fin del metodo listarEventosWeb
     
 }
