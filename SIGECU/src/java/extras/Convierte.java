@@ -1,6 +1,7 @@
 package extras;
 
 import java.sql.Date;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 public class Convierte {
@@ -35,7 +36,10 @@ public class Convierte {
     }
     public static String fechaString(Date fecha)
     {
-        return  new SimpleDateFormat("yyyy-MM-dd").format(fecha);
+        String fechaString = "";
+        DateFormat miFecha = new SimpleDateFormat("yyyy-MM-dd");
+        fechaString = miFecha.format(fecha);
+        return fechaString;
     }
 	
 }

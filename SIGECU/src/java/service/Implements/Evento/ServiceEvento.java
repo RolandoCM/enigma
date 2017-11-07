@@ -153,5 +153,12 @@ public class ServiceEvento implements IServiceEvento{
     public List<List<Evento>> listarEventosWeb() throws BusinessException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     } //fin del metodo listarEventosWeb
+
+    @Override
+    public Evento buscarEvento(int idEvento) throws BusinessException {
+        IEventoDAO eventoDAO = new EventoDAO();
+        Evento evento = eventoDAO.buscarEventoDAO(idEvento);
+        return evento;
+    }
     
 }

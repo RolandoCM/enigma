@@ -19,6 +19,7 @@ public interface IServiceEvento {
     public void crearEvento(Evento evento) throws BusinessException;
     public List<Evento> listarEventoConfirmado() throws BusinessException; 
     public void actualizarEventoConfirmado(Evento evento) throws BusinessException;
+    public Evento buscarEvento(int idEvento) throws BusinessException;
     public String cancelarEventoConfirmado(int idEvento) throws BusinessException ; // por confirmar regreso de dato
     public Evento detallesEvento(int idEvento) throws BusinessException;
     public List<List<Evento>> listarEventosWeb() throws BusinessException;

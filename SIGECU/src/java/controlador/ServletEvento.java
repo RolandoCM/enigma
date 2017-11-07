@@ -12,7 +12,6 @@ import dto.MensajesDTO;
 import exception.BusinessException;
 import extras.Convierte;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -75,7 +74,9 @@ public class ServletEvento extends HttpServlet{
         }
         RequestDispatcher despachador = request.getRequestDispatcher(direccionar);
             despachador.forward(request, response);
-    }
+    } //fin del metodo service
+    
+    /*metodo para listar los eventos para el comercial */
     private void listarEventosConfirmados(IServiceEvento evento, HttpServletRequest request, HttpServletResponse response) 
     {
         MensajesDTO msjDTO = new MensajesDTO();
@@ -97,9 +98,14 @@ public class ServletEvento extends HttpServlet{
             request.setAttribute("msj", msjDTO);
         }
         finally{
-            direccionar = "listarEventosConfirmados.jsp";
+            direccionar = "listarEventos.jsp";
         }
-    }
+    }//fin del metodo listarEventosConfiemdos
+    
+    
+    /*Metodo para cargar los datos de los eventos necesarios para hacer el registro
+     * de un nuevo evento, los datos cargados son ciudad, pais, instructor, templete
+    * promociones*/
     private void cargarDatosEvento(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response) {
         List<List<IdentificadoresEvento>> datosParaEvento;
         MensajesDTO msjDTO = new MensajesDTO();
@@ -123,7 +129,9 @@ public class ServletEvento extends HttpServlet{
         finally{
             direccionar = "crearEvento.jsp";
         }
-    }
+    }//cargarDatosEvento
+    
+    /*Metodo para crear un nuevo evento y almacenarlo en la base de datos*/
     private void crearEvento(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response)  {
         MensajesDTO msjDTO = new MensajesDTO();
         try {
@@ -150,10 +158,8 @@ public class ServletEvento extends HttpServlet{
             evento.setFecha(request.getParameter("fechaEvento"));
             evento.setDescripcion(request.getParameter("descripcionEvento"));
             evento.setPrograma(request.getParameter("programaEvento"));
-            
             instructor.setId(request.getParameter("instructorEvento"));
-            evento.setInstructor(instructor);
-            
+            evento.setInstructor(instructor);           
             evento.setLugar(request.getParameter("lugarEvento"));
             evento.setCiudad(request.getParameter("ciudadEvento"));
             evento.setCapacidad(capacidadEvento);
@@ -181,30 +187,64 @@ public class ServletEvento extends HttpServlet{
         }
         finally{
             direccionar = "crearEvento.jsp";
-        }
-        
-    }
-
+        }   
+    }//fin del metodo crearEvento
+    
+    /*Metodo para actualizar un evento en la base de datos*/
     private void actualizarEventoConfirmado(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response) {
-        Integer id = Convierte.aInteger(request.getParameter("idEvento"));
-        List<Evento> evento = new ArrayList<>();
+        MensajesDTO msjDTO = new MensajesDTO();
+        Integer idEvento = Convierte.aInteger(request.getParameter("idEvento"));
+        Evento evento = new Evento();
+        try{
+            buscarEvento(idEvento, eventoService, request, response);
+            if(!idEvento.equals(null))
+            {
+                eventoService.actualizarEventoConfirmado((Evento) evento);
+            }
+        }catch(BusinessException ex)
+        {
+            msjDTO.setId(ex.getIdException());
+            msjDTO.setMensaje(ex.getMensaje());
+            request.setAttribute("mensajeCrear", msjDTO);
+        }catch(Exception e){
+            e.printStackTrace();
+            msjDTO.setId("301");
+            msjDTO.setMensaje("Error en la llamada a recursos");
+            request.setAttribute("mensajeCrear", msjDTO);
+        }
+        direccionar = "Eventos?accion=LEC";
+    }// fin del metodo actualizarEventoConfirmado
+    
+    public void buscarEvento(int idEvento, IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response)
+    {
+        MensajesDTO msjDTO = new MensajesDTO();
+        try
+        {
+            Evento eventoBuscado = eventoService.buscarEvento(idEvento);
+            request.setAttribute("eventoBuscado", eventoBuscado);
+        }catch (BusinessException ex) {
+            msjDTO.setId(ex.getIdException());
+            msjDTO.setMensaje(ex.getMensaje());
+            request.setAttribute("msj", msjDTO);
+        }catch(NumberFormatException e)
+        {
+            e.printStackTrace();
+            msjDTO.setId("301");
+            msjDTO.setMensaje("Error en la llamada de recursos");
+            request.setAttribute("msj", msjDTO);
+        }finally
+        {
+            //direccionar = "listaEventos.jsp";
+        }
         
-        if(id!=null)
-        {
-            request.setAttribute("msj", request.getParameter("idEvento"));
-            //evento = eventoService.actualizarEventoConfirmado();
-        }
-        else
-        {
-            
-        }
-        direccionar = "listarEvento.jsp";
     }
-
+    /*Metodo para cancelar un evento */
     private void cancelarEventoConfirmado(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }//fin del metodo cancelarEventoConfirmado
 
+    /*Metodo de detallesEvento para mostrar todos los detalles el 
+    evento al usuario final*/
     private void detallesEvento(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response)  {
         MensajesDTO msjDTO = new MensajesDTO();
         try
@@ -225,7 +265,9 @@ public class ServletEvento extends HttpServlet{
         {
             direccionar = "detallesEvento.jsp";
         }
-    }
+    }//fin del metodo detallesEvento
+    
+    /*Metodo para verificar datos que no esten null o incompletos*/
     private String verificar(HttpServletRequest request, Evento evento)
     {
         String mensaje=".";
@@ -239,7 +281,7 @@ public class ServletEvento extends HttpServlet{
         else
             mensaje=".";
         return mensaje;
-    }
+    }//fin del metodo verificar
 
     private void listarEventosWeb(IServiceEvento evento, HttpServletRequest request, HttpServletResponse response) {
 //        try
@@ -250,5 +292,7 @@ public class ServletEvento extends HttpServlet{
 //            
 //        }
     }
+
+   
     
 }

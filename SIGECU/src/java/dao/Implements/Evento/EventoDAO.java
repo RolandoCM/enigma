@@ -15,6 +15,7 @@ import dao.Interface.Evento.IEventoDAO;
 import dto.IdentificadoresEvento;
 import exception.BusinessException;
 import extras.Convierte;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -74,7 +75,8 @@ public class EventoDAO implements IEventoDAO {
     public List<Evento> listarEventoCondirmado() throws BusinessException{
         List<Evento> eventosConfirmados= new ArrayList<>();
         String sql="SELECT e.idevento, e.nombre, c.nombre, p.nombre, e.fechaInicio FROM eventos e, ciudad c,"
-                + "pais p WHERE c.idCiudad = e.c_idCiudad AND p.idPais=c.p_idPais ";
+                + "pais p WHERE c.idCiudad = e.c_idCiudad AND p.idPais=c.p_idPais AND e.fechaInicio>sysdate()"
+                + " order by e.fechaInicio";
                // + "AND e.estatus IS NOT NULL;";
         try
         {
@@ -87,8 +89,16 @@ public class EventoDAO implements IEventoDAO {
                 evento.setId(result.getString(1));
                 evento.setNombre(result.getString(2));
                 evento.setNombreCiudad(result.getString(3));
-                evento.setNombrePais(result.getString(4));              
-                //evento.setFecha(Convierte.fechaString(result.getDate(4)));
+                evento.setNombrePais(result.getString(4));                 
+                try
+                {
+                    String fecha = Convierte.fechaString(result.getDate(5));
+                    evento.setFecha(fecha);
+                }
+                catch(SQLException e)
+                {
+                    evento.setFecha("0000-00-00");
+                }
                 eventosConfirmados.add(evento);
             }
             connection.close();
@@ -107,7 +117,7 @@ public class EventoDAO implements IEventoDAO {
 
     @Override
     public void actualizarEventoConfirmado(Evento evento) throws BusinessException {
-        
+
     }
 
     @Override
@@ -187,10 +197,34 @@ public class EventoDAO implements IEventoDAO {
             BusinessException be = new BusinessException();
             be.setIdException("001");
             be.setMensaje("Error en la capa de base de datos");
+            throw be;
         }
         
         return datosParaEvento;
     } //fin de metodo consultatDatosCrearEvento
+
+    @Override
+    public Evento buscarEventoDAO(int idEvento) throws BusinessException {
+        Evento evento = new Evento();
+        String sql = "SELECT e.nombre, c.nombre, p.nombre, e.fechaInicio "
+                + "FROM eventos e, ciudad c, pais p "
+                + "WHERE c.idCiudad = e.c_idCiudad AND p.idPais=c.p_idPais AND e.idevento=?;";
+        try
+        {
+            Connection conection = database.getConnection();
+            PreparedStatement ps = conection.prepareStatement(sql);
+            ps.setInt(1, idEvento);
+            ps.executeQuery();
+            
+        }catch(Exception ex)
+        {
+            BusinessException be = new BusinessException();
+            be.setIdException("001");
+            be.setMensaje("Error en la capa de base de datos");
+            throw be;
+        }
+        return evento;
+    }
 
 
 }
