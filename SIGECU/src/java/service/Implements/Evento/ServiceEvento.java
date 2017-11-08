@@ -148,11 +148,28 @@ public class ServiceEvento implements IServiceEvento{
         }
     }
 
-    /*Metodo para listar eventos en el sitio web*/
+    /*Metodo para listar eventos Publicos para los interesados*/
     @Override
-    public List<List<Evento>> listarEventosWeb() throws BusinessException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    } //fin del metodo listarEventosWeb
+    public List<Evento> listarEventosPublicos() throws BusinessException {
+        try
+        {
+            IEventoDAO eventoDAO = new EventoDAO();
+            List<Evento> eventosPublicos = new ArrayList<>();
+            eventosPublicos = eventoDAO.listarEventosPublicos();         
+            return eventosPublicos; 
+        }
+        catch (BusinessException e) {
+            throw e;
+	}
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setIdException("201");
+            be.setMensaje("Error en la capa de negocio, conexion a listar eventos");
+            throw be;
+        }
+    } //fin del metodo listarEventosPublicos
 
     @Override
     public Evento buscarEvento(int idEvento) throws BusinessException {

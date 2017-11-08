@@ -114,6 +114,46 @@ public class EventoDAO implements IEventoDAO {
             throw be;
         }
     }
+    
+    /*Metodo para listar eventos*/
+    @Override
+    public List<Evento> listarEventosPublicos() throws BusinessException{
+        List<Evento> eventosPublicos= new ArrayList<>();
+        String sql="SELECT idevento, nombre, fechaInicio FROM db_sigecu.eventos where tipo='Publico' order by fechaInicio";
+        try
+        {
+            Connection connection = database.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet result = ps.executeQuery();
+            while(result.next())
+            {
+                Evento evento = new Evento();
+                evento.setId(result.getString(1));
+                evento.setNombre(result.getString(2));
+                try
+                {
+                    String fecha = Convierte.fechaString(result.getDate(3));
+                    evento.setFecha(fecha);
+                }
+                catch(SQLException e)
+                {
+                    evento.setFecha("0000-00-00");
+                }
+                eventosPublicos.add(evento);
+            }
+            connection.close();
+            ps.close();
+            return eventosPublicos;
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.printStackTrace();
+            be.setMensaje("Error en la capa de base de datos");
+            be.setIdException("0001");
+            throw be;
+        }
+    }
 
     @Override
     public void actualizarEventoConfirmado(Evento evento) throws BusinessException {
