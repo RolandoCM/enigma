@@ -65,6 +65,8 @@ public class ServletEvento extends HttpServlet{
                     break;
                 case "LEW":
                     listarEventosWeb(evento,request, response);
+                case "BE":
+                    buscarEvento(evento, request, response);
                 default:
                     break;
             }
@@ -193,14 +195,33 @@ public class ServletEvento extends HttpServlet{
     /*Metodo para actualizar un evento en la base de datos*/
     private void actualizarEventoConfirmado(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response) {
         MensajesDTO msjDTO = new MensajesDTO();
-        Integer idEvento = Convierte.aInteger(request.getParameter("idEvento"));
+        Instructor instructor = new Instructor();
         Evento evento = new Evento();
         try{
-            buscarEvento(idEvento, eventoService, request, response);
-            if(!idEvento.equals(null))
-            {
-                eventoService.actualizarEventoConfirmado((Evento) evento);
-            }
+            evento.setId(request.getParameter("idEvento"));
+            int capacidadEvento = Convierte.aInteger(request.getParameter("capacidadEvento"));
+            double costoEvento = Convierte.aDouble(request.getParameter("costoEvento"));
+            evento.setNombre(request.getParameter("nombreEvento"));
+            evento.setFecha(request.getParameter("fechaEvento"));
+            evento.setDescripcion(request.getParameter("descripcionEvento"));
+            evento.setPrograma(request.getParameter("programaEvento"));
+            instructor.setId(request.getParameter("instructorEvento"));
+            evento.setInstructor(instructor);           
+            evento.setLugar(request.getParameter("lugarEvento"));
+            evento.setCiudad(request.getParameter("ciudadEvento"));
+            evento.setCapacidad(capacidadEvento);
+            evento.setTipo(request.getParameter("tipoEvento"));
+            evento.setStatus(request.getParameter("statusEvento"));
+            evento.setCosto(costoEvento);
+            evento.setTemplete(request.getParameter("templateEvento"));
+            evento.setPromocion(request.getParameter("promocionEvento"));
+            
+            eventoService.actualizarEventoConfirmado(evento);
+            
+            msjDTO.setId("000");
+            msjDTO.setMensaje("Se ha encontrado el evento");
+            request.setAttribute("msj", msjDTO);
+
         }catch(BusinessException ex)
         {
             msjDTO.setId(ex.getIdException());
@@ -215,15 +236,22 @@ public class ServletEvento extends HttpServlet{
         direccionar = "Eventos?accion=LEC";
     }// fin del metodo actualizarEventoConfirmado
     
-    public void buscarEvento(int idEvento, IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response)
+    public void buscarEvento(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response)
     {
         MensajesDTO msjDTO = new MensajesDTO();
+        List<List<IdentificadoresEvento>> datosParaEvento;
+        Integer idEvento = Convierte.aInteger(request.getParameter("idEvento"));
         try
         {
+            datosParaEvento = eventoService.consultaDatosCrearEvento();
             Evento eventoBuscado = eventoService.buscarEvento(idEvento);
             request.setAttribute("eventoBuscado", eventoBuscado);
+            request.setAttribute("datosParaEvento", datosParaEvento);
+            msjDTO.setId("000");
+            msjDTO.setMensaje("Se ha encontrado el evento");
+            request.setAttribute("msj", msjDTO);
         }catch (BusinessException ex) {
-            msjDTO.setId(ex.getIdException());
+            msjDTO.setId(idEvento.toString());
             msjDTO.setMensaje(ex.getMensaje());
             request.setAttribute("msj", msjDTO);
         }catch(NumberFormatException e)
@@ -234,7 +262,7 @@ public class ServletEvento extends HttpServlet{
             request.setAttribute("msj", msjDTO);
         }finally
         {
-            //direccionar = "listaEventos.jsp";
+            direccionar = "actualizarEvento.jsp";
         }
         
     }
@@ -247,10 +275,12 @@ public class ServletEvento extends HttpServlet{
     evento al usuario final*/
     private void detallesEvento(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response)  {
         MensajesDTO msjDTO = new MensajesDTO();
+        
         try
         {
             int idEvento= Integer.parseInt(request.getParameter("id"));
             Evento evento = eventoService.detallesEvento(idEvento);
+            
         } catch (BusinessException ex) {
             msjDTO.setId(ex.getIdException());
             msjDTO.setMensaje(ex.getMensaje());
@@ -292,6 +322,7 @@ public class ServletEvento extends HttpServlet{
 //            
 //        }
     }
+
 
    
     

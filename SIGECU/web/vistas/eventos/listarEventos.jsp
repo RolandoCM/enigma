@@ -684,7 +684,7 @@
                                                 <td>${data.nombrePais}</td>
                                                 <td>${data.fecha}</td>
                                                 <td>
-                                                    <a href="Eventos?accion=AE&idEvento=${data.id}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="#largeModal">Modificar</button>></a>
+                                                    <a href="Eventos?accion=BE&idEvento=${data.id}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>></a>
                                                 </td><td>
                                                      <div class="button-demo js-modal-buttons">
                                                          <a href="Eventos?accion=CAE&idEvento=${data.id}"<button type="button" data-color="red" class="btn bg-red waves-effect" >Cancelar Evento</button>></a>

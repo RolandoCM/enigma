@@ -117,7 +117,41 @@ public class EventoDAO implements IEventoDAO {
 
     @Override
     public void actualizarEventoConfirmado(Evento evento) throws BusinessException {
-
+        String sql = "UPDATE eventos SET nombre=?, fechaInicio=?, descripcion=?, "
+                + "programa=?, i_idinstructor=?, lugar=?,c_idCiudad=?, capacidad=?,\n"
+                + "tipo=?, estatus=?, costo=?, t_idtempletes=?, p_idpromociones=? WHERE idevento=?";
+        
+        try
+        {
+            Connection conection = database.getConnection();
+            PreparedStatement ps = conection.prepareStatement(sql);
+            
+            ps.setString(1, evento.getNombre());
+            ps.setString(2, evento.getFecha());
+            ps.setString(3, evento.getDescripcion());
+            ps.setString(4, evento.getPrograma());
+            ps.setString(5, evento.getInstructor().getId());
+            ps.setString(6, evento.getLugar());
+            ps.setString(7, evento.getCiudad());
+            ps.setInt(8, evento.getCapacidad());
+            ps.setString(9, evento.getTipo());
+            ps.setString(10, evento.getStatus());
+            ps.setDouble(11, evento.getCosto());
+            ps.setString(12, evento.getTemplete());
+            ps.setString(13, evento.getPromocion());
+            ps.setString(14, evento.getId());
+              
+            int exec = ps.executeUpdate();
+            ps.close();
+            conection.close();
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setMensaje("error en la capa de base de datos");
+            be.setIdException("001");
+            throw be;
+        }
     }
 
     @Override
@@ -164,12 +198,14 @@ public class EventoDAO implements IEventoDAO {
         final int CIUDAD = 1;
         final int TEMPLETE = 2;
         final int PROMOCION=3;
-        String []sql = new String [4];
+        final int PAIS=4;
+        String []sql = new String [5];
         
         sql[INSTRUCTOR] = "SELECT 	idinstructor, iNombre, iPaterno FROM instructor;";
         sql[CIUDAD]= "SELECT idCiudad, nombre FROM ciudad";
         sql [TEMPLETE]= "SELECT idtempletes, descripcion FROM templetes;";
         sql[PROMOCION] = "SELECT idpromociones, tipo FROM promociones;";
+        sql[PAIS] = "SELECT idpais, nombre FROM pais;";
         try
         {
             Connection conn = database.getConnection();
@@ -206,15 +242,39 @@ public class EventoDAO implements IEventoDAO {
     @Override
     public Evento buscarEventoDAO(int idEvento) throws BusinessException {
         Evento evento = new Evento();
-        String sql = "SELECT e.nombre, c.nombre, p.nombre, e.fechaInicio "
-                + "FROM eventos e, ciudad c, pais p "
-                + "WHERE c.idCiudad = e.c_idCiudad AND p.idPais=c.p_idPais AND e.idevento=?;";
+ 
+        String sql = "select e.idevento, e.nombre, e.fechaInicio, e.descripcion, e.programa,\n" +
+"e.lugar, c.nombre, p.nombre, e.capacidad, e.costo, e.tipo\n" +
+"from eventos e, ciudad c, pais p\n" +
+"where c.idCiudad = e.c_idCiudad AND p.idPais=c.p_idPais AND e.idevento=?;";
         try
         {
             Connection conection = database.getConnection();
             PreparedStatement ps = conection.prepareStatement(sql);
             ps.setInt(1, idEvento);
-            ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                evento.setId(rs.getString(1));
+                evento.setNombre(rs.getString(2));
+                try
+                {
+                    String fecha = Convierte.fechaString(rs.getDate(3));
+                    evento.setFecha(fecha);
+                }
+                catch(SQLException e)
+                {
+                    evento.setFecha("0000-00-00");
+                }
+                evento.setDescripcion(rs.getString(4));
+                evento.setPrograma(rs.getString(5));
+                evento.setLugar(rs.getString(6));
+                evento.setNombreCiudad(rs.getString(7));
+                evento.setNombrePais(rs.getString(8));
+                evento.setCapacidad(rs.getInt(9));
+                evento.setCosto(rs.getDouble(10));
+                evento.setTipo(rs.getString(11));    
+            }
             
         }catch(Exception ex)
         {

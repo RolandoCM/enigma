@@ -658,12 +658,21 @@
                                 </div>
                                 <div class="body">
                                     <form id="form_advanced_validation" action="Eventos" method="POST">
-                                        <input type="hidden" name="accion" value="CE">
+                                        <input type="hidden" name="accion" value="AE">
                                         <div class="row clearfix">
+                                            <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" value="${eventoBuscado.id}" name="idEvento" readonly="readonly" maxlength="10" minlength="3" required>
+                                                    <label class="form-label"> ID</label>
+                                                </div>
+                                                <div class="help-info">Solo texto</div>
+                                            </div>
+                                        </div>
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="nombreEvento" maxlength="10" minlength="3" required>
+                                                    <input type="text" class="form-control" value="${eventoBuscado.nombre}" name="nombreEvento" maxlength="40" minlength="3" required>
                                                     <label class="form-label"> Nombre</label>
                                                 </div>
                                                 <div class="help-info">Solo texto</div>
@@ -673,7 +682,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input name="fechaEvento" type="text" id="date" class="form-control" placeholder="Elige la fecha">
+                                                    <input name="fechaEvento" type="text" id="date" value="${eventoBuscado.fecha}" class="form-control" placeholder="Elige la fecha">
                                                     <div class="help-info">Fecha del Evento</div>
                                                 </div>
                                             </div>
@@ -683,7 +692,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="Texto" class="form-control" name="descripcionEvento" required>
+                                                    <input type="Texto" value="${eventoBuscado.descripcion}" class="form-control" name="descripcionEvento" required>
                                                     <label class="form-label">Descripcion</label>
                                                 </div>
                                                 <div class="help-info">Definicion de el evento</div>
@@ -693,7 +702,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="programaEvento" required>
+                                                    <input type="text" value="programa" class="form-control" name="programaEvento" required>
                                                     <label class="form-label">Programa</label>
                                                 </div>
                                                 <div class="help-info">Detalles del programa</div>
@@ -705,7 +714,6 @@
                                             <div class="form-group form-float">
                                                 <div class="form-line ">
                                                     <select class=" form-control show-tick" name="instructorEvento"  required>
-                                                        <option value="">Ninguno</option>
                                                         <c:forEach var="ins" items="${datosParaEvento.get(0)}">
                                                             <option  value="${ins.id}">${ins.nombre}</option>
                                                         </c:forEach>
@@ -718,7 +726,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="lugarEvento" required>
+                                                    <input type="text" value="${eventoBuscado.lugar}" class="form-control" name="lugarEvento" required>
                                                     <label class="form-label">Lugar</label>
                                                 </div>
                                                 <div class="help-info">Direccion</div>
@@ -730,7 +738,7 @@
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <label class="">Ciudad</label>
-                                                    <select class="form-control show-tick" name="ciudadEvento" required>
+                                                    <select class="form-control show-tick"  name="ciudadEvento" required>
                                                         <c:forEach var="ins" items="${datosParaEvento.get(1)}">
                                                             <option value="${ins.id}">${ins.nombre}</option>
                                                         </c:forEach>
@@ -743,8 +751,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="paisEvento" required>
-                                                    <label class="form-label">Pais</label>
+                                                    <label class="">Pais</label>
+                                                     <select name="templateEvento" class="form-control show-tick"  required >
+                                                        <c:forEach var="ins" items="${datosParaEvento.get(4)}">
+                                                            <option value="${ins.id}">${ins.nombre}</option>
+                                                        </c:forEach>
+                                                    </select> 
+                                                    
                                                 </div>
                                                 <div class="help-info">Pais</div>
                                             </div>
@@ -754,7 +767,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="number" class="form-control" name="capacidadEvento" required>
+                                                    <input type="number" value="${eventoBuscado.capacidad}" class="form-control" name="capacidadEvento" required>
                                                     <label class="form-label">Capacidad</label>
                                                 </div>
                                                 <div class="help-info">Numero de posibles alumnos</div>
@@ -764,7 +777,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="number" class="form-control" name="costoEvento" required>
+                                                    <input type="number" value="${eventoBuscado.costo}" class="form-control" name="costoEvento" required>
                                                     <label class="form-label">Precio</label>
                                                 </div>
                                                 <div class="help-info">Costo de entrada</div>
@@ -822,15 +835,15 @@
                                         </div>
                                         </div>
                                         <div class="row clearfix">
-                                        <div class="col-md-12">
-                                            <button class="btn btn-block btn-lg btn-primary waves-effect" type="submit">ENVIAR</button>              
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary waves-effect">GUARDAR</button>
+                                            <a href="Eventos?accion=LEC"<button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CERRAR</button>></a>
                                         </div>
                                         </div>
                                     </form>
-                                    <div>${mensaje.mensaje}</div>
-                                    <div>${mensajeCrear.mensaje}</div>
-                                    <div>${mensajeDebug}</div>
-                                   
+                                    <div>${msj.mensaje}</div>
+                                    <div>${msj.id}</div>
+                                  
                                 </div>
                             </div>
                 </div>
