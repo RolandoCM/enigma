@@ -98,7 +98,7 @@
                                                 <tr>
                                                 <td>${data.nombre}</td>
                                                 <td>${data.nombreCiudad}</td>
-                                                <td>${data.nombrePais}</td>
+                                                <td>${data.nombrePais}</td+>
                                                 <td>${data.fecha}</td>
                                                 <td>
                                                     <a href="Eventos?accion=BE&idEvento=${data.id}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>>

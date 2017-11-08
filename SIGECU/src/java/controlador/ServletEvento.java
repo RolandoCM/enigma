@@ -64,8 +64,8 @@ public class ServletEvento extends HttpServlet{
                 case "DE":
                     detallesEvento(evento, request, response);
                     break;
-                case "LEW":
-                    listarEventosWeb(evento,request, response);
+                case "LEP":
+                    listarEventosPublicos(evento,request, response);
                 case "BE":
                     buscarEvento(evento, request, response);
                 default:
@@ -335,14 +335,32 @@ public class ServletEvento extends HttpServlet{
         return mensaje;
     }//fin del metodo verificar
 
-    private void listarEventosWeb(IServiceEvento evento, HttpServletRequest request, HttpServletResponse response) {
-//        try
-//        {
-//            
-//        }catch(BusinessException ex)
-//        {
-//            
-//        }
+    //Metodo para listar eventos para el Interesado
+    private void listarEventosPublicos(IServiceEvento evento, HttpServletRequest request, HttpServletResponse response) {
+        
+        MensajesDTO msjDTO = new MensajesDTO();
+        try
+        {
+            List<Evento> listarPublicos = evento.listarEventosPublicos();
+            request.setAttribute("listarPublicos", listarPublicos);
+            msjDTO.setId("000");
+            //msjDTO.setMensaje("Ejecuxion Ok");
+            request.setAttribute("msj", msjDTO);
+            
+        }catch (BusinessException ex) {
+            msjDTO.setId(ex.getIdException());
+            msjDTO.setMensaje(ex.getMensaje());
+            request.setAttribute("msj", msjDTO);
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            msjDTO.setId("301");
+            msjDTO.setMensaje("Error en la llamada de recursos");
+            request.setAttribute("msj", msjDTO);
+        }
+        finally{
+            direccionar = "listarEventosPublicos.jsp";
+        }
     }
 
 

@@ -22,6 +22,6 @@ public interface IEventoDAO {
     public Evento buscarEventoDAO(int idEvento) throws BusinessException;
     public String cancelarEventoConfirmado(int idEvento) throws BusinessException; // por confirmar regreso de dato
     public Evento detallesEvento(int idEvento) throws BusinessException;
-    
+    public List<Evento> listarEventosPublicos() throws BusinessException;
     
 }
