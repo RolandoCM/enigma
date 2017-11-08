@@ -113,7 +113,7 @@
  <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
-                         <form name="cancelar" method="post">
+                        
                         <div class="modal-header">
                             <h4 class="modal-title" id="smallModalLabel">SEGURO QUE DESEA CANCELAR EL EVENTO?</h4>
                         </div>
@@ -125,7 +125,7 @@
                             <a href="Eventos?accion=CAE&idEvento=${data.id}"<button type="button" class="btn btn-link waves-effect">SI</button></a>
                             <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
                         </div>
-                         </form>  
+                         
                     </div>
                 </div>
             </div>
@@ -150,7 +150,7 @@
 
                                 <div class="body">
                                     <br><br>
-                                    <form id="form_advanced_validation" action="Eventos" method="POST">
+                                    <form id="form_advanced_validation" action="Eventos" method="post">
                                         <input type="hidden" name="accion" value="CE"/>
                                         <div class="col-md-6 ">
                                             <div class="form-group form-float">

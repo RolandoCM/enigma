@@ -75,7 +75,7 @@ public class EventoDAO implements IEventoDAO {
     public List<Evento> listarEventoCondirmado() throws BusinessException{
         List<Evento> eventosConfirmados= new ArrayList<>();
         String sql="SELECT e.idevento, e.nombre, c.nombre, p.nombre, e.fechaInicio FROM eventos e, ciudad c,"
-                + "pais p WHERE c.idCiudad = e.c_idCiudad AND p.idPais=c.p_idPais AND e.fechaInicio>sysdate()"
+                + "pais p WHERE c.idCiudad = e.c_idCiudad AND p.idPais=c.p_idPais AND e.fechaInicio>sysdate() AND e.estatus='on'"
                 + " order by e.fechaInicio";
                // + "AND e.estatus IS NOT NULL;";
         try
