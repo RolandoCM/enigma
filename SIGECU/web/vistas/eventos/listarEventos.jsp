@@ -101,10 +101,10 @@
                                                 <td>${data.nombrePais}</td+>
                                                 <td>${data.fecha}</td>
                                                 <td>
-                                                    <a href="Eventos?accion=BE&idEvento=${data.id}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>>
+                                                    <a href="Eventos?accion=BE&idEvento=${data.id}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>
                                                 </td><td>
                                                      <div class="button-demo js-modal-buttons">
-                                                        <button type="button" data-color="red" class="btn bg-red waves-effect" >Cancelar Evento</button>></a>
+                                                        <button type="button" data-color="red" class="btn bg-red waves-effect" >Cancelar Evento</button></a>
                                                      </div>
                                                 </td>
                                             </tr>
