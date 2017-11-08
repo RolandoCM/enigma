@@ -800,29 +800,24 @@
           
             <div class="row clearfix">
                 <c:forEach var="data" items="${listarPublicos}">
-                    <tr>
-                        <td>${data.nombre}</td>
-                        <td>${data.fecha}</td>
-                    </tr>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="card">
+                            <div class="header">
+                                <h2>
+                                    ${data.nombre}
+                                    <small>Fecha: ${data.fecha}</small>
+                                </h2>
+                            </div>
+                            <div class="body">
+                                Ver mas...
+                            </div>
+                        </div>
+                    </div>
                 </c:forEach>
 
                 <div class="block-header">
                     <h2>${msj.mensaje}</h2>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2>
-                                Basic Card Title
-                                <small>Fecha 10/10/1010...</small>
-                            </h2>
-                        </div>
-                        <div class="body">
-                            Ver mas...
-                        </div>
-                    </div>
-                </div>
-            
             </div>
         </div>
     </section>
