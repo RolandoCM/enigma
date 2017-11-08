@@ -156,8 +156,25 @@ public class EventoDAO implements IEventoDAO {
 
     @Override
     public String cancelarEventoConfirmado(int idEvento) throws BusinessException {
-        
-        return null;
+        String eventocan="";
+        String sql="UPDATE eventos SET estatus=NULL WHERE idevento=?";
+        try {
+            Connection con = database.getConnection();
+            PreparedStatement ps;
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idEvento);
+            int execute = ps.executeUpdate();
+            
+            if(execute == 0){
+                throw  new BusinessException();
+                
+            }
+            eventocan="si";
+            ps.close();
+            con.close();
+        } catch (Exception e) {
+        }
+        return eventocan;
     }
 
     @Override

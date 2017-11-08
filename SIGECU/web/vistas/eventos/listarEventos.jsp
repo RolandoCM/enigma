@@ -67,6 +67,7 @@
                                 </ul>
                             </div>
                             <div class="body">
+                               <div>${eventocancelado}</div>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                         <thead>
@@ -100,13 +101,34 @@
                                                 <td>${data.nombrePais}</td>
                                                 <td>${data.fecha}</td>
                                                 <td>
-                                                    <a href="Eventos?accion=BE&idEvento=${data.id}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>></a>
+                                                    <a href="Eventos?accion=BE&idEvento=${data.id}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>>
                                                 </td><td>
                                                      <div class="button-demo js-modal-buttons">
-                                                         <a href="Eventos?accion=CAE&idEvento=${data.id}"<button type="button" data-color="red" class="btn bg-red waves-effect" >Cancelar Evento</button>></a>
+                                                        <button type="button" data-color="red" class="btn bg-red waves-effect" >Cancelar Evento</button>></a>
                                                      </div>
                                                 </td>
                                             </tr>
+                                            
+                                                                        
+ <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                         <form name="cancelar" method="post">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="smallModalLabel">SEGURO QUE DESEA CANCELAR EL EVENTO?</h4>
+                        </div>
+                       
+                        <div class="modal-body">
+                           
+                        </div>
+                        <div class="modal-footer">
+                            <a href="Eventos?accion=CAE&idEvento=${data.id}"<button type="button" class="btn btn-link waves-effect">SI</button></a>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                         </form>  
+                    </div>
+                </div>
+            </div>
                                             </c:forEach>
 
                                         </tbody>
@@ -297,23 +319,7 @@
                     </div>
                 </div>
                                 
-                                
- <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="smallModalLabel">SEGURO QUE DESEA CANCELAR EL EVENTO?</h4>
-                        </div>
-                        <div class="modal-body">
-                         
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link waves-effect">SI</button>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    
 
         </section>
 

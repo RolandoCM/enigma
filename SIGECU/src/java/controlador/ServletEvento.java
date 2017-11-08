@@ -57,7 +57,8 @@ public class ServletEvento extends HttpServlet{
                     break;
                     //CANCELAR EVENTO
                 case "CAE":
-                    cancelarEventoConfirmado(evento, request, response);
+                    String idev = request.getParameter("idEvento");
+                    cancelarEventoConfirmado(idev,evento, request, response);
                     break;
                     //DETALLES EVENTO
                 case "DE":
@@ -267,9 +268,30 @@ public class ServletEvento extends HttpServlet{
         
     }
     /*Metodo para cancelar un evento */
-    private void cancelarEventoConfirmado(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }//fin del metodo cancelarEventoConfirmado
+    private void cancelarEventoConfirmado(String idev,IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response) {
+ MensajesDTO msjDTO = new MensajesDTO();
+    int idEventoCancelar = Convierte.aInteger(idev);
+    String msg ="   <div class=\"alert bg-pink alert-dismissible\" role=\"alert\">\n" +
+"                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\" ><span aria-hidden=\"true\">&times;</span></button>\n" +
+"                               El evento se ha Cancelado\n" +
+"                            </div>";
+        try {
+            String  cancelarEvento = eventoService.cancelarEventoConfirmado(idEventoCancelar);
+            request.setAttribute("eventocancelado", msg);
+        } catch (BusinessException ex) {
+            msjDTO.setId(ex.getIdException());
+            msjDTO.setMensaje(ex.getMensaje());
+            request.setAttribute("msj", msjDTO);
+        }catch(NumberFormatException e)
+        {
+            e.printStackTrace();
+            msjDTO.setId("301");
+            msjDTO.setMensaje("Error en la llamada de recursos");
+            request.setAttribute("msj", msjDTO);
+        }finally
+        {
+            direccionar = "Eventos?accion=LEC";
+        }    }//fin del metodo cancelarEventoConfirmado
 
     /*Metodo de detallesEvento para mostrar todos los detalles el 
     evento al usuario final*/
