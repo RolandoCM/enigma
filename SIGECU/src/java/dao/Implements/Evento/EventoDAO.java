@@ -254,10 +254,6 @@ public class EventoDAO implements IEventoDAO {
               
             int exec = ps.executeUpdate();
                
-            if(exec ==0)
-            {
-                throw new BusinessException();
-            }
             ps.close();
             connection.close();
             return evento;
