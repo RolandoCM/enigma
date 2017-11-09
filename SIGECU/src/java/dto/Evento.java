@@ -11,7 +11,8 @@ package dto;
 public class Evento {
     private String id;
     private String nombre;
-    private String fecha; // revisar fecha no es string 
+    private String fecha; // revisar fecha no es string
+    private String fechaTermino;
     private String descripcion;
     private String programa;  // definir prgrama
     private Instructor instructor;
@@ -25,6 +26,23 @@ public class Evento {
     private String promocion;
     private String nombreCiudad;
     private String nombrePais;
+    private int progreso;
+
+    public void setProgreso(int progreso) {
+        this.progreso = progreso;
+    }
+
+    public int getProgreso() {
+        return progreso;
+    }
+
+    public String getFechaTermino() {
+        return fechaTermino;
+    }
+
+    public void setFechaTermino(String fechaTermino) {
+        this.fechaTermino = fechaTermino;
+    }
     
     public void setId(String id) {
         this.id = id;

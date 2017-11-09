@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Eventos;
+package extras;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,14 +12,7 @@ import java.util.Date;
  *
  * @author rolando
  */
-public class crearEvento {
-    public static void main (String [] args)
-    {
-        //IEventoDAO evento = new 
-        String currentDate ="2016-12-20";
-        
-       System.out.println(progreso(currentDate, "2017-12-26"));
-    }
+public class ObtenerProgreso {
     public static int progreso(String fechaInicio, String fechaTermino)
     {
         int progreso;
@@ -47,9 +40,9 @@ public class crearEvento {
             total = fechaTerminoI-fechaInicioI;
             System.out.println(total+" "+progreso);
             double progresoS = ((double)(progreso)/total)*100;
-//            if(progreso<0)
-//                progreso = 0;
-//            
+            if(progreso<0)
+                progreso = 0;
+            
             return (int)progresoS;
     }
     

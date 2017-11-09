@@ -37,6 +37,7 @@ public class ServiceEvento implements IServiceEvento{
             BusinessException be = new BusinessException();
             be.setIdException("201");
             be.setMensaje("Error en la capa de negocio, conexion en crear Evento");
+            throw be;
         } 
     }
 

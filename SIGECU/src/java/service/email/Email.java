@@ -20,8 +20,8 @@ import javax.mail.internet.MimeMessage;
  * @author rolando
  */
 public class Email {
-    private String fromUser = ""; //uso de archivos de propiedads
-    private String passwordFrom="";  //uso de archivos de propiedades
+    private String fromUser = "rolazcmtz@gmail.com"; //uso de archivos de propiedads
+    private String passwordFrom="r0l4nd0C";  //uso de archivos de propiedades
     private Properties props;
     private final Session session;
     
@@ -41,8 +41,19 @@ public class Email {
                         return new PasswordAuthentication(fromUser, passwordFrom);
                     }
                 }); 
+        try
+        {
+            Message msg = new MimeMessage(session);
+            msg.setFrom(new InternetAddress(fromUser));
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("castillor493@gmail.com"));
+            msg.setSubject("prueba");
+            msg.setText("hola");
+        }catch(MessagingException e)
+        {
+            System.out.print("Error en mail");
+        }
     }
-    public void unicast(String toMail, String subject, String contentMail)
+    public void send(String toMail, String subject, String contentMail)
     {
         try
         {
@@ -53,10 +64,10 @@ public class Email {
             msg.setText(contentMail);
         }catch(MessagingException e)
         {
-            throw new RuntimeException(e); //personalizar excepcion
+            System.out.print("Error en mail");
         }
     }
-    public void broadcast(ArrayList<String> destinos, String subject, String contentMail)
+    public void  send(ArrayList<String> destinos, String subject, String contentMail)
     {
         try
         {

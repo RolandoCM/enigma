@@ -4,12 +4,5 @@
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	 version="3.1">
-    <servlet>
-        <servlet-name>ServletEvento</servlet-name>
-        <servlet-class>controlador.ServletEvento</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletEvento</servlet-name>
-        <url-pattern>/ServletEvento</url-pattern>
-    </servlet-mapping>
+
 </web-app>

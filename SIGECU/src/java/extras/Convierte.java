@@ -36,9 +36,13 @@ public class Convierte {
     }
     public static String fechaString(Date fecha)
     {
-        String fechaString = "";
-        DateFormat miFecha = new SimpleDateFormat("yyyy-MM-dd");
-        fechaString = miFecha.format(fecha);
+        String fechaString = "0000-00-00";
+        if(fecha!=null)
+        {
+            DateFormat miFecha = new SimpleDateFormat("yyyy-MM-dd");
+            fechaString = miFecha.format(fecha);
+        }
+       
         return fechaString;
     }
 	

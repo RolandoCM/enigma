@@ -159,8 +159,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="paisEvento" required>
-                                                    <label class="form-label">Pais</label>
+                                                    <label class="">Pais</label>
+                                                     <select name="templateEvento" class="form-control show-tick"  required >
+                                                        <c:forEach var="ins" items="${datosParaEvento.get(4)}">
+                                                            <option value="${ins.id}">${ins.nombre}</option>
+                                                        </c:forEach>
+                                                    </select> 
+                                                    
                                                 </div>
                                                 <div class="help-info">Pais</div>
                                             </div>
