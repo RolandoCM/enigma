@@ -52,11 +52,11 @@
                                 </h2>
                             </div>
                             <div class="body">
-                                <label data-toggle="modal" data-target="#largeModal${data.idevento}">Ver mas...</label>
+                                <label data-toggle="modal" data-target="#largeModal${data.id}">Ver mas...</label>
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="largeModal${data.idevento}" tabindex="-1" role="dialog">
+                    <div class="modal fade" id="largeModal${data.id}" tabindex="-1" role="dialog">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
