@@ -13,6 +13,7 @@ import java.util.List;
 import jdbc.ConectionDB;
 import dao.Interface.Evento.IEventoDAO;
 import dto.IdentificadoresEvento;
+import dto.Instructor;
 import exception.BusinessException;
 import extras.Convierte;
 import java.sql.SQLException;
@@ -119,7 +120,13 @@ public class EventoDAO implements IEventoDAO {
     @Override
     public List<Evento> listarEventosPublicos() throws BusinessException{
         List<Evento> eventosPublicos= new ArrayList<>();
-        String sql="SELECT idevento, nombre, fechaInicio FROM db_sigecu.eventos where tipo='Publico' order by fechaInicio";
+        String sql="SELECT idevento,nombre,fechaInicio,descripcion,"
+                + " programa,i_idinstructor,lugar,c_idCiudad,capacidad,estatus,costo,"
+                + " p_idpromociones FROM eventos WHERE tipo='publico' ORDER BY fechaInicio";
+        
+        String sqlins="SELECT iNombre,iPaterno,iMaterno FROM instructor WHERE idinstructor=?";
+        String sqlciudad="SELECT nombre FROM ciudad WHERE idCiudad=?";
+        String sqlpromociones="SELECT tipo FROM promociones WHERE idpromociones=?";
         try
         {
             Connection connection = database.getConnection();
@@ -130,6 +137,7 @@ public class EventoDAO implements IEventoDAO {
                 Evento evento = new Evento();
                 evento.setId(result.getString(1));
                 evento.setNombre(result.getString(2));
+                
                 try
                 {
                     String fecha = Convierte.fechaString(result.getDate(3));
@@ -139,6 +147,39 @@ public class EventoDAO implements IEventoDAO {
                 {
                     evento.setFecha("0000-00-00");
                 }
+                evento.setDescripcion(result.getString(4));
+                evento.setPrograma(result.getString(5));
+                PreparedStatement psisntru=connection.prepareStatement(sqlins);
+                psisntru.setInt(1, result.getInt(6));
+                ResultSet rsinst=psisntru.executeQuery();
+                while (rsinst.next()) { 
+                    Instructor inst = new Instructor();
+                    inst.setId(rsinst.getString(2));
+                    evento.setInstructor(inst);
+                    break;
+                }
+                evento.setLugar(result.getString(7));
+                PreparedStatement psciudad = connection.prepareStatement(sqlciudad);
+                psciudad.setInt(1, result.getInt(8));
+                ResultSet rsciudad = psciudad.executeQuery();
+                while (rsciudad.next()) {                    
+                 evento.setCiudad(rsciudad.getString(1));
+                 break;
+                }
+                int capa = Convierte.aInteger(result.getString(9));
+                evento.setCapacidad(capa);
+                evento.setStatus(result.getString(10));
+                Double cos= Convierte.aDouble(result.getString(11));
+                evento.setCosto(cos);
+                
+                PreparedStatement pspromo = connection.prepareStatement(sqlpromociones);
+                pspromo.setInt(1,result.getInt(12));
+                ResultSet rspromo= pspromo.executeQuery();
+                while (rspromo.next()) {                    
+                    evento.setPromocion(rspromo.getString(1));
+                    break;
+                }
+               
                 eventosPublicos.add(evento);
             }
             connection.close();

@@ -64,8 +64,11 @@ public class ServletEvento extends HttpServlet{
                 case "DE":
                     detallesEvento(evento, request, response);
                     break;
+                    //LISTAR EVENTOS PUBLICOS
                 case "LEP":
                     listarEventosPublicos(evento,request, response);
+                    break;
+                    //BUSCAR EVENTO
                 case "BE":
                     buscarEvento(evento, request, response);
                 default:
@@ -343,7 +346,7 @@ public class ServletEvento extends HttpServlet{
         {
             List<Evento> listarPublicos = evento.listarEventosPublicos();
             request.setAttribute("listarPublicos", listarPublicos);
-            msjDTO.setId("000");
+            //msjDTO.setId("000");
             //msjDTO.setMensaje("Ejecuxion Ok");
             request.setAttribute("msj", msjDTO);
             
@@ -359,7 +362,7 @@ public class ServletEvento extends HttpServlet{
             request.setAttribute("msj", msjDTO);
         }
         finally{
-            direccionar = "listarEventosPublicos.jsp";
+            direccionar = "Eventos?accion=LEP";
         }
     }
 

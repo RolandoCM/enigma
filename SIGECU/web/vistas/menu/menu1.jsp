@@ -117,6 +117,12 @@
                             <span>Lista de Eventos</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="Eventos?accion=LEP">
+                            <i class="material-icons">view_list</i>
+                            <span>Lista de Eventos Publicos</span>
+                        </a>
+                    </li>
                    
                 </ul>
             </div>
