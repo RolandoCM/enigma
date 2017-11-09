@@ -362,7 +362,7 @@ public class ServletEvento extends HttpServlet{
             request.setAttribute("msj", msjDTO);
         }
         finally{
-            direccionar = "Eventos?accion=LEP";
+            direccionar = "listarEventosPublicos.jsp";
         }
     }
 

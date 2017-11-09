@@ -120,13 +120,15 @@ public class EventoDAO implements IEventoDAO {
     @Override
     public List<Evento> listarEventosPublicos() throws BusinessException{
         List<Evento> eventosPublicos= new ArrayList<>();
-        String sql="SELECT idevento,nombre,fechaInicio,descripcion,"
-                + " programa,i_idinstructor,lugar,c_idCiudad,capacidad,estatus,costo,"
-                + " p_idpromociones FROM eventos WHERE tipo='publico' ORDER BY fechaInicio";
+        String sql="SELECT e.idevento,e.nombre,e.fechaInicio,e.descripcion,"
+                + " e.programa,i.iNombre,i.iPaterno,i.iMaterno,e.lugar,c.nombre,"
+                + " e.capacidad,e.tipo,e.estatus,e.costo,p.tipo FROM eventos e,"
+                + "instructor i,ciudad c, promociones p WHERE e.i_idinstructor=i.idinstructor "
+                + "AND c.idCiudad=e.c_idCiudad AND e.p_idpromociones=p.idpromociones ";
         
-        String sqlins="SELECT iNombre,iPaterno,iMaterno FROM instructor WHERE idinstructor=?";
-        String sqlciudad="SELECT nombre FROM ciudad WHERE idCiudad=?";
-        String sqlpromociones="SELECT tipo FROM promociones WHERE idpromociones=?";
+//        String sqlins="SELECT iNombre,iPaterno,iMaterno FROM instructor WHERE idinstructor=?";
+//        String sqlciudad="SELECT nombre FROM ciudad WHERE idCiudad=?";
+//        String sqlpromociones="SELECT tipo FROM promociones WHERE idpromociones=?";
         try
         {
             Connection connection = database.getConnection();
@@ -149,37 +151,17 @@ public class EventoDAO implements IEventoDAO {
                 }
                 evento.setDescripcion(result.getString(4));
                 evento.setPrograma(result.getString(5));
-                PreparedStatement psisntru=connection.prepareStatement(sqlins);
-                psisntru.setInt(1, result.getInt(6));
-                ResultSet rsinst=psisntru.executeQuery();
-                while (rsinst.next()) { 
-                    Instructor inst = new Instructor();
-                    inst.setId(rsinst.getString(2));
-                    evento.setInstructor(inst);
-                    break;
-                }
-                evento.setLugar(result.getString(7));
-                PreparedStatement psciudad = connection.prepareStatement(sqlciudad);
-                psciudad.setInt(1, result.getInt(8));
-                ResultSet rsciudad = psciudad.executeQuery();
-                while (rsciudad.next()) {                    
-                 evento.setCiudad(rsciudad.getString(1));
-                 break;
-                }
-                int capa = Convierte.aInteger(result.getString(9));
-                evento.setCapacidad(capa);
-                evento.setStatus(result.getString(10));
-                Double cos= Convierte.aDouble(result.getString(11));
-                evento.setCosto(cos);
+                Instructor ins= new Instructor();
+                ins.setNombre(result.getString(6)+result.getString(7)+result.getString(8));
+                evento.setInstructor(ins);
+                evento.setLugar(result.getString(9));
+                evento.setCiudad(result.getString(10));
+                evento.setCapacidad(result.getInt(11));
+                evento.setTipo(result.getString(12));
+                evento.setStatus(result.getString(13));
+                evento.setCosto(result.getDouble(14));
+                evento.setPromocion(result.getString(15));
                 
-                PreparedStatement pspromo = connection.prepareStatement(sqlpromociones);
-                pspromo.setInt(1,result.getInt(12));
-                ResultSet rspromo= pspromo.executeQuery();
-                while (rspromo.next()) {                    
-                    evento.setPromocion(rspromo.getString(1));
-                    break;
-                }
-               
                 eventosPublicos.add(evento);
             }
             connection.close();
