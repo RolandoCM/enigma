@@ -146,9 +146,7 @@ public class ServletEvento extends HttpServlet{
             String mensaje= verificar(request, evento);
             if(mensaje==null)
             {
-                msjDTO.setId("000");
-            msjDTO.setMensaje("Exceute OK");
-            request.setAttribute("mensajeCrear", msjDTO);
+                
 //            request.setAttribute("mensajeDebug", request.getParameter("nombreEvento")+ " "+ request.getParameter("fechaEvento")+
 //                    " "+request.getParameter("descripcionEvento")+" "+request.getParameter("programaEvento")+
 //                    " "+request.getParameter("lugarEvento")+
@@ -174,7 +172,11 @@ public class ServletEvento extends HttpServlet{
             evento.setCosto(costoEvento);
             evento.setTemplete(request.getParameter("templateEvento"));
             evento.setPromocion(request.getParameter("promocionEvento"));
+            evento.setFechaTermino(request.getParameter("fechaTermino"));
             eventoService.crearEvento(evento);
+            msjDTO.setId("000");
+            msjDTO.setMensaje("Exceute OK");
+            request.setAttribute("msj", msjDTO);
             }
             else
             {
@@ -184,7 +186,7 @@ public class ServletEvento extends HttpServlet{
         } catch (BusinessException ex) {
             msjDTO.setId(ex.getIdException());
             msjDTO.setMensaje(ex.getMensaje());
-            request.setAttribute("mensajeCrear", msjDTO);
+            request.setAttribute("msj", msjDTO);
         }catch(Exception e){
             e.printStackTrace();
             msjDTO.setId("301");
@@ -219,6 +221,7 @@ public class ServletEvento extends HttpServlet{
             evento.setCosto(costoEvento);
             evento.setTemplete(request.getParameter("templateEvento"));
             evento.setPromocion(request.getParameter("promocionEvento"));
+            evento.setFechaTermino(request.getParameter("fechaTermino"));
             
             eventoService.actualizarEventoConfirmado(evento);
             

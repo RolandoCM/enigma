@@ -14,6 +14,7 @@ import jdbc.ConectionDB;
 import dao.Interface.Evento.IEventoDAO;
 import dto.IdentificadoresEvento;
 import dto.Instructor;
+import dto.MensajesDTO;
 import exception.BusinessException;
 import extras.Convierte;
 import java.sql.SQLException;
@@ -35,8 +36,8 @@ public class EventoDAO implements IEventoDAO {
         
         String sql = "insert into eventos (nombre, fechaInicio, descripcion, "
                 + "programa, i_idinstructor, lugar,c_idCiudad, capacidad,\n"
-                + "tipo, estatus, costo, t_idtempletes, p_idpromociones)"
-                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"; //terminar consulta  *******
+                + "tipo, estatus, costo, t_idtempletes, p_idpromociones, fechaTermino)"
+                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; //terminar consulta  *******
         
         try
         {
@@ -56,6 +57,7 @@ public class EventoDAO implements IEventoDAO {
             ps.setDouble(11, evento.getCosto());
             ps.setString(12, evento.getTemplete());
             ps.setString(13, evento.getPromocion());
+            ps.setString(14, evento.getFechaTermino());
               
             int exec = ps.executeUpdate();
             ps.close();
@@ -76,8 +78,8 @@ public class EventoDAO implements IEventoDAO {
     public List<Evento> listarEventoCondirmado() throws BusinessException{
         List<Evento> eventosConfirmados= new ArrayList<>();
         String sql="SELECT e.idevento, e.nombre, c.nombre, p.nombre, e.fechaInicio FROM eventos e, ciudad c,"
-                + "pais p WHERE c.idCiudad = e.c_idCiudad AND p.idPais=c.p_idPais AND e.fechaInicio>sysdate() AND e.estatus='on'"
-                + " order by e.fechaInicio";
+                + "pais p WHERE c.idCiudad = e.c_idCiudad AND p.idPais=c.p_idPais AND e.fechaTermino>sysdate() AND e.estatus='on'"
+                + " order by e.fechaInicio"; //e.fechaTermino>sysdate()
                // + "AND e.estatus IS NOT NULL;";
         try
         {
@@ -182,7 +184,7 @@ public class EventoDAO implements IEventoDAO {
     public void actualizarEventoConfirmado(Evento evento) throws BusinessException {
         String sql = "UPDATE eventos SET nombre=?, fechaInicio=?, descripcion=?, "
                 + "programa=?, i_idinstructor=?, lugar=?,c_idCiudad=?, capacidad=?,\n"
-                + "tipo=?, estatus=?, costo=?, t_idtempletes=?, p_idpromociones=? WHERE idevento=?";
+                + "tipo=?, estatus=?, costo=?, t_idtempletes=?, p_idpromociones=?, fechaTermino=? WHERE idevento=?";
         
         try
         {
@@ -202,7 +204,9 @@ public class EventoDAO implements IEventoDAO {
             ps.setDouble(11, evento.getCosto());
             ps.setString(12, evento.getTemplete());
             ps.setString(13, evento.getPromocion());
-            ps.setString(14, evento.getId());
+            ps.setString(14, evento.getFechaTermino());
+            ps.setString(15, evento.getId());
+            
               
             int exec = ps.executeUpdate();
             ps.close();
@@ -324,7 +328,7 @@ public class EventoDAO implements IEventoDAO {
         Evento evento = new Evento();
  
         String sql = "select e.idevento, e.nombre, e.fechaInicio, e.descripcion, e.programa,\n" +
-"e.lugar, c.nombre, p.nombre, e.capacidad, e.costo, e.tipo\n" +
+"e.lugar, c.nombre, p.nombre, e.capacidad, e.costo, e.tipo, e.fechaTermino\n" +
 "from eventos e, ciudad c, pais p\n" +
 "where c.idCiudad = e.c_idCiudad AND p.idPais=c.p_idPais AND e.idevento=?;";
         try
@@ -341,10 +345,13 @@ public class EventoDAO implements IEventoDAO {
                 {
                     String fecha = Convierte.fechaString(rs.getDate(3));
                     evento.setFecha(fecha);
+                    String fechaTermino = Convierte.fechaString(rs.getDate(12));
+                    evento.setFechaTermino(fechaTermino);
                 }
                 catch(SQLException e)
                 {
                     evento.setFecha("0000-00-00");
+                    evento.setFechaTermino("0000-00-00");
                 }
                 evento.setDescripcion(rs.getString(4));
                 evento.setPrograma(rs.getString(5));

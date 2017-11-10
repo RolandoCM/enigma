@@ -89,8 +89,16 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input name="fechaEvento" type="text" id="date" class="form-control" placeholder="Elige la fecha">
-                                                    <div class="help-info">Fecha del Evento</div>
+                                                    <input name="fechaEvento" type="text" id="date" class="form-control" placeholder="Elige la fecha Inicio">
+                                                    <div class="help-info">Fecha de Inicio</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input name="fechaTermino" type="text" id="date" class="form-control" placeholder="Elige la fecha Termino">
+                                                    <div class="help-info">Fecha De Termino</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -248,9 +256,8 @@
                                         </div>
                                         </div>
                                     </form>
-                                    <div>${mensaje.mensaje}</div>
-                                    <div>${mensajeCrear.mensaje}</div>
-                                    <div>${mensajeDebug}</div>
+                                    <div>${msj.mensaje}</div>
+
                                    
                                 </div>
                             </div>
