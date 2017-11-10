@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import service.Implements.Evento.ServiceEvento;
 import service.Interface.Evento.IServiceEvento;
+import service.email.Email;
 
 /**
  *
@@ -174,6 +175,7 @@ public class ServletEvento extends HttpServlet{
             evento.setPromocion(request.getParameter("promocionEvento"));
             evento.setFechaTermino(request.getParameter("fechaTermino"));
             eventoService.crearEvento(evento);
+            Email.send("castillor493@gmail.com", "Nuevo evento", "se a creado un nuevo evento"); //pruaba de envío de email
             msjDTO.setId("000");
             msjDTO.setMensaje("Exceute OK");
             request.setAttribute("msj", msjDTO);

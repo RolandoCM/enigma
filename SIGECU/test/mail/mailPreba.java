@@ -5,6 +5,9 @@
  */
 package mail;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import service.email.Email;
 
 /**
@@ -15,8 +18,11 @@ public class mailPreba {
     
     public static void main (String args [])
     {
-        Email mail = new Email();
-        mail.send("hola", "prueba 0", "castillor493@gmail.com");
+        try {
+            Email.send("sigecu0@gmail.com", "prueba","prueba 0 para email");
+        } catch (MessagingException ex) {
+            Logger.getLogger(mailPreba.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
