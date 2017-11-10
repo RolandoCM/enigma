@@ -123,9 +123,26 @@
                             <span>Lista de Eventos Publicos</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="preInscripcion?accion=LE">
+                            <i class="material-icons">dashboard</i>
+                            <span>Preinscripcion</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dashInscripcion?accion=RG">
+                            <i class="material-icons">equalizer</i>
+                            <span>Graficas de cusros</span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                   
                    
                 </ul>
             </div>
+           
             <!-- #Menu -->
             <!-- Footer -->
             

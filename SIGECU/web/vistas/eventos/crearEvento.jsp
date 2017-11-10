@@ -49,7 +49,7 @@
 </head>
 
 <body class="theme-red">
-   <jsp:include page="../menu/menu1.jsp" flush="true" /> 
+   <jsp:include page="menu1.jsp" flush="true" /> 
     <section class="content">
         <div class="container-fluid">
             

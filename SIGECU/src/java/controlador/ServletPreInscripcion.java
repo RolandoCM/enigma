@@ -24,7 +24,7 @@ import service.Interface.IServicePreInscripcion;
  *
  * @author jose-
  */
-@WebServlet({ "/dashInscripcion", "/vistas/preInscripcion/dashInscripcion"})
+@WebServlet({ "/dashInscripcion", "/vistas/eventos/dashInscripcion"})
 public class ServletPreInscripcion extends HttpServlet {
    private String direccionar = null;
 

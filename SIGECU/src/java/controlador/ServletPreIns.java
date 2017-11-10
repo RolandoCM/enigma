@@ -31,7 +31,7 @@ import service.Interface.Evento.servPreInscr;
  *
  * @author Anel
  */
-@WebServlet({ "/preInscripcion", "/vistas/preinscripcion/preInscripcion" })
+@WebServlet({ "/preInscripcion", "/vistas/eventos/preInscripcion" })
 public class ServletPreIns extends HttpServlet {
     private String direccionar=null;
 
@@ -131,7 +131,7 @@ public class ServletPreIns extends HttpServlet {
             request.setAttribute("msj", msjDTO);
         }
         finally{
-            direccionar = "/vistas/preinscripcion/registro.jsp";
+            direccionar = "registro.jsp";
         }
     }//cargarDatosEvento
     

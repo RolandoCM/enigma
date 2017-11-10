@@ -33,7 +33,7 @@
 </head>
 
 <body class="theme-red">
-   <jsp:include page="../menu/menu1.jsp" flush="true" />
+   <jsp:include page="menu1.jsp" flush="true" />
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
@@ -89,6 +89,7 @@
                  
         </div>
     </section>
+                
 
     <!-- Jquery Core Js -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
