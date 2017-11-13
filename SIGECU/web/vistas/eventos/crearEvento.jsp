@@ -79,7 +79,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="nombreEvento" maxlength="40" minlength="3" required>
+                                                    <input type="text" class="form-control" name="nombreEvento"  minlength="3" required>
                                                     <label class="form-label"> Nombre</label>
                                                 </div>
                                                 <div class="help-info">Solo texto</div>
@@ -89,8 +89,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input name="fechaEvento" type="text" id="date" class="form-control" placeholder="Elige la fecha Inicio">
-                                                    <div class="help-info">Fecha de Inicio</div>
+                                                    <input name="fechaEvento" type="text" id="date" class="form-control"  maxlength="10" placeholder="Elige la fecha Inicio">
+                                                    <div class="help-info">Fecha de Inicio en el formato de AAAA-MM-DD</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -98,7 +98,7 @@
                                             <div class="form-group">
                                                 <div class="form-line">
                                                     <input name="fechaTermino" type="text" id="date" class="form-control" placeholder="Elige la fecha Termino">
-                                                    <div class="help-info">Fecha De Termino</div>
+                                                    <div class="help-info">Fecha De Termino en el formato de AAAA-MM-DD</div>
                                                 </div>
                                             </div>
                                         </div>

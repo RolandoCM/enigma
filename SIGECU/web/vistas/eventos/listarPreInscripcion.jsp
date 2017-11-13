@@ -200,7 +200,7 @@
                                                         </c:forEach>
                                                     </select>
                                                 </div>
-                                               
+                                                <div class="help-info">Seleccione la empresa</div>
                                             </div>
                                         </div>
                                         <div class="col-md-6 ">

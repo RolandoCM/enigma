@@ -17,13 +17,15 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Blank Page | Bootstrap Based Admin Template - Material Design</title>
     <!-- Favicon-->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
     <!--<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">-->
    <link rel="stylesheet" href="../../fonts/material-design-icons-master/material-icons.css">
-
+<!--WaitMe Css-->
+    <link href="../../plugins/waitme/waitMe.css" rel="stylesheet" />
+     <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
     <!-- Bootstrap Core Css -->
     <link href="../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
@@ -61,10 +63,7 @@
  
                         </div>
                         <div class="body">
-                            <div class="row clearfix">
-                                <div class="col-sm-12"> 
-                                </div>
-                            </div>
+                            
                             
                               <form action="preInscripcion" method="POST"  class="form-horizontal">
                                     <input type="hidden" name="accion" value="INS"/>  
@@ -72,7 +71,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" name="nombre" class="form-control" placeholder="Nombre:" required/>
+                                            <input type="text" name="nombre" class="form-control" placeholder="Nombre:" required>
                                         </div>
                                     </div>
                                 </div>
@@ -94,21 +93,22 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="email" name="email" class="form-control" placeholder="Email:" required />
+                                            <input type="email" name="email" class="form-control" placeholder="Email:" required >
                                         </div>
                                     </div>
                                 </div>
-                                        <div class="col-md-6">
+                                
+                                        <div class="col-sm-12">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <label class="">Empresa</label>
-                                                    <select class="form-control show-tick" name="empresa" required>
+                                                    <select class="form-control show-tick" name="empresa" id="empresa" required>
                                                         <c:forEach var="ins" items="${datoPre}">
                                                             <option value="${ins.id}">${ins.nombre}</option>
                                                         </c:forEach>
                                                     </select>
                                                 </div>
-                                                <div class="help-info"></div>
+                                               
                                             </div>
                                         </div>
                                         
@@ -117,25 +117,26 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" name="carrera"  class="form-control" placeholder="Carrera" />
+                                            <input type="text" name="carrera"  class="form-control" placeholder="Carrera" >
                                         </div>
                                     </div>
                                 </div>
 
-                            </div>
+                          
+                                    <div class="col-sm-6">
                             <p>Note book</p>
                             <div class="demo-radio-button">
                                 
-                                <input name="confirmar" type="radio" value="si" id="radio_1" class="with-gap radio-col-black" />
+                                <input name="confirmar" type="radio" value="si" id="radio_1" class="with-gap radio-col-black" >
                                 <label for="radio_1">Si</label>
 
-                                <input name="confirmar" type="radio" value="no" id="radio_2" class="with-gap radio-col-black" />
+                                <input name="confirmar" type="radio" value="no" id="radio_2" class="with-gap radio-col-black" >
                                 <label for="radio_2">No</label>
 
                             </div>
 
-
-                            <div class="body">
+                                    </div>
+                            <div class="footer">
                             <div class="row clearfix demo-button-sizes">
                                 <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
                                     <button type="submit" class="btn bg-red btn-block btn-lg waves-effect">Enviar</button>
@@ -144,7 +145,7 @@
                     </div>
                 </div>
             </div>
-                                        <div>${msj.mensaje}</div>
+                                      
 
 
                                     </div>
