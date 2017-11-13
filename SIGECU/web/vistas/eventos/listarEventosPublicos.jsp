@@ -56,30 +56,52 @@
                             </div>
                         </div>
                     </div>
+                            
                     <div class="modal fade" id="largeModal${data.id}" tabindex="-1" role="dialog">
-                        <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-dialog modal-sm" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title" id="largeModalLabel">${data.nombre}</h4>
-                                    <blockquote class="blockquote-reverse">
+                                    <blockquote class="m-b-25">
                                         <h3>${data.nombre}</h3>
                                         <h4>${data.fecha}</h4>
                                     </blockquote>
-                                    <blockquote class="m-b-25">
-                                        <h3>${data.descripcion}</h3>
-                                        <h4>${data.programa}</h4>
-                                    </blockquote>
-                                    
                                 </div>
-                                <di
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                <div class="modal-body">
+                                    <p>
+                                        <b>Descripcion: </b>
+                                        ${data.descripcion}
+                                    </p>
+                                    <p>
+                                        <b>Programa: </b>
+                                        ${data.programa}
+                                    </p>
+                                    <p>
+                                        <b>Instructor: </b>
+                                        ${data.instructor.nombre}
+                                    </p>
+                                    <p>
+                                        <b>Lugar: </b>
+                                        ${data.lugar}
+                                    </p>
+                                    <p>
+                                        <b>Ciudad: </b>
+                                        ${data.ciudad}
+                                    </p>
+                                    <p>
+                                        <b>Precios: </b>
+                                        ${data.costo}
+                                    </p>  
+                                    <p>
+                                        <b>Promocion: </b>
+                                        ${data.promocion}
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
                </c:forEach>
 
                 <div class="block-header">
