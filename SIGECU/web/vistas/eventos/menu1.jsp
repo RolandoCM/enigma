@@ -136,7 +136,12 @@
                         </a>
                     </li>
                     
-                    
+                    <li>
+                        <a href="Pago?accion=QRY">
+                            <i class="material-icons">payment</i>
+                            <span>Pago de curso</span>
+                        </a>
+                    </li>
                     
                    
                    

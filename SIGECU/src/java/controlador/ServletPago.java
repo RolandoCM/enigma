@@ -23,7 +23,7 @@ import service.Interface.Evento.IservicePago;
  *
  * @author Anayeli Ramírez
  */
- @WebServlet({ "/Pago", "/pages/pagos/pago"})    
+ @WebServlet({ "/Pago", "/vistas/eventos/Pago"})    
 public class ServletPago extends HttpServlet {
     
   private static final long serialVersionaUID= 1L;
@@ -47,7 +47,7 @@ public class ServletPago extends HttpServlet {
             } else {
                 mensaje = service.getMensaje();
             }
-            direccionar = "seleccionarPago.jsp";
+            direccionar = "pago.jsp";
 			
 			break;
 			
@@ -61,14 +61,14 @@ public class ServletPago extends HttpServlet {
                                          
                 if (mensaje != null) {
                     request.setAttribute("realizarPago", realizarPago);
-                    direccionar = "seleccionarPago.jsp";
+                    direccionar = "pago.jsp";
                 } else {
                 	direccionar = "Pago?accion=QRY";
                 }
                 
             } else {
                 request.setAttribute("realizarPago", realizarPago);
-                direccionar = "seleccionarPago.jsp";
+                direccionar = "pago.jsp";
             }
 			break;
 			
