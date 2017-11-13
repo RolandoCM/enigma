@@ -122,11 +122,9 @@ public class EventoDAO implements IEventoDAO {
     @Override
     public List<Evento> listarEventosPublicos() throws BusinessException{
         List<Evento> eventosPublicos= new ArrayList<>();
-        String sql="SELECT e.idevento,e.nombre,e.fechaInicio,e.descripcion,"
-                + " e.programa,i.iNombre,i.iPaterno,i.iMaterno,e.lugar,c.nombre,"
-                + " e.capacidad,e.tipo,e.estatus,e.costo,p.tipo FROM eventos e,"
-                + "instructor i,ciudad c, promociones p WHERE e.i_idinstructor=i.idinstructor "
-                + "AND c.idCiudad=e.c_idCiudad AND e.p_idpromociones=p.idpromociones ";
+        String sql="SELECT e.idevento,e.nombre,e.fechaInicio,e.descripcion, e.programa,i.iNombre,i.iPaterno,i.iMaterno,e.lugar,c.nombre,e.capacidad,e.tipo,e.estatus,e.costo,p.tipo "
+                + "FROM eventos e, instructor i,ciudad c, promociones p "
+                + "WHERE e.i_idinstructor=i.idinstructor AND c.idCiudad=e.c_idCiudad AND e.p_idpromociones=p.idpromociones AND e.tipo='publico' AND e.estatus='on'";
         
 //        String sqlins="SELECT iNombre,iPaterno,iMaterno FROM instructor WHERE idinstructor=?";
 //        String sqlciudad="SELECT nombre FROM ciudad WHERE idCiudad=?";
