@@ -24,7 +24,7 @@ import service.Interface.Evento.IservicePago;
  * @author Anayeli Ramírez
  */
  @WebServlet({ "/Pago", "/pages/pagos/pago"})    
-public class ServletPagos extends HttpServlet {
+public class ServletPago extends HttpServlet {
     
   private static final long serialVersionaUID= 1L;
   
