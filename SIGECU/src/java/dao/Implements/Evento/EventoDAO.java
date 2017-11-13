@@ -373,6 +373,4 @@ public class EventoDAO implements IEventoDAO {
         }
         return evento;
     }
-
-
 }
