@@ -217,6 +217,7 @@ public class EventoDAO implements IEventoDAO {
             be.setIdException("001");
             throw be;
         }
+        
     }
 
     @Override
@@ -370,6 +371,4 @@ public class EventoDAO implements IEventoDAO {
         }
         return evento;
     }
-
-
 }

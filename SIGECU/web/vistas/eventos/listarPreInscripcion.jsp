@@ -1,7 +1,7 @@
 <%-- 
     Document   : crearEvento
-    Created on : 31/10/2017, 06:48:41 AM
-    Author     : rolando
+    Created on : 12/11/2017, 04:48:41 PM
+    Author     : alma
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,10 +13,10 @@
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Crear Evento</title>
+        <title>LISTAR PRE-INSCRIPCIONES</title>
         <!-- Favicon-->
         <link rel="icon" href="../../favicon.ico" type="image/x-icon">
- <link rel="stylesheet" href="../../fonts/material-design-icons-master/material-icons.css">
+        <link rel="stylesheet" href="../../fonts/material-design-icons-master/material-icons.css">
 
         <!-- Google Fonts -->
         <!--<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -41,7 +41,7 @@
     </head>
 
     <body class="theme-red">
-       <jsp:include page="menu1.jsp" flush="true" />
+        <jsp:include page="menu1.jsp" flush="true" />
         <section class="content">
             <div class="container-fluid">
 
@@ -59,7 +59,7 @@
                                             <i class="material-icons">more_vert</i>
                                         </a>
                                         <ul class="dropdown-menu pull-right">
-                                             <li><a href="Eventos?accion=NEC">Enviar Lista</a></li>
+                                            <li><a href="javascript:void(0);">Action</a></li>
                                             <li><a href="javascript:void(0);">Another action</a></li>
                                             <li><a href="javascript:void(0);">Something else here</a></li>
                                         </ul>
@@ -67,69 +67,60 @@
                                 </ul>
                             </div>
                             <div class="body">
-                               <div>${eventocancelado}</div>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                         <thead>
                                             <tr>
                                                 <th>Nombre</th>
-                                                <th>Ciudad</th>
-                                                <th>Pais</th>
-                                                <th>Fecha</th>
-                                                <th>Modificar</th>
-                                                <th>Cancelar</th>
+                                                <th>Apellido</th>
+                                                <th>Telefono</th>
+                                                <th>Mail</th>
+                                                <th>Empresa</th>
+                                                <th>Carrera</th>
+                                                <th>Pago</th>
 
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Nombre</th>
-                                                <th>Ciudad</th>
-                                                <th>Pais</th>
-                                                <th>Fecha</th>
-                                                 <th>Modificar</th>
-                                                <th>Cancelar</th>
-
-                                            </tr>
-                                        </tfoot>
                                         <tbody>
 
-                                            <c:forEach var="data" items="${listaEvento}">
+                                            <c:forEach var="data" items="${listaPreInscriptos}">
                                                 <tr>
-                                                <td>${data.nombre}</td>
-                                                <td>${data.nombreCiudad}</td>
-                                                <td>${data.nombrePais}</td+>
-                                                <td>${data.fecha}</td>
-                                                <td>
-                                                    <a href="Eventos?accion=BE&idEvento=${data.id}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>
-                                                </td><td>
-                                                     <div class="button-demo js-modal-buttons">
-                                                        <button type="button" data-color="red" class="btn bg-red waves-effect" >Cancelar Evento</button></a>
-                                                     </div>
-                                                </td>
-                                            </tr>
-                                            
-                                                                        
- <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content">
-                        
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="smallModalLabel">SEGURO QUE DESEA CANCELAR EL EVENTO?</h4>
-                        </div>
-                       
-                        <div class="modal-body">
-                           
-                        </div>
-                        <div class="modal-footer">
-                            <a href="Eventos?accion=CAE&idEvento=${data.id}"<button type="button" class="btn btn-link waves-effect">SI</button></a>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                        </div>
-                         
-                    </div>
-                </div>
-            </div>
-                                            </c:forEach>
+                                                    <td>${data.nombre}</td>
+                                                    <td>${data.apellido}</td>
+                                                    <td>${data.telefono}</td>
+                                                    <td>${data.mail}</td>
+                                                    <td>${data.empresa}</td>
+                                                    <td>${data.carrera}</td>
+                                                    <td>
+                                                        <a href="Eventos?accion=BE&idEvento=${data.id}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>
+                                                    </td><td>
+                                                        <div class="button-demo js-modal-buttons">
+                                                            <button type="button" data-color="red" class="btn bg-red waves-effect" >PAGO</button></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+
+                                            <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog modal-sm" role="document">
+                                                    <div class="modal-content">
+
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="smallModalLabel">¿SEGURO QUE DESEA CAMBIAR EL ESTADO DEL PAGO?</h4>
+                                                        </div>
+
+                                                        <div class="modal-body">
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="Eventos?accion=CAE&idEvento=${data.id}"<button type="button" class="btn btn-link waves-effect">SI</button></a>
+                                                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
 
                                         </tbody>
                                     </table>
@@ -144,7 +135,7 @@
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header bg-blue">
-                                <h4 class="modal-title  " id="largeModalLabel">Modificar Evento</h4>
+                                <h4 class="modal-title  " id="largeModalLabel">Modificar Pre-Inscripto</h4>
                             </div>
                             <div class="modal-body">
 
@@ -173,9 +164,9 @@
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <input type="Texto" class="form-control" name="descripcionEvento" required>
-                                                    <label class="form-label">Descripcion</label>
+                                                    <label class="form-label">Apellido</label>
                                                 </div>
-                                                <div class="help-info">Definicion de el evento</div>
+                                                <div class="help-info">Solo texto</div>
                                             </div>
                                         </div>
                                         <div class="col-md-6 ">
@@ -183,9 +174,19 @@
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <input type="text" class="form-control" name="programaEvento" required>
-                                                    <label class="form-label">Programa</label>
+                                                    <label class="form-label">Telefono</label>
                                                 </div>
-                                                <div class="help-info">Detalles del programa</div>
+                                                <div class="help-info">Solo números</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 ">
+
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="programaEvento" required>
+                                                    <label class="form-label">Correo</label>
+                                                </div>
+                                                <div class="help-info">Solo texto</div>
                                             </div>
                                         </div>
                                         <div class="col-md-6 ">
@@ -194,12 +195,12 @@
                                                 <div class="form-line ">
                                                     <select class=" form-control show-tick" name="instructorEvento"  required>
                                                         <option value="">Ninguno</option>
-                                                        <c:forEach var="ins" items="${datosParaEvento.get(0)}">
-                                                            <option  value="${ins.id}">${ins.nombre}</option>
+                                                        <c:forEach var="ins" items="${datosParaPreInscripcion.get(0)}">
+                                                            <option  value="${emp.id}">${emp.empresa}</option>
                                                         </c:forEach>
                                                     </select>
                                                 </div>
-                                                <div class="help-info">Seleccione el Instructor</div>
+                                               
                                             </div>
                                         </div>
                                         <div class="col-md-6 ">
@@ -207,89 +208,9 @@
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <input type="text" class="form-control" name="lugarEvento" required>
-                                                    <label class="form-label">Lugar</label>
+                                                    <label class="form-label">Carrera</label>
                                                 </div>
-                                                <div class="help-info">Direccion</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 ">
-
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <label class="">Ciudad</label>
-                                                    <select class="form-control show-tick" name="ciudadEvento" required>
-                                                        <c:forEach var="ins" items="${eventoBuscado}">
-                                                            <option>${ins.nombre}</option>
-                                                        </c:forEach>
-                                                    </select>
-                                                </div>
-                                                <div class="help-info">Ciudad</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 ">
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="paisEvento" required>
-                                                    <label class="form-label">Pais</label>
-                                                </div>
-                                                <div class="help-info">Pais</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 ">
-
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <input type="number" class="form-control" name="capacidadEvento" required>
-                                                    <label class="form-label">Capacidad</label>
-                                                </div>
-                                                <div class="help-info">Numero de posibles alumnos</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 ">
-
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <input type="number" class="form-control" name="costoEvento" required>
-                                                    <label class="form-label">Precio</label>
-                                                </div>
-                                                <div class="help-info">Costo de entrada</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 ">
-
-                                            <div class="demo-radio-button">
-                                                <input name="tipoEvento" type="radio" id="radio_1" checked value="privado" />
-                                                <label for="radio_1">Privado</label>
-                                                <input name="tipoEvento" type="radio" id="radio_2" value="publico"/>
-                                                <label for="radio_2">Público</label>
-                                                <br>
-                                                <br>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 ">
-
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <label class="">Templates</label>
-                                                    <select name="templateEvento" class="form-control show-tick"  required >
-                                                        <c:forEach var="ins" items="${datosParaEvento.get(2)}">
-                                                            <option value="${ins.id}">${ins.nombre}</option>
-                                                        </c:forEach>
-                                                    </select>          
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 ">
-
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <label class="">Promoción</label>
-                                                    <select name="promocionEvento" class="form-control show-tick" required >
-                                                        <c:forEach var="ins" items="${datosParaEvento.get(3)}">
-                                                            <option value="${ins.id}">${ins.nombre}</option>
-                                                        </c:forEach>
-                                                    </select>                
-                                                </div>
+                                                <div class="help-info">Carrera</div>
                                             </div>
                                         </div>
                                         <div class="col-md-6 ">
@@ -302,14 +223,14 @@
                                                     </div>
                                                 </div>
                                             </div> 
-                                             <br>
-                                <br>
+                                            <br>
+                                            <br>
                                         </div>      
                                     </form>
                                     <div>hola
                                         ${mensaje.mensaje}</div>
                                 </div>
-                               
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary waves-effect">GUARDAR</button>
@@ -318,8 +239,8 @@
                         </div>
                     </div>
                 </div>
-                                
-    
+
+
 
         </section>
 

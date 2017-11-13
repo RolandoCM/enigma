@@ -21,7 +21,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import service.Implements.Evento.ServiceEvento;
+import service.Implements.NotificacionesService;
 import service.Interface.Evento.IServiceEvento;
+import service.Interface.INotificacionesService;
 import service.email.Email;
 
 /**
@@ -72,6 +74,9 @@ public class ServletEvento extends HttpServlet{
                     //BUSCAR EVENTO
                 case "BE":
                     buscarEvento(evento, request, response);
+                    break;
+                case "NEC":
+                    notificarEmailComercial(evento, request,response);
                 default:
                     break;
             }
@@ -370,8 +375,17 @@ public class ServletEvento extends HttpServlet{
             direccionar = "listarEventosPublicos.jsp";
         }
     }
-
-
-   
-    
+     private void notificarEmailComercial(IServiceEvento evento, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            INotificacionesService notificar = new NotificacionesService();
+            notificar.notificacionEmailComercial();
+            
+        } catch (BusinessException ex) {
+            
+        }
+        finally
+        {
+            direccionar = "Eventos?accion=LEC";
+        }
+    }
 }

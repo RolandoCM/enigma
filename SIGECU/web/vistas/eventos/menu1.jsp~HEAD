@@ -100,7 +100,7 @@
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
                     <li  class="active">
-                        <a href="../../index.html">
+                        <a href="../../index.jsp">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
@@ -130,18 +130,19 @@
                         </a>
                     </li>
                     <li>
+                        <a href="Eventos?accion=LPI">
+                            <i class="material-icons">view_list</i>
+                            <span>Lista de Pre-Inscriptos</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="dashInscripcion?accion=RG">
                             <i class="material-icons">equalizer</i>
                             <span>Graficas de cusros</span>
                         </a>
                     </li>
                     
-                    <li>
-                        <a href="Pago?accion=QRY">
-                            <i class="material-icons">payment</i>
-                            <span>Pago de curso</span>
-                        </a>
-                    </li>
+                    
                     
                    
                    
