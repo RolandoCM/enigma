@@ -16,8 +16,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import jdbc.ConectionDB;
 import service.Interface.Evento.servPreInscr;
+import service.email.Email;
 
 /**
  *
@@ -64,6 +66,16 @@ public class PreInscripcionService implements servPreInscr {
 				if (exec == 0) {
 					throw new SQLException();
 				}
+                                else
+                                {
+                                    String registro = preIn.getNombre()+"   "+preIn.getApellido()+"     "+preIn.getTelefono()+
+                                            "   "+preIn.getEmail()+"\n";
+                                    try {
+                                        Email.send("sigecu0@gmail.com", "Nueva Inscripcion", registro );
+                                    } catch (MessagingException ex) {
+                                        Logger.getLogger(PreInscripcionService.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
 				ps.close();
 				
 			} catch (SQLException e) {

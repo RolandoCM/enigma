@@ -6,18 +6,12 @@
 package controlador;
 
 import auxiliares.Convierte;
-import dao.Implements.Evento.preInsDAO;
-import dao.Interface.Evento.IPreInscripcionDAO;
-import dto.IdentificadoresEvento;
 import dto.MensajesDTO;
 import dto.identiPreIns;
 import dto.preInscripcion;
 import exception.BusinessException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,20 +46,11 @@ public class ServletPreIns extends HttpServlet {
                     //lista = service.consulPre();
                     DatosPre(service, request, response);
                     break;
-			//request.setAttribute("lista", lista);
-//			if (lista != null) {
-//                        
-//                        } else {
-//                            mensaje = service.getMensaje();
-//                        }
-//                            direccionar = "/vistas/preinscripcion/registro.jsp";
-//			
-//			break;
 			
 		case "INS":
 			preInscripcion prein = new preInscripcion();
-            mensaje = verificar(request, prein);
-                    System.out.println("Entro aqui");
+                        mensaje = verificar(request, prein);
+                    //System.out.println("Entro aqui");
             if (mensaje == null) {
             	service.alumnosIns(prein);
                 mensaje = service.getMensaje();
