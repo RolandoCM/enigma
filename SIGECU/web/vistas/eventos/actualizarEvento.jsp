@@ -49,7 +49,7 @@
 </head>
 
 <body class="theme-red">
-   <jsp:include page="../menu/menu1.jsp" flush="true" />
+   <jsp:include page="menu1.jsp" flush="true" />
     <section class="content">
         <div class="container-fluid">
             
@@ -98,12 +98,20 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input name="fechaEvento" type="text" id="date" value="${eventoBuscado.fecha}" class="form-control" placeholder="Elige la fecha">
-                                                    <div class="help-info">Fecha del Evento</div>
+                                                    <input name="fechaEvento" type="text" id="date" value="${eventoBuscado.fecha}" class="form-control" placeholder="Elige la fecha Inicio">
+                                                    <div class="help-info">Fecha del Inicio</div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input name="fechaTermino" type="text" id="date" value="${eventoBuscado.fechaTermino}" class="form-control" placeholder="Elige la fecha Termino">
+                                                    <div class="help-info">Fecha de Termino</div>
+                                                </div>
+                                            </div>
                                         </div>
+                                        
                                         <div class="row clearfix">
                                         <div class="col-md-6">
                                             <div class="form-group form-float">

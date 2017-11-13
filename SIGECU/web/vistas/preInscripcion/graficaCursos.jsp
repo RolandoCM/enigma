@@ -818,34 +818,77 @@
                     %>
                     <c:forEach var="dash" items="${dashEvento}"> 
                         <c:if test ="${dash.progreso<50}">
-                            <%=color="red"%>
+                            <div class="card">
+                                <div class="header">
+                                    <h2>${dash.nombre}</h2>
+                                    <p>Fecha programada: ${dash.fecha} al ${dash.fechaTermino}</p>
+
+                                </div>
+                                <div class="body">
+                                    <div class="row clearfix">
+                                        <div class="col-md-2">
+                                            <input type="text" class="knob" value="${dash.progreso}" data-linecap="round"  data-width="70 " data-height="70" data-thickness="0"
+                                                   data-fgColor="<%=color="red"%>" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </c:if>
                         
                         <c:if test ="${dash.progreso>=50 && dash.progreso<=75}">
-                            <%=color="orage"%>
-                        </c:if>
-                        <c:if test ="${dash.progreso>75 && dash.progreso<=90}">
-                            <%=color="yellow"%>
-                        </c:if>
-                        <c:if test ="${dash.progreso>90 && dash.progreso<=100}">
-                            <%=color="green"%>
-                        </c:if>
-                        
-                        <div class="card">
-                        <div class="header">
-                            <h2>${dash.nombre}</h2>
-                            <p>Fecha programada: ${dash.fecha} al ${dash.fechaTermino}</p>
-                           
-                        </div>
-                        <div class="body">
-                            <div class="row clearfix">
-                                <div class="col-md-2">
-                                    <input type="text" class="knob" value="${dash.progreso}" data-linecap="round"  data-width="70 " data-height="70" data-thickness="0"
-                                           data-fgColor="<%=color%>" >
+                            <div class="card">
+                                <div class="header">
+                                    <h2>${dash.nombre}</h2>
+                                    <p>Fecha programada: ${dash.fecha} al ${dash.fechaTermino}</p>
+
+                                </div>
+                                <div class="body">
+                                    <div class="row clearfix">
+                                        <div class="col-md-2">
+                                            <input type="text" class="knob" value="${dash.progreso}" data-linecap="round"  data-width="70 " data-height="70" data-thickness="0"
+                                                   data-fgColor="<%=color="orange"%>" >
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </c:if>
+                        <c:if test ="${dash.progreso>75 && dash.progreso<=90}">
+                            <div class="card">
+                            <div class="header">
+                                <h2>${dash.nombre}</h2>
+                                <p>Fecha programada: ${dash.fecha} al ${dash.fechaTermino}</p>
+
+                                </div>
+                                <div class="body">
+                                    <div class="row clearfix">
+                                        <div class="col-md-2">
+                                            <input type="text" class="knob" value="${dash.progreso}" data-linecap="round"  data-width="70 " data-height="70" data-thickness="0"
+                                                   data-fgColor="<%=color="yellow"%>" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </c:if>
+                        <c:if test ="${dash.progreso>90 && dash.progreso<=100}">
+                            <div class="card">
+                                <div class="header">
+                                    <h2>${dash.nombre}</h2>
+                                    <p>Fecha programada: ${dash.fecha} al ${dash.fechaTermino}</p>
+
+                                </div>
+                                <div class="body">
+                                    <div class="row clearfix">
+                                        <div class="col-md-2">
+                                            <input type="text" class="knob" value="${dash.progreso}" data-linecap="round"  data-width="70 " data-height="70" data-thickness="0"
+                                                   data-fgColor="<%=color="green"%>" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
+                        
+                        
                     </c:forEach>
                     
                                 

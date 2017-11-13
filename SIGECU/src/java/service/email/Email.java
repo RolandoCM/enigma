@@ -1,17 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * clase que define metodos sobrecargados para enviar diferentes tipos de email
+  * unicast, multicast, broadcast asi como email con archivos adjuntos
  */
 package service.email;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
-import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -20,70 +20,69 @@ import javax.mail.internet.MimeMessage;
  * @author rolando
  */
 public class Email {
-    private String fromUser = "rolazcmtz@gmail.com"; //uso de archivos de propiedads
-    private String passwordFrom="r0l4nd0C";  //uso de archivos de propiedades
-    private Properties props;
-    private final Session session;
+    private static String FROM = "sigecu0";
+    private static String PASSWORD = "proyectosigecu";
     
+    /*metodo estatico para enviar correo a un destinatario
+    * */
+    public static void send(String toMail, String subject, String body) throws AddressException, MessagingException
+    {
+        Properties props = System.getProperties();
+        String host = "smtp.gmail.com";
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.user", FROM);
+        props.put("mail.smtp.password", PASSWORD);
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+
+        message.setFrom(new InternetAddress(FROM));
+
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(toMail));
+
+        message.setSubject(subject);
+        message.setText(body);
+        Transport transport = session.getTransport("smtp");
+        transport.connect(host, FROM, PASSWORD);
+        transport.sendMessage(message, message.getAllRecipients());
+        transport.close();
+    }  //fin del metodo
     
-    public Email()
+    /* metodo para enviar email a mas de un destinatario*/
+     public static void send(List<String> toMail, String subject, String body) throws AddressException, MessagingException
     {
-        props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "587");
-        session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
-                    @Override
-                    protected PasswordAuthentication getPasswordAuthentication()
-                    {
-                        return new PasswordAuthentication(fromUser, passwordFrom);
-                    }
-                }); 
-        try
-        {
-            Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress(fromUser));
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("castillor493@gmail.com"));
-            msg.setSubject("prueba");
-            msg.setText("hola");
-        }catch(MessagingException e)
-        {
-            System.out.print("Error en mail");
+        Properties props = System.getProperties();
+        String host = "smtp.gmail.com";
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.user", FROM);
+        props.put("mail.smtp.password", PASSWORD);
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+       
+        message.setFrom(new InternetAddress(FROM));
+        List<InternetAddress> toAddress = new ArrayList<>();
+        
+        
+        for (String to : toMail) {
+            toAddress.add(new InternetAddress(to));
         }
-    }
-    public void send(String toMail, String subject, String contentMail)
-    {
-        try
+        for(InternetAddress mail: toAddress)
         {
-            Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress(fromUser));
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toMail));
-            msg.setSubject(subject);
-            msg.setText(contentMail);
-        }catch(MessagingException e)
-        {
-            System.out.print("Error en mail");
+            message.addRecipient(Message.RecipientType.TO, mail);
         }
-    }
-    public void  send(ArrayList<String> destinos, String subject, String contentMail)
-    {
-        try
-        {
-           Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress(fromUser));
-            Address [] toMails = new Address[destinos.size()];
-            for(int i=0; i<toMails.length;i++)
-            {
-                toMails[i]= new InternetAddress(destinos.get(i));
-            }
-            msg.setRecipients(Message.RecipientType.TO, toMails);
-            msg.setSubject(subject);
-            msg.setText(contentMail); 
-        }catch(MessagingException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
+        message.setSubject(subject);
+        message.setText(body);
+        Transport transport = session.getTransport("smtp");
+        transport.connect(host, FROM, PASSWORD);
+        transport.sendMessage(message, message.getAllRecipients());
+        transport.close();
+    }//fin del metodo send
 }
+

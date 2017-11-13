@@ -100,7 +100,7 @@
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
                     <li  class="active">
-                        <a href="../../index.jsp">
+                        <a href="../../index.html">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
@@ -127,12 +127,6 @@
                         <a href="preInscripcion?accion=LE">
                             <i class="material-icons">dashboard</i>
                             <span>Preinscripcion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Eventos?accion=LPI">
-                            <i class="material-icons">view_list</i>
-                            <span>Lista de Pre-Inscriptos</span>
                         </a>
                     </li>
                     <li>
