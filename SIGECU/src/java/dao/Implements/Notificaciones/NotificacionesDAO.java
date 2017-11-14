@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao.Implements;
+package dao.Implements.Notificaciones;
 
-import dao.Interface.INotificacionesDAO;
+import dao.Interface.INotificaciones.INotificacionesDAO;
 import dto.Evento;
 import exception.BusinessException;
 import extras.Convierte;

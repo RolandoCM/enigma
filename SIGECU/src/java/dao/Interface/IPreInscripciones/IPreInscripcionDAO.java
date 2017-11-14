@@ -3,16 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao.Interface;
+package dao.Interface.IPreInscripciones;
 
 import dto.Evento;
+import dto.identiPreIns;
+import dto.preInscripcion;
 import exception.BusinessException;
 import java.util.List;
 
 /**
  *
- * @author jose-
+ * @author Anel
  */
 public interface IPreInscripcionDAO {
-    public List<Evento> dashEventoDAO() throws BusinessException;
+    public List<identiPreIns> consultaPreIns() throws BusinessException;
+    public boolean nuevaPreInscripcion(preInscripcion preIn) throws BusinessException;
+    
 }

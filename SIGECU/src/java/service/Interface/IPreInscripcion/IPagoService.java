@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service.Interface.Evento;
+package service.Interface.IPreInscripcion;
 
 import dto.Pago;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Anayeli Ramírez
  */
-public interface IservicePago {
+public interface IPagoService {
     public void registrarPago(Pago pago);
     public List<Pago> listarPagoPendienteE();
     public String getMensaje();

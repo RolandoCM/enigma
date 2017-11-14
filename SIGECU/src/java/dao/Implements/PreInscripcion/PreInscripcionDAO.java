@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao.Implements.Evento;
+package dao.Implements.PreInscripcion;
 
-import dao.Interface.Evento.IPreInscripcionDAO;
+import dao.Interface.IPreInscripciones.IPreInscripcionDAO;
 import dto.identiPreIns;
 import dto.preInscripcion;
 import exception.BusinessException;
@@ -22,67 +22,59 @@ import jdbc.ConectionDB;
  *
  * @author Anel * @author Anel
  */
-public class preInsDAO implements IPreInscripcionDAO {
+public class PreInscripcionDAO implements IPreInscripcionDAO {
     
     private final ConectionDB db;
 	private String mensaje;
 	
-	public preInsDAO() {
+	public PreInscripcionDAO() {
 		this.db = new ConectionDB();
 	}
         
-	public void alumnosIns(preInscripcion preIn) {
-		String sql = "INSERT INTO pre_inscripcion VALUES(null,?,?,?,?,?,?,?)";
-		
-		Connection cn = null;
-        try {
+    /**
+     *
+     * @param preIn
+     * @return
+     * @throws exception.BusinessException
+     */
+    public boolean nuevaPreInscripcion (preInscripcion preIn) throws BusinessException{
+        boolean correcto = false;
+        String sql = "INSERT INTO pre_inscripcion VALUES(null,?,?,?,?,?,?,?)";
+	Connection cn = null;
+        try
+        {
             cn = db.getConnection();
-        } catch (Exception ex) {
-            Logger.getLogger(preInsDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-		if (cn != null) {
-			try {
-				PreparedStatement ps = cn.prepareStatement(sql);
+            PreparedStatement ps = cn.prepareStatement(sql);
 				
-				ps.setString(1, preIn.getNombre());
-				ps.setString(2, preIn.getApellido());
-                                ps.setString(3, preIn.getTelefono());
-                                ps.setString(4, preIn.getEmail());
-                                ps.setString(5, preIn.getIdEmpresa().toString());
-				ps.setString(6, preIn.getCarrera());
-				ps.setString(7, preIn.getConfirmar());
-                                
-				int exec = ps.executeUpdate();
-				
-				if (exec == 0) {
-					throw new SQLException();
-				}
-				ps.close();
-				
-			} catch (SQLException e) {
-                            e.printStackTrace();
-                            System.out.println(e.getMessage());
-				setMensaje("Problemas para insertar: " + e.getMessage());
-			} finally {
-				try {
-					cn .close();
-				} catch (SQLException ex) {
-                                    ex.printStackTrace();
-                                    System.out.println(ex.getMessage());
-					setMensaje(ex.getMessage());
-				}
-			}
-		} else {
-			setMensaje("Error en conexion: " + db.getMessage());
-		}
-        }
+            ps.setString(1, preIn.getNombre());
+            ps.setString(2, preIn.getApellido());
+            ps.setString(3, preIn.getTelefono());
+            ps.setString(4, preIn.getEmail());
+            ps.setString(5, preIn.getIdEmpresa().toString());
+            ps.setString(6, preIn.getCarrera());
+            ps.setString(7, preIn.getConfirmar());
+            int exec = ps.executeUpdate();
 		
-        
+            if (exec == 0) {
+		throw new SQLException();
+            }
+            else
+            {
+                correcto = true;
+            }
+            ps.close();
+            
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setMensaje("error en la capa de base de datos");
+            be.setIdException("001");
+            throw be;
+        }
+        return correcto;
+    }
 
-        
-        
-        
-        
        /*Metodo para generar los datos necesarios de rellono automatico en crear evento*/
 
     /**

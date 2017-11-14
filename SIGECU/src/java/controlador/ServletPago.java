@@ -5,8 +5,8 @@
  */
 package controlador;
 
-import auxiliares.Convierte;
-import dao.Implements.Evento.PagoDAO;
+import extras.Convierte;
+import dao.Implements.PreInscripcion.PagoDAO;
 import dto.Pago;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,7 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import service.Interface.Evento.IservicePago;
+import service.Interface.IPreInscripcion.IPagoService;
 
 /**
  *

@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao.Interface.Evento;
+package service.Interface.Evento;
 
-import dto.Pago;
+import dto.Evento;
+import exception.BusinessException;
 import java.util.List;
 
 /**
  *
- * @author Anayeli Ramírez
+ * @author jose-
  */
-public interface IPagoDAO {
-    public void registrarPago(Pago pago);
-    public List<Pago> listarPagoPendienteE();
-    
+public interface IPreInscripcionService {
+   public List<Evento> dashEvento() throws BusinessException; 
 }

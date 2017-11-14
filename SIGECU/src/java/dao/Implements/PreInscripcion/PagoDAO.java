@@ -1,7 +1,7 @@
-package dao.Implements.Evento;
+package dao.Implements.PreInscripcion;
 
 import dto.EventoVO;
-import dao.Interface.Evento.IPagoDAO;
+import dao.Interface.IPreInscripciones.IPagoDAO;
 import dto.Pago;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

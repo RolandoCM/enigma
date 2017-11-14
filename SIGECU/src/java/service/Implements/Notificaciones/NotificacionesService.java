@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service.Implements;
+package service.Implements.Notificaciones;
 
-import dao.Implements.NotificacionesDAO;
-import dao.Interface.INotificacionesDAO;
+import dao.Implements.Notificaciones.NotificacionesDAO;
+import dao.Interface.INotificaciones.INotificacionesDAO;
 import dto.Evento;
 import exception.BusinessException;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
-import service.Interface.INotificacionesService;
+import service.Interface.INotificaciones.INotificacionesService;
 import service.email.Email;
 
 /**

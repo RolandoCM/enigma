@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author rolando
  */
-public interface IServiceEvento {
+public interface IEventoService {
     public List<List<IdentificadoresEvento>> consultaDatosCrearEvento() throws BusinessException;
     public void crearEvento(Evento evento) throws BusinessException;
     public List<Evento> listarEventoConfirmado() throws BusinessException; 

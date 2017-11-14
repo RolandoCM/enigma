@@ -12,13 +12,13 @@ import dto.IdentificadoresEvento;
 import exception.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
-import service.Interface.Evento.IServiceEvento;
+import service.Interface.Evento.IEventoService;
 
 /**
  *
  * @author rolando
  */
-public class ServiceEvento implements IServiceEvento{
+public class EventoService implements IEventoService{
 
     @Override
     public void crearEvento(Evento evento) throws BusinessException {

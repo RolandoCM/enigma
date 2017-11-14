@@ -1,11 +1,10 @@
-package dao.Implements;
+package dao.Implements.Evento;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import dao.Interface.IPreInscripcionDAO;
 import dto.Evento;
 import exception.BusinessException;
 import extras.Convierte;
@@ -19,11 +18,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import jdbc.ConectionDB;
+import dao.Interface.Evento.IEventosDashboardDAO;
 /**
  *
  * @author jose-
  */
-public class PreInscripcionDAO implements IPreInscripcionDAO{
+public class EventosDashboardDAO implements IEventosDashboardDAO{
     private ConectionDB database = new ConectionDB();
     @Override
     public List<Evento> dashEventoDAO() throws BusinessException {

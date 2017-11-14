@@ -3,27 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service.Implements;
+package service.Implements.Evento;
 
-import dao.Implements.PreInscripcionDAO;
-import dao.Interface.IPreInscripcionDAO;
+import dao.Implements.Evento.EventosDashboardDAO;
+import dao.Interface.Evento.IEventosDashboardDAO;
 import dto.Evento;
 import exception.BusinessException;
 import java.util.List;
-import service.Interface.IServicePreInscripcion;
+import service.Interface.Evento.IPreInscripcionService;
 
 /**
  *
  * @author jose-
  */
-public class ServicePreInscripcion implements IServicePreInscripcion  {
+public class EventosDashService implements IPreInscripcionService  {
 
     @Override
     public List<Evento> dashEvento() throws BusinessException {
         try
         {
-            IPreInscripcionDAO preInscripcion = new PreInscripcionDAO();
-            List<Evento> evento = preInscripcion.dashEventoDAO();
+            IEventosDashboardDAO eventosDash = new EventosDashboardDAO();
+            List<Evento> evento = eventosDash.dashEventoDAO();
             return evento;
         }
         catch (BusinessException e)

@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao.Interface.Evento;
+package dao.Interface.INotificaciones;
 
-import dto.identiPreIns;
+import dto.Evento;
 import exception.BusinessException;
 import java.util.List;
 
 /**
  *
- * @author Anel
+ * @author rolando
  */
-public interface IPreInscripcionDAO {
-    public List<identiPreIns> consultaPreIns() throws BusinessException;
-    
+public interface INotificacionesDAO {
+    public List<Evento> notificarEmailComercial() throws BusinessException;
 }

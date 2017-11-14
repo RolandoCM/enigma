@@ -17,22 +17,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import service.Implements.ServicePreInscripcion;
-import service.Interface.IServicePreInscripcion;
+import service.Implements.Evento.EventosDashService;
+import service.Interface.Evento.IPreInscripcionService;
 
 /**
  *
  * @author jose-
  */
 @WebServlet({ "/dashInscripcion", "/vistas/eventos/dashInscripcion"})
-public class ServletPreInscripcion extends HttpServlet {
+public class ServletEventosDash extends HttpServlet {
    private String direccionar = null;
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse resp) 
             throws ServletException, IOException {
         try{
-            IServicePreInscripcion preInscripcion = new ServicePreInscripcion();
+            IPreInscripcionService preInscripcion = new EventosDashService();
             String accion = request.getParameter("accion");
             switch(accion){
                 //listar evento
@@ -50,12 +50,12 @@ public class ServletPreInscripcion extends HttpServlet {
     }
     
     
-    private void buscarEventoDAO(IServicePreInscripcion evento, HttpServletRequest request, HttpServletResponse response){
+    private void buscarEventoDAO(IPreInscripcionService evento, HttpServletRequest request, HttpServletResponse response){
         MensajesDTO msjDTO= new MensajesDTO();
         try
         {
             List<Evento> dashEvento = null;
-            IServicePreInscripcion preInscripcion = new ServicePreInscripcion();
+            IPreInscripcionService preInscripcion = new EventosDashService();
             dashEvento = preInscripcion.dashEvento();
             //calcularColor(dashEvento);
             request.setAttribute("dashEvento", dashEvento);

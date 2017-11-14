@@ -20,12 +20,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import service.Implements.Evento.ServiceEvento;
-import service.Implements.NotificacionesService;
-import service.Interface.Evento.IServiceEvento;
-import service.Interface.INotificacionesService;
+import service.Implements.Evento.EventoService;
+import service.Implements.Notificaciones.NotificacionesService;
+import service.Interface.INotificaciones.INotificacionesService;
 import service.email.Email;
-
+import service.Interface.Evento.IEventoService;
 /**
  *
  * @author rolando
@@ -41,7 +40,7 @@ public class ServletEvento extends HttpServlet{
             String accion = request.getParameter("accion");
             
             
-            IServiceEvento evento = new ServiceEvento();
+            IEventoService evento = new EventoService();
             
             switch(accion)
             {
@@ -89,7 +88,7 @@ public class ServletEvento extends HttpServlet{
     } //fin del metodo service
     
     /*metodo para listar los eventos para el comercial */
-    private void listarEventosConfirmados(IServiceEvento evento, HttpServletRequest request, HttpServletResponse response) 
+    private void listarEventosConfirmados(IEventoService evento, HttpServletRequest request, HttpServletResponse response) 
     {
         MensajesDTO msjDTO = new MensajesDTO();
         try {
@@ -118,7 +117,7 @@ public class ServletEvento extends HttpServlet{
     /*Metodo para cargar los datos de los eventos necesarios para hacer el registro
      * de un nuevo evento, los datos cargados son ciudad, pais, instructor, templete
     * promociones*/
-    private void cargarDatosEvento(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response) {
+    private void cargarDatosEvento(IEventoService eventoService, HttpServletRequest request, HttpServletResponse response) {
         List<List<IdentificadoresEvento>> datosParaEvento;
         MensajesDTO msjDTO = new MensajesDTO();
         try {
@@ -144,7 +143,7 @@ public class ServletEvento extends HttpServlet{
     }//cargarDatosEvento
     
     /*Metodo para crear un nuevo evento y almacenarlo en la base de datos*/
-    private void crearEvento(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response)  {
+    private void crearEvento(IEventoService eventoService, HttpServletRequest request, HttpServletResponse response)  {
         MensajesDTO msjDTO = new MensajesDTO();
         try {
             Evento evento = new Evento();
@@ -152,38 +151,30 @@ public class ServletEvento extends HttpServlet{
             String mensaje= verificar(request, evento);
             if(mensaje==null)
             {
-                
-//            request.setAttribute("mensajeDebug", request.getParameter("nombreEvento")+ " "+ request.getParameter("fechaEvento")+
-//                    " "+request.getParameter("descripcionEvento")+" "+request.getParameter("programaEvento")+
-//                    " "+request.getParameter("lugarEvento")+
-//                    " "+request.getParameter("instructorEvento")+" "+request.getParameter("ciudadEvento")+
-//                    " "+request.getParameter("capacidadEvento")+" "+request.getParameter("tipoEvento")+
-//                    " "+request.getParameter("statusEvento")+ " "+request.getParameter("costoEvento")+
-//                    " "+request.getParameter("templateEvento")+" "+request.getParameter("promocionEvento"));
-            int capacidadEvento = Convierte.aInteger(request.getParameter("capacidadEvento"));
-            double costoEvento = Convierte.aDouble(request.getParameter("costoEvento"));
+                int capacidadEvento = Convierte.aInteger(request.getParameter("capacidadEvento"));
+                double costoEvento = Convierte.aDouble(request.getParameter("costoEvento"));
 
-            
-            evento.setNombre(request.getParameter("nombreEvento"));
-            evento.setFecha(request.getParameter("fechaEvento"));
-            evento.setDescripcion(request.getParameter("descripcionEvento"));
-            evento.setPrograma(request.getParameter("programaEvento"));
-            instructor.setId(request.getParameter("instructorEvento"));
-            evento.setInstructor(instructor);           
-            evento.setLugar(request.getParameter("lugarEvento"));
-            evento.setCiudad(request.getParameter("ciudadEvento"));
-            evento.setCapacidad(capacidadEvento);
-            evento.setTipo(request.getParameter("tipoEvento"));
-            evento.setStatus(request.getParameter("statusEvento"));
-            evento.setCosto(costoEvento);
-            evento.setTemplete(request.getParameter("templateEvento"));
-            evento.setPromocion(request.getParameter("promocionEvento"));
-            evento.setFechaTermino(request.getParameter("fechaTermino"));
-            eventoService.crearEvento(evento);
-            Email.send("castillor493@gmail.com", "Nuevo evento", "se a creado un nuevo evento"); //pruaba de envío de email
-            msjDTO.setId("000");
-            msjDTO.setMensaje("Exceute OK");
-            request.setAttribute("msj", msjDTO);
+
+                evento.setNombre(request.getParameter("nombreEvento"));
+                evento.setFecha(request.getParameter("fechaEvento"));
+                evento.setDescripcion(request.getParameter("descripcionEvento"));
+                evento.setPrograma(request.getParameter("programaEvento"));
+                instructor.setId(request.getParameter("instructorEvento"));
+                evento.setInstructor(instructor);           
+                evento.setLugar(request.getParameter("lugarEvento"));
+                evento.setCiudad(request.getParameter("ciudadEvento"));
+                evento.setCapacidad(capacidadEvento);
+                evento.setTipo(request.getParameter("tipoEvento"));
+                evento.setStatus(request.getParameter("statusEvento"));
+                evento.setCosto(costoEvento);
+                evento.setTemplete(request.getParameter("templateEvento"));
+                evento.setPromocion(request.getParameter("promocionEvento"));
+                evento.setFechaTermino(request.getParameter("fechaTermino"));
+                eventoService.crearEvento(evento);
+                Email.send("castillor493@gmail.com", "Nuevo evento", "se a creado un nuevo evento"); //pruaba de envío de email
+                msjDTO.setId("000");
+                msjDTO.setMensaje("Exceute OK");
+                request.setAttribute("msj", msjDTO);
             }
             else
             {
@@ -206,7 +197,7 @@ public class ServletEvento extends HttpServlet{
     }//fin del metodo crearEvento
     
     /*Metodo para actualizar un evento en la base de datos*/
-    private void actualizarEventoConfirmado(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response) {
+    private void actualizarEventoConfirmado(IEventoService eventoService, HttpServletRequest request, HttpServletResponse response) {
         MensajesDTO msjDTO = new MensajesDTO();
         Instructor instructor = new Instructor();
         Evento evento = new Evento();
@@ -250,7 +241,7 @@ public class ServletEvento extends HttpServlet{
         direccionar = "Eventos?accion=LEC";
     }// fin del metodo actualizarEventoConfirmado
     
-    public void buscarEvento(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response)
+    public void buscarEvento(IEventoService eventoService, HttpServletRequest request, HttpServletResponse response)
     {
         MensajesDTO msjDTO = new MensajesDTO();
         List<List<IdentificadoresEvento>> datosParaEvento;
@@ -281,7 +272,7 @@ public class ServletEvento extends HttpServlet{
         
     }
     /*Metodo para cancelar un evento */
-    private void cancelarEventoConfirmado(String idev,IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response) {
+    private void cancelarEventoConfirmado(String idev,IEventoService eventoService, HttpServletRequest request, HttpServletResponse response) {
  MensajesDTO msjDTO = new MensajesDTO();
     int idEventoCancelar = Convierte.aInteger(idev);
     String msg ="   <div class=\"alert bg-pink alert-dismissible\" role=\"alert\">\n" +
@@ -308,7 +299,7 @@ public class ServletEvento extends HttpServlet{
 
     /*Metodo de detallesEvento para mostrar todos los detalles el 
     evento al usuario final*/
-    private void detallesEvento(IServiceEvento eventoService, HttpServletRequest request, HttpServletResponse response)  {
+    private void detallesEvento(IEventoService eventoService, HttpServletRequest request, HttpServletResponse response)  {
         MensajesDTO msjDTO = new MensajesDTO();
         
         try
@@ -349,7 +340,7 @@ public class ServletEvento extends HttpServlet{
     }//fin del metodo verificar
 
     //Metodo para listar eventos para el Interesado
-    private void listarEventosPublicos(IServiceEvento evento, HttpServletRequest request, HttpServletResponse response) {
+    private void listarEventosPublicos(IEventoService evento, HttpServletRequest request, HttpServletResponse response) {
         
         MensajesDTO msjDTO = new MensajesDTO();
         try
@@ -375,7 +366,7 @@ public class ServletEvento extends HttpServlet{
             direccionar = "listarEventosPublicos.jsp";
         }
     }
-     private void notificarEmailComercial(IServiceEvento evento, HttpServletRequest request, HttpServletResponse response) {
+     private void notificarEmailComercial(IEventoService evento, HttpServletRequest request, HttpServletResponse response) {
         try {
             INotificacionesService notificar = new NotificacionesService();
             notificar.notificacionEmailComercial();

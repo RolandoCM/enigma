@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service.Interface;
+package service.Interface.INotificaciones;
 
 import dto.Evento;
 import exception.BusinessException;
