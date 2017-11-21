@@ -62,34 +62,46 @@
                                 </div>
                             </div>
                             
-                              <form action="Pago" method="POST">
+                             <form id="form_advanced_validation" action="Pagos" method="POST">
                                     <input type="hidden" name="accion" value="INS"/>  
                             <div class="row clearfix">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <div class="form-line">Fecha de Pago<br>
-                                            <input type="date" name="fechaPago" value="${pago.f_idFactura}" class="form-control"required/>
+                                        <div class="form-line"><strong>Fecha de Pago</strong><br>
+                                            <input type="date" name="fechaPago" value="${pago.fechaPago}" class="form-control"required/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <div class="form-line"> Monto a Pagar:<br>
+                                        <div class="form-line"><strong> Monto a Pagar:</strong><br>
                                             <input type="number" name="number" value="${pago.monto}" class="form-control" required />
                                         </div>
                                     </div>
                                 </div>
+                                 <div class="row clearfix">
+                                        <div class="col-md-12">
+                                            <div class="demo-radio-button">
+                                                <strong>Tipo de Pago</strong><br><br>
+                                                <input name="tipoEvento" type="radio" id="radio_1" checked value="parcial" />
+                                                <label for="radio_1">Parcial</label>
+                                                <input name="tipoEvento" type="radio" id="radio_2" value="total"/>
+                                                <label for="radio_2">Total</label>
+                                                <br>
+                                                <br>
+                                            </div>
+                                </div>
                                 <div class="body">
                                 <div class="row clearfix">
                                 <div class="col-sm-12">
-                                        <div class="form-line"> Forma de Pago:<br>    <br> 
+                                    <div class="form-line"><strong> Forma de Pago:</strong><br>    <br> 
                                     <div class="col-sm-6">
                                  
                             
                                        
-                                <button type="button" class="btn bg-deep-orange waves-effect m-r-20" value="${pago.tipo}" id="tarjeta" data-color="deep-orange" data-toggle="modal" data-target="#defaultModal">Tarjeta de Crédito</button>
-                                <button type="button" class="btn bg-deep-orange waves-effect m-r-20" value="${pago.tipo}" id="cheque" data-toggle="modal" data-target="#largeModal">Cheque</button>
-                                <button type="button" class="btn bg-deep-orange waves-effect" data-toggle="modal" value="${pago.tipo}" id="efectivo" data-target="#smallModal">Efectivo</button>           
+                                <button type="button" class="btn bg-deep-orange waves-effect m-r-20" value="${pago.forma}" id="tarjeta" data-color="deep-orange" data-toggle="modal" data-target="#defaultModal">Tarjeta de Crédito</button>
+                                <button type="button" class="btn bg-deep-orange waves-effect m-r-20" value="${pago.forma}" id="cheque" data-toggle="modal" data-target="#largeModal">Cheque</button>
+                                <button type="button" class="btn bg-deep-orange waves-effect" data-toggle="modal" value="${pago.forma}" id="efectivo" data-target="#smallModal">Efectivo</button>           
                                
                                        </div>  
                                     </div>

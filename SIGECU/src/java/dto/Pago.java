@@ -10,14 +10,44 @@ package dto;
  * @author Anayeli Ramírez
  */
 public class Pago {
-    private String tipo;
+   private String tipo;
     private int status;
     private Integer idPago;
     private Integer f_idPago;
     private String confirmar;
+    private int monto;
+    private String formaPago;
+    private String fechaPago;
 
     public Pago() {
     }
+
+    public String getFechaPago() {
+        return fechaPago;
+    }
+
+    public void setFechaPago(String fechaPago) {
+        this.fechaPago = fechaPago;
+    }
+    
+
+    public String getFormaPago() {
+        return formaPago;
+    }
+
+    public void setFormaPago(String formaPago) {
+        this.formaPago = formaPago;
+    }
+    
+
+    public int getMonto() {
+        return monto;
+    }
+
+    public void setMonto(int monto) {
+        this.monto = monto;
+    }
+    
 
     public String getConfirmar() {
         return confirmar;
