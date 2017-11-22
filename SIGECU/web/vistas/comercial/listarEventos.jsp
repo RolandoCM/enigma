@@ -42,6 +42,7 @@
 
     <body class="theme-red">
        <jsp:include page="menu1.jsp" flush="true" />
+        
         <section class="content">
             <div class="container-fluid">
 
@@ -317,10 +318,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                                
-    
-
+                </div>   
         </section>
 
 

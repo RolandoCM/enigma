@@ -20,8 +20,8 @@ import javax.mail.internet.MimeMessage;
  * @author rolando
  */
 public class Email {
-    private static String FROM = "sigecu0";
-    private static String PASSWORD = "proyectosigecu";
+    private static final String FROM = "sigecu0";
+    private static final String PASSWORD = "proyectosigecu";
     
     /*metodo estatico para enviar correo a un destinatario
     * */
@@ -45,10 +45,10 @@ public class Email {
 
         message.setSubject(subject);
         message.setText(body);
-        Transport transport = session.getTransport("smtp");
-        transport.connect(host, FROM, PASSWORD);
-        transport.sendMessage(message, message.getAllRecipients());
-        transport.close();
+        try (Transport transport = session.getTransport("smtp")) {
+            transport.connect(host, FROM, PASSWORD);
+            transport.sendMessage(message, message.getAllRecipients());
+        }
     }  //fin del metodo
     
     /* metodo para enviar email a mas de un destinatario*/
@@ -79,10 +79,10 @@ public class Email {
         }
         message.setSubject(subject);
         message.setText(body);
-        Transport transport = session.getTransport("smtp");
-        transport.connect(host, FROM, PASSWORD);
-        transport.sendMessage(message, message.getAllRecipients());
-        transport.close();
+        try (Transport transport = session.getTransport("smtp")) {
+            transport.connect(host, FROM, PASSWORD);
+            transport.sendMessage(message, message.getAllRecipients());
+        }
     }//fin del metodo send
 }
 

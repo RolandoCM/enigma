@@ -10,14 +10,9 @@ import dao.Interface.IPreInscripciones.IPreInscripcionDAO;
 import dto.identiPreIns;
 import dto.preInscripcion;
 import exception.BusinessException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.mail.MessagingException;
-import jdbc.ConectionDB;
 import service.email.Email;
 import service.Interface.IPreInscripcion.IPreInscripcionService;
 
@@ -28,11 +23,6 @@ import service.Interface.IPreInscripcion.IPreInscripcionService;
 public class PreInscripcionService implements IPreInscripcionService {
 
     private String mensaje;
-    private final ConectionDB db;
-    
-    public PreInscripcionService(){
-        this.db = new ConectionDB();
-    }
     @Override
     public List<preInscripcion> preQry() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -84,7 +74,7 @@ public class PreInscripcionService implements IPreInscripcionService {
     
     @Override
     public List<identiPreIns> consulPre() throws BusinessException {
-        List<identiPreIns> empresaPreIns;
+        List<identiPreIns> empresaPreIns = new ArrayList<>();
         
         IPreInscripcionDAO preIns = new PreInscripcionDAO();
         empresaPreIns = preIns.consultaPreIns();

@@ -24,7 +24,7 @@ import service.Interface.Evento.IPreInscripcionService;
  *
  * @author jose-
  */
-@WebServlet({ "/dashInscripcion", "/vistas/eventos/dashInscripcion"})
+@WebServlet({ "/dashInscripcion", "/vistas/comercial/dashInscripcion"})
 public class ServletEventosDash extends HttpServlet {
    private String direccionar = null;
 

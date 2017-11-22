@@ -1,3 +1,7 @@
 
-<% response.sendRedirect("vistas/eventos/Eventos?accion=LEC"); %>
 
+
+<a href="vistas/publico/personal.jsp">Personal</a>
+<a href="vistas/alumno/index.jsp">Alumnos</a>
+
+<a href="ServletListarEventosPublicos">Ver eventos</a>

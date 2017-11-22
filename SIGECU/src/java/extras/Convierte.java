@@ -9,7 +9,7 @@ public class Convierte {
 	public Convierte() {
     }
 
-    public static int aInteger(String s) {
+    public static Integer aInteger(String s) {
         Integer result = null;
 
         if (s != null) {

@@ -15,8 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jdbc.ConectionDB;
 /**
  *
@@ -37,6 +35,7 @@ public class PreInscripcionDAO implements IPreInscripcionDAO {
      * @return
      * @throws exception.BusinessException
      */
+    @Override
     public boolean nuevaPreInscripcion (preInscripcion preIn) throws BusinessException{
         boolean correcto = false;
         String sql = "INSERT INTO pre_inscripcion VALUES(null,?,?,?,?,?,?,?)";

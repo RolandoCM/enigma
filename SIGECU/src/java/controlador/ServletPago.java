@@ -23,7 +23,7 @@ import service.Interface.IPreInscripcion.IPagoService;
  *
  * @author Anayeli Ramírez
  */
- @WebServlet({ "/Pago", "/vistas/eventos/Pago"})    
+ @WebServlet({ "/Pago", "/vistas/comercial/Pago"})    
 public class ServletPago extends HttpServlet {
     
   private static final long serialVersionaUID= 1L;
