@@ -11,6 +11,7 @@ package dto;
  */
 public class Usuario {
     private String nombre;
+    private String foto;
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -19,4 +20,14 @@ public class Usuario {
     public String getNombre() {
         return nombre;
     }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+    
+    
 }

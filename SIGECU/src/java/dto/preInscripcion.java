@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Anel
  */
-public class preInscripcion {
+public class preInscripcion extends Usuario{
 
     private Integer idpreIns;
     private String nombre;

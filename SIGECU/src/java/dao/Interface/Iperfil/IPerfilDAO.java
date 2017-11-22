@@ -11,6 +11,6 @@ import java.util.List;
  *
  * @author JorgeLuna
  */
-public interface IPerfil {
+public interface IPerfilDAO {
     public List<preInscripcion> listaDatosPerfil() throws BusinessException;
 }
