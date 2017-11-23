@@ -41,6 +41,23 @@ public class PagoService implements IPagoService{
             throw mens;
         }
     }
+    @Override
+    public List<Pago> mostrarDatos() throws BusinessException {
+        try{
+            IPagoDAO pagoDAO=new PagoDAO();
+            List<Pago> mostrarDatos=new ArrayList<>();
+            mostrarDatos=pagoDAO.mostrarDatos();
+            return mostrarDatos;
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+            BusinessException be=new BusinessException();
+            be.setIdException("2");
+            be.setMensaje("Error al listar los datos");
+            throw be;
+        }
+    }
+    
     
     public List<Pago> historialPagos() throws  BusinessException{
         try{

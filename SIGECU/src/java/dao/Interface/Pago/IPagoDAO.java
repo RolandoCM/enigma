@@ -17,6 +17,7 @@ import java.util.List;
 public interface IPagoDAO {
     public void registrarPago(Pago pago);
     public List<Pago> historialPagosR();
+    public List<Pago> mostrarDatos();
     public void tarjetaCredito(Tarjeta Tarjeta);
     public void cheque(Cheque cheque);
     

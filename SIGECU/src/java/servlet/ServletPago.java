@@ -29,11 +29,8 @@ import service.Interface.Pago.IPagoService;
  *
  * @author Anayeli Ramírez
  */
-<<<<<<< HEAD
-@WebServlet({ "/Pagos", "/vistas/eventos/Pagos" })  
-=======
- @WebServlet({ "/Pago", "/vistas/comercial/Pago"})    
->>>>>>> 9c515f436935e5b14578083a1b90d37b70971d67
+
+ @WebServlet({ "/Pago", "/vistas/comercial/Pago"})
 public class ServletPago extends HttpServlet {
     
     private String direccionar = null;
@@ -59,6 +56,9 @@ public class ServletPago extends HttpServlet {
                case"CK":
                 cheque(pago, request, response);
                 break;
+                 case "MD":
+               mostrarDatos(pago, request, response);
+               break;
            }
                         
         } catch (Exception e) {
@@ -68,6 +68,27 @@ public class ServletPago extends HttpServlet {
             despachador.forward(request, response);
            
     } 
+    private void mostrarDatos(IPagoService pago, HttpServletRequest request, HttpServletResponse response){
+        MensajesDTO msj=new MensajesDTO();
+        try{
+            List<Pago> mostrarDatos=pago.mostrarDatos();
+            request.setAttribute("Pagos", mostrarDatos);
+            msj.setId("0");
+            msj.setMensaje("Ejecucion correcta");
+            request.setAttribute("msj", msj);
+        }catch(BusinessException ex){
+            msj.setId(ex.getIdException());
+            msj.setMensaje(ex.getMensaje());
+            request.setAttribute("msj", msj);
+        }catch(Exception e){
+            e.printStackTrace();
+            msj.setId("1");
+            msj.setMensaje("Error en la llamada de recursos");
+            request.setAttribute("msj", msj);
+        }finally{
+            direccionar="pagos.jsp";
+        }
+    }
     private void historialPagosR(IPagoService pago, HttpServletRequest request, HttpServletResponse response){
         MensajesDTO msj=new MensajesDTO();
         try{

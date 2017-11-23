@@ -65,6 +65,35 @@
                              <form id="form_advanced_validation" action="Pagos" method="POST">
                                     <input type="hidden" name="accion" value="INS"/>  
                             <div class="row clearfix">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre del Alumno</th>
+                                                <th>Nombre del Curso</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                               <th>Nombre del Alumno</th>
+                                                <th>Nombre del Curso</th>
+
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+
+                                            <c:forEach var="data" items="${mostrarDatos}">
+                                                <tr>
+                                                <td>${alumno.nombre}</td>
+                                                <td>${curso.nombre}</td>                                                <td>
+                                                  
+                                            </c:forEach>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="form-line"><strong>Fecha de Pago</strong><br>

@@ -2,7 +2,9 @@ package dao.Implements.Pago;
 
 import dto.EventoVO;
 import dao.Interface.Pago.IPagoDAO;
+import dto.Alumno;
 import dto.Cheque;
+import dto.Curso;
 import dto.Evento;
 import dto.Pago;
 import dto.Tarjeta;
@@ -32,6 +34,34 @@ public class PagoDAO implements IPagoDAO{
         
         
     }
+     //Método para mortrar el nombre del alumno y del evento al momento de realizar el pago
+      @Override
+   public List<Pago> mostrarDatos() {
+        List<Pago> mostrar=new ArrayList<>();
+     Pago pago=new Pago();
+       String sql="Select a.Nombre, c.nombre from alumno as a inner join alumno_has_cursos as ac\n" +
+       "on a.idalumno=ac.a_idalumno inner join cursos as c on ac.c_idcursos=c.idcursos\n" +
+       "inner join cursos_has_pagos as cp on c.idcursos=cp.c_idcursos\n" +
+       "inner join pagos as p on cp.p_idpagos=p.idpagos where p.idpagos= "+pago.getIdPago()+";";
+       try{
+           Connection connection=database.getConnection();
+           PreparedStatement ps=connection.prepareStatement(sql);
+           ResultSet result=ps.executeQuery();
+           while(result.next()){
+               Alumno a=new Alumno();
+               Curso c=new Curso();
+               a.setNombre(result.getString(1));
+               c.setNombre(result.getString(2));               
+           }mostrar.add(pago);
+                   
+       }catch (Exception e){
+         e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setMensaje("Error al conectar en la base de datos");
+            be.setIdException("1");
+    }
+       return mostrar;
+   }
   
     @Override
     public void registrarPago(Pago pago){
