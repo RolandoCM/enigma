@@ -114,13 +114,13 @@
                     <li>
                          <a href="Perfil?accion=LDP">
                             <i class="material-icons">note_add</i>
-                            <span>Crear Evento</span>
+                            <span>Perfil</span>
                         </a>
                     </li>
                      <li>
-                         <a href="cursosperfil.jsp">
+                         <a href="cursospPerfil.jsp">
                             <i class="material-icons">view_list</i>
-                            <span>Lista de Eventos</span>
+                            <span>Cursos</span>
                         </a>
                     </li>
                     <li>

@@ -73,6 +73,7 @@ public class PerfilDAO implements IPerfilDAO{
         }
     }
     
+        @Override
      public void modificarPerfil(Perfil per) throws BusinessException{
          String sql = "UPDATE alumno SET aNombre=?,"
                  + "aPaterno=?,aMaterno=?,telefono=?,"
@@ -105,5 +106,18 @@ public class PerfilDAO implements IPerfilDAO{
         }
      }
     
+     
+public void EventosPorAlumno(Evento eve) throws BusinessException{ 
     
+    String sql="SELECT e.idevento,e.cursos_idcursos,e.i_idinstructor,"
+            + "e.d_iddestinatario,e.fechaInicio,e.fechaTermino, "
+            + "e.programa,e.lugar_idlugar,e.capacidad,e.tipo,"
+            + "e.precios_idprecios,e.estatus,ah.a_idalumno,"
+            + "ah.e_idevento,ah.activo,ah.confirmado,a.idalumno,"
+            + "a.aNombre,a.aPaterno, a.aMaterno,a.telefono, "
+            + "a.email,a.e_idEmpresa, a.carrera,a.notebook,"
+            + "a.status FROM eventos e,alumno_has_eventos ah,"
+            + "alumno a WHERE e.idevento=ah.e_idevento AND a.idalumno=ah.a_idalumno";
+    
+}   
 }
