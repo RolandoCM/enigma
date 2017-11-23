@@ -83,7 +83,8 @@
                                         </tfoot>
                                         <tbody>
 
-                                            <c:forEach var="data" items="${historialPago}">
+                                            
+                                     
                                                 <tr>
                                                 <td>${evento.nombreEvento}</td>
                                                 <td>${pago.fechaPago}</td>

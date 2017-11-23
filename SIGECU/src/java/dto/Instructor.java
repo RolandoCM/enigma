@@ -11,8 +11,9 @@ import extras.Convierte;
  *
  * @author rolando
  */
-public class instructor extends Usuario {
+public class Instructor extends Usuario {
    String mensaje = "<ul>";
+   private String id;
 	Integer idinstructor;
 	String iNombre;	        
 	String iMaterno;
@@ -23,7 +24,15 @@ public class instructor extends Usuario {
         String iTelefono;
         String iDireccion;
 
-    public instructor() {
+    public Instructor() {
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getMensaje() {
