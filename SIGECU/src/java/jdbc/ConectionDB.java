@@ -19,7 +19,7 @@ public class ConectionDB {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             cn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/" + database,
-                    "root", "martinez");
+                    "root", "");
 
         return cn;
     }

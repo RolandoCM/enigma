@@ -7,7 +7,7 @@ package service.Implements.Perfil;
 
 import dao.Implements.Evento.EventoDAO;
 import dao.Implements.Perfil.PerfilDAO;
-import dto.preInscripcion;
+import dto.Perfil;
 import exception.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,16 +21,16 @@ import service.Interface.Perfil.IPerfilService;
  */
 public class PerfilService implements IPerfilService{
     
-     public List<preInscripcion> listaDatosPerfil() throws BusinessException{
+     public List<Perfil> listaDatosPerfil() throws BusinessException{
           try
         {
             IPerfilDAO perfilDAO = new PerfilDAO();
-            List<preInscripcion> datosPerfil = new ArrayList<>();
+            List<Perfil> datosPerfil = new ArrayList<>();
             datosPerfil = perfilDAO.listaDatosPerfil();         
             return datosPerfil; 
         }
         catch (BusinessException e) {
-            throw e;
+            throw e;  
 	}
         catch (Exception ex)
         {

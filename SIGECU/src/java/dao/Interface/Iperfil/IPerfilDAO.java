@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package dao.Interface.Iperfil;
-import dto.preInscripcion;
+
+import dto.Perfil;
 import exception.BusinessException;
 import java.util.List;
 /**
@@ -12,5 +13,5 @@ import java.util.List;
  * @author JorgeLuna
  */
 public interface IPerfilDAO {
-    public List<preInscripcion> listaDatosPerfil() throws BusinessException;
+    public List<Perfil> listaDatosPerfil() throws BusinessException;
 }

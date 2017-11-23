@@ -88,7 +88,11 @@
                                 <div class="row clearfix">
                                      <c:forEach var="datos" items="${datosPerfil}">
                                     <div class="col-md-12">
-                                        <img class="img-responsive materialboxed"  src="${datosPerfil.}" width="150"  /><br>
+<<<<<<< HEAD
+                                        <img class="img-responsive materialboxed"  src="" width="150"  /><br>
+=======
+                                        <img class="img-responsive materialboxed"  src="${datos.foto}" width="150"  /><br>
+>>>>>>> f477b9f883d52e816ff7184fd55db79e01024562
                                         <div class="button-demo js-modal-buttons">
                                         <button class="btn bg-orange waves-effect" data-color="orange" type="button" data-toggle="modal" data-target="#smallModal">CAMBIAR FOTO
                                             <i class="material-icons right">update</i>
@@ -102,7 +106,7 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Nombre ">
+                                                <input type="text" class="form-control " placeholder="Nombre" value="${datos.nombreper} ${datos.apellidop} ${datos.apellidom}" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -113,7 +117,7 @@
                                                 <i class="material-icons">phone_iphone</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control mobile-phone-number" placeholder="Ex: +00 (000) 000-00-00">
+                                                <input type="text" class="form-control mobile-phone-number" placeholder="Ex: +00 (000) 000-00-00" value="${datos.telefono}" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -124,7 +128,102 @@
                                                 <i class="material-icons">email</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control email" placeholder="Ex: example@example.com">
+                                                <input type="text" class="form-control email" placeholder="Ex: example@example.com" value="${datos.email}" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Tipo de cliente</b>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">people</i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control " placeholder="Tipo de cliente" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Carrera</b>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">school</i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control " placeholder="Ingenieria en TIC'S" value="${datos.carrera}" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        
+                                        <div class="col-md-4 col-md-offset-8">
+                                       <button type="button" class="btn btn-warning waves-effect btn-large" data-toggle="modal" data-target="#largeModal"><i class="material-icons left">update</i> MODIFICAR</button> 
+                                        </div>
+                                    </div>
+                                    
+                                            
+   <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="largeModalLabel">Modal title</h4>
+                        </div>
+                        <form id="form_advanced_validation" action="Eventos" method="POST">
+                        <div class="modal-body">
+                            
+                                        <input type="hidden" name="accion" value="MP">
+                                    <div class="col-md-6">
+                                        <b>Nombre</b>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">person</i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control " placeholder="Nombre" name="nomrep" value="${datos.nombreper}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                            <div class="col-md-6">
+                                        <b>Apellido Paterno</b>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">person</i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control " placeholder="Nombre" name="apellidop" value="${datos.apellidop}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                            <div class="col-md-6">
+                                        <b>Apellido Materno</b>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">person</i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control " placeholder="Nombre" name="apellidom" value="${datos.apellidom}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Mobile Phone Number</b>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">phone_iphone</i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control mobile-phone-number" placeholder="Ex: +00 (000) 000-00-00" value="${datos.telefono}" name="tel">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Email</b>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">email</i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control email" placeholder="Ex: example@example.com" value="${datos.email}" name="email">
                                             </div>
                                         </div>
                                     </div>
@@ -146,20 +245,26 @@
                                                 <i class="material-icons">school</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Ingenieria en TIC'S">
+                                                <input type="text" class="form-control " placeholder="Ex: 11:59 pm" value="${datos.carrera}" name="carrera">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        
-                                        <div class="col-md-4 col-md-offset-8">
-                                       <button type="button" class="btn btn-warning waves-effect btn-large" data-toggle="modal" data-target="#largeModal"><i class="material-icons left">update</i> MODIFICAR</button> 
-                                        </div>
-                                    </div>
                                     
+                                    
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">MODIFICAR</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+   
                                      </c:forEach>
                                 </div>
-                            </div>
+                            </div><div>${msj.mensaje}</div>
+                                    <div>${msj.id}</div>
                         </div>
                     </div>
                 </div>
@@ -188,80 +293,6 @@
                                 </div>
                                 </div>
                             </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-   
-   <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="largeModalLabel">Modal title</h4>
-                        </div>
-                        <div class="modal-body">
-                            
-                                    <div class="col-md-6">
-                                        <b>Nombre</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">person</i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Nombre ">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Mobile Phone Number</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">phone_iphone</i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control mobile-phone-number" placeholder="Ex: +00 (000) 000-00-00">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Email</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">email</i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control email" placeholder="Ex: example@example.com">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Tipo de cliente</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">people</i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Tipo de cliente">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Carrera</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">school</i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Ex: 11:59 pm">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
