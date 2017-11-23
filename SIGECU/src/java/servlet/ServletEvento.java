@@ -167,6 +167,7 @@ public class ServletEvento extends HttpServlet{
                 evento.setTipo(request.getParameter("tipoEvento"));
                 evento.setStatus(request.getParameter("statusEvento"));
                 evento.setCosto(costoEvento);
+                evento.setDestinatarios(request.getParameter("destinatarios"));
                 evento.setTemplete(request.getParameter("templateEvento"));
                 evento.setPromocion(request.getParameter("promocionEvento"));
                 evento.setFechaTermino(request.getParameter("fechaTermino"));

@@ -58,7 +58,7 @@
                 <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                                 <div class="header">
-                                    <h2>CREAR EVENTO</h2>
+                                    <h2>nuevo instructor</h2>
                                     <ul class="header-dropdown m-r--5">
                                         <li class="dropdown">
                                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

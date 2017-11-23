@@ -11,6 +11,25 @@ package dto;
  */
 public class Instructor extends Usuario {
     private String id;   
+    private String carrera;
+    private String especialidad;
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+    
     
     
     public String getId() {

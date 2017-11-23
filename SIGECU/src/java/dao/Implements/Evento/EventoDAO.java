@@ -34,10 +34,10 @@ public class EventoDAO implements IEventoDAO {
     public void crearEvento(Evento evento) throws BusinessException{
         
         
-        String sql = "insert into eventos (nombre, fechaInicio, descripcion, "
-                + "programa, i_idinstructor, lugar,c_idCiudad, capacidad,\n"
-                + "tipo, estatus, costo, t_idtempletes, p_idpromociones, fechaTermino)"
-                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; //terminar consulta  *******
+        String sql = "INSERT INTO eventos (cursos_idcursos, i_idinstructor, d_iddestinatario, fechaTermino, fechaInicio,\n" +
+                        "programa, lugar_idlugar,capacidad, tipo,precios_idprecios, estatus)\n" +
+                        "values(?,?,?,?,?,?,?,?,?,?,?);";
+        
         
         try
         {
@@ -45,19 +45,17 @@ public class EventoDAO implements IEventoDAO {
             PreparedStatement ps = conection.prepareStatement(sql);
             
             ps.setString(1, evento.getNombre());
-            ps.setString(2, evento.getFecha());
-            ps.setString(3, evento.getDescripcion());
-            ps.setString(4, evento.getPrograma());
-            ps.setString(5, evento.getInstructor().getId());
-            ps.setString(6, evento.getLugar());
-            ps.setString(7, evento.getCiudad());
+            ps.setString(2, evento.getInstructor().getId());
+            ps.setString(3, evento.getDestinatarios());
+            ps.setString(4, evento.getFechaTermino());
+            ps.setString(5, evento.getFecha());
+            ps.setString(6, evento.getPrograma());
+            ps.setString(7, evento.getLugar());
             ps.setInt(8, evento.getCapacidad());
             ps.setString(9, evento.getTipo());
-            ps.setString(10, evento.getStatus());
-            ps.setDouble(11, evento.getCosto());
-            ps.setString(12, evento.getTemplete());
-            ps.setString(13, evento.getPromocion());
-            ps.setString(14, evento.getFechaTermino());
+            ps.setDouble(10, evento.getCosto());
+            ps.setString(11, evento.getStatus());
+            
               
             int exec = ps.executeUpdate();
             ps.close();
@@ -77,9 +75,10 @@ public class EventoDAO implements IEventoDAO {
     @Override
     public List<Evento> listarEventoCondirmado() throws BusinessException{
         List<Evento> eventosConfirmados= new ArrayList<>();
-        String sql="SELECT e.idevento, e.nombre, c.nombre, p.nombre, e.fechaInicio FROM eventos e, ciudad c,"
-                + "pais p WHERE c.idCiudad = e.c_idCiudad AND p.idPais=c.p_idPais AND e.fechaTermino>sysdate() AND e.estatus='on'"
-                + " order by e.fechaInicio"; //e.fechaTermino>sysdate()
+        String sql="select  e.idevento, c.nombre, cd.nombre, p.nombre, e.fechaInicio\n" +
+                    "from eventos e, cursos c, ciudad cd, pais p, lugar l\n" +
+                    "where e.cursos_idcursos=c.idcursos AND p.idPais=cd.p_idPais\n" +
+                    "	AND l.ciudad_idCiudad=cd.idCiudad;"; //e.fechaTermino>sysdate()
                // + "AND e.estatus IS NOT NULL;";
         try
         {
@@ -282,13 +281,21 @@ public class EventoDAO implements IEventoDAO {
         final int TEMPLETE = 2;
         final int PROMOCION=3;
         final int PAIS=4;
-        String []sql = new String [5];
+        final int CURSO=5;
+        final int LUGAR=6;
+        final int PRECIO=7;
+        final int DESTINATARIOS=8;
+        String []sql = new String [9];
         
-        sql[INSTRUCTOR] = "SELECT 	idinstructor, iNombre, iPaterno FROM instructor;";
+        sql[INSTRUCTOR] = "SELECT idinstructor, iNombre, iPaterno FROM instructor;";
         sql[CIUDAD]= "SELECT idCiudad, nombre FROM ciudad";
         sql [TEMPLETE]= "SELECT idtempletes, descripcion FROM templetes;";
         sql[PROMOCION] = "SELECT idpromociones, tipo FROM promociones;";
         sql[PAIS] = "SELECT idpais, nombre FROM pais;";
+        sql[CURSO] = "SELECT idcursos, nombre FROM cursos;";
+        sql[LUGAR] = "SELECT idlugar, lNombre FROM lugar;";
+        sql[PRECIO] = "SELECT idprecios, precio FROM precios;";
+        sql[DESTINATARIOS] = "SELECT iddestinatario, dNombre FROM destinatario;";
         try
         {
             Connection conn = database.getConnection();
@@ -325,11 +332,11 @@ public class EventoDAO implements IEventoDAO {
     @Override
     public Evento buscarEventoDAO(int idEvento) throws BusinessException {
         Evento evento = new Evento();
- 
-        String sql = "select e.idevento, e.nombre, e.fechaInicio, e.descripcion, e.programa,\n" +
-"e.lugar, c.nombre, p.nombre, e.capacidad, e.costo, e.tipo, e.fechaTermino\n" +
-"from eventos e, ciudad c, pais p\n" +
-"where c.idCiudad = e.c_idCiudad AND p.idPais=c.p_idPais AND e.idevento=?;";
+        
+        String sql="select  e.idevento, c.nombre, cd.nombre, p.nombre, e.fechaInicio\n" +
+                    "from eventos e, cursos c, ciudad cd, pais p, lugar l\n" +
+                    "where e.cursos_idcursos=c.idcursos AND p.idPais=cd.p_idPais\n" +
+                    "	AND l.ciudad_idCiudad=cd.idCiudad; AND e.idevento=?";
         try
         {
             Connection conection = database.getConnection();

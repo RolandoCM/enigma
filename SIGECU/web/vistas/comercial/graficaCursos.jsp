@@ -82,10 +82,20 @@
                         <div class="body">
                             <div class="row clearfix">
                                 <div class="col-md-2">
+                                    <i>Proceso del curso</i>
                                     <input type="text" class="knob" value="${dash.progreso}" data-linecap="round"  data-width="70 " data-height="70" data-thickness="0"
                                            data-fgColor="<%=color%>" >
                                 </div>
+                                <div class="col-md-2">
+                                    <div class="demo-google-material-icon">
+                                        <i class="material-icons">local_library</i>
+                                        <samp class="icon-name">Alumnos Inscritos</samp>
+                                         <h2>${dash.inscritos}</h2>
+                                    </div>
+                                   
+                                </div>
                             </div>
+                                
                         </div>
                     </div>
                     </c:forEach>
