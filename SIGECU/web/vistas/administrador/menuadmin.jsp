@@ -112,7 +112,7 @@
                         </a>
                     </li>
                     <li>
-                         <a href="Eventos?accion=CE">
+                         <a href="Perfil?accion=LDP">
                             <i class="material-icons">note_add</i>
                             <span>Crear Evento</span>
                         </a>

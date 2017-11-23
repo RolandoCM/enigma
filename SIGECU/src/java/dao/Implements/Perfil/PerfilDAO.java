@@ -7,8 +7,9 @@ package dao.Implements.Perfil;
 
 import dao.Interface.Iperfil.IPerfilDAO;
 import dto.Evento;
+import dto.Perfil;
 import dto.Usuario;
-import dto.preInscripcion;
+
 import exception.BusinessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,8 +31,9 @@ public class PerfilDAO implements IPerfilDAO{
 
         
     //metodo para consultar a la base de datos los datos del perfil
-    public List<preInscripcion> listaDatosPerfil() throws BusinessException{
-        List<preInscripcion> datosPerfil= new ArrayList<>();
+        @Override
+    public List<Perfil> listaDatosPerfil() throws BusinessException{
+        List<Perfil> datosPerfil= new ArrayList<>();
         String sql = "SELECT a.idalumno,a.aNombre,a.aPaterno, a.aMaterno, a.telefono,"
                 + "a.email,a.e_idEmpresa,a.carrera,u.userName,u.userPass,u.foto FROM alumno a, usuarios u"
                 + " WHERE a.idalumno=1 AND u.idalumno=1";
@@ -42,18 +44,20 @@ public class PerfilDAO implements IPerfilDAO{
            ResultSet result = ps.executeQuery();
             while(result.next())
             {
-                preInscripcion Perfil = new preInscripcion();
-                Perfil.setIdpreIns(result.getInt(1));
-                Perfil.setNombre(result.getString(2));
-                Perfil.setApellido(result.getString(3)+ " " +result.getString(4));
-                Perfil.setTelefono(result.getString(6));
-                Perfil.setEmail(result.getString(7));
-                Perfil.setIdEmpresa(result.getInt(8));
-                Perfil.setCarrera(result.getString(9));
+                Perfil Perfill = new Perfil();
+                Perfill.setIdper(result.getInt(1));
+                Perfill.setNombreper(result.getString(2));
+                Perfill.setApellidop(result.getString(3));
+                Perfill.setApellidom(result.getString(4));
+                Perfill.setTelefono(result.getString(5));
+                Perfill.setEmail(result.getString(6));
+                Perfill.setIdEmpresa(result.getInt(7));
+                Perfill.setCarrera(result.getString(8));
                 Usuario usu =new Usuario();
-                
-                Perfil.setFoto(result.getString(12));
-                datosPerfil.add(Perfil);
+                Perfill.setNombre(result.getString(9));
+                Perfill.setPass(result.getString(10));
+                Perfill.setFoto(result.getString(11));
+                datosPerfil.add(Perfill);
             }
             conection.close();
             ps.close();

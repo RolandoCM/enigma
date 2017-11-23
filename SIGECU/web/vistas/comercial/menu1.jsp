@@ -116,13 +116,7 @@
                             <i class="material-icons">view_list</i>
                             <span>Lista de Eventos</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="Eventos?accion=LEP">
-                            <i class="material-icons">view_list</i>
-                            <span>Lista de Eventos Publicos</span>
-                        </a>
-                    </li>
+                    </li>                    
                     <li>
                         <a href="preInscripcion?accion=LE">
                             <i class="material-icons">dashboard</i>
@@ -140,6 +134,12 @@
                         <a href="Pago?accion=QRY">
                             <i class="material-icons">payment</i>
                             <span>Pago de curso</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="material-icons">payment</i>
+                            <span>Seguimiento de Pago</span>
                         </a>
                     </li>
                     
