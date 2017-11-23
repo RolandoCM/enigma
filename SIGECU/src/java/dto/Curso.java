@@ -11,7 +11,7 @@ import extras.Convierte;
  *
  * @author David
  */
-public class curso {
+public class Curso {
     String mensaje;
     Integer idcurso;
     String nombre;	        
@@ -20,10 +20,6 @@ public class curso {
     String fechaFin;
     String tipo;
     String i_idinstructor;
-
-    public curso() {
-    }
-
     public String getMensaje() {
         return mensaje;
     }
