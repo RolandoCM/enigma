@@ -27,6 +27,26 @@ public class Evento {
     private String nombreCiudad;
     private String nombrePais;
     private int progreso;
+    private String destinatarios;
+    private int inscritos;
+
+    public int getInscritos() {
+        return inscritos;
+    }
+
+    public void setInscritos(int inscritos) {
+        this.inscritos = inscritos;
+    }
+    
+
+    public String getDestinatarios() {
+        return destinatarios;
+    }
+
+    public void setDestinatarios(String destinatarios) {
+        this.destinatarios = destinatarios;
+    }
+    
 
     public void setProgreso(int progreso) {
         this.progreso = progreso;
