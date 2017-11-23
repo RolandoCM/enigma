@@ -14,4 +14,5 @@ import java.util.List;
  */
 public interface IPerfilDAO {
     public List<Perfil> listaDatosPerfil() throws BusinessException;
+     public void modificarPerfil(Perfil per) throws BusinessException;
 }

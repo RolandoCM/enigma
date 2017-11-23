@@ -21,6 +21,7 @@ import service.Interface.Perfil.IPerfilService;
  */
 public class PerfilService implements IPerfilService{
     
+     @Override
      public List<Perfil> listaDatosPerfil() throws BusinessException{
           try
         {
@@ -41,4 +42,24 @@ public class PerfilService implements IPerfilService{
             throw be;
         }
      }
+     
+     
+     @Override
+      public void modificarPerfil(Perfil per) throws BusinessException{
+        try
+        {
+            IPerfilDAO perDAO = new PerfilDAO();
+            perDAO.modificarPerfil(per);
+        }catch(BusinessException e)
+        {
+            throw e;
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setIdException("201");
+            be.setMensaje("Erroe es  la capa de negocio, conexion a actualizar Evento");
+            throw be;
+        }
+    }
 }
