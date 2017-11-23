@@ -29,7 +29,11 @@ import service.Interface.Pago.IPagoService;
  *
  * @author Anayeli Ramírez
  */
+<<<<<<< HEAD
 @WebServlet({ "/Pagos", "/vistas/eventos/Pagos" })  
+=======
+ @WebServlet({ "/Pago", "/vistas/comercial/Pago"})    
+>>>>>>> 9c515f436935e5b14578083a1b90d37b70971d67
 public class ServletPago extends HttpServlet {
     
     private String direccionar = null;

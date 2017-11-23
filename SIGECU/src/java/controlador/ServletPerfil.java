@@ -5,7 +5,6 @@
  */
 package controlador;
 
-import dao.Interface.Iperfil.IPerfil;
 import dto.Evento;
 import dto.MensajesDTO;
 import dto.preInscripcion;
@@ -21,6 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import service.Implements.Evento.EventoService;
 import service.Interface.Evento.IEventoService;
+import dao.Interface.Iperfil.IPerfilDAO;
+import service.Implements.Perfil.PerfilService;
+import service.Interface.Perfil.IPerfilService;
 
 /**
  *
@@ -38,7 +40,7 @@ public class ServletPerfil extends HttpServlet{
             String accion = request.getParameter("accion");
             
             
-            IPerfil perfil new = 
+            IPerfilService perfil = new PerfilService();
             
             switch(accion)
             {
@@ -61,7 +63,7 @@ public class ServletPerfil extends HttpServlet{
     
     
     //metodo para listar los datos  del perfil
-    private void listarDatosPerfil(IPerfil perfil, HttpServletRequest request, HttpServletResponse response) 
+    private void listarDatosPerfil(IPerfilService perfil, HttpServletRequest request, HttpServletResponse response) 
     {
        MensajesDTO msjDTO = new MensajesDTO();
         try {

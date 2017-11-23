@@ -29,7 +29,7 @@ import service.Interface.Evento.IEventoService;
  *
  * @author rolando
  */
-@WebServlet({ "/Eventos", "/vistas/eventos/Eventos" })
+@WebServlet({ "/Eventos", "/vistas/comercial/Eventos" })
 public class ServletEvento extends HttpServlet{
     private String direccionar = null;
     @Override

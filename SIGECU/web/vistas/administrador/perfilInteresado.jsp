@@ -86,8 +86,9 @@
                         <div class="body">
                             <div class="demo-masked-input">
                                 <div class="row clearfix">
+                                     <c:forEach var="datos" items="${datosPerfil}">
                                     <div class="col-md-12">
-                                        <img class="img-responsive materialboxed"  src="../../images/computer-programmer.jpg" width="150"  /><br>
+                                        <img class="img-responsive materialboxed"  src="${datosPerfil.}" width="150"  /><br>
                                         <div class="button-demo js-modal-buttons">
                                         <button class="btn bg-orange waves-effect" data-color="orange" type="button" data-toggle="modal" data-target="#smallModal">CAMBIAR FOTO
                                             <i class="material-icons right">update</i>
@@ -149,10 +150,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    
-                                   
-                                    
                                     <div class="col-md-12">
                                         
                                         <div class="col-md-4 col-md-offset-8">
@@ -160,7 +157,7 @@
                                         </div>
                                     </div>
                                     
-                                    
+                                     </c:forEach>
                                 </div>
                             </div>
                         </div>
