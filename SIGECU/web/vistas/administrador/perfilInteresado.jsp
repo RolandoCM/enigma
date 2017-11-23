@@ -88,7 +88,7 @@
                                 <div class="row clearfix">
                                      <c:forEach var="datos" items="${datosPerfil}">
                                     <div class="col-md-12">
-                                        <img class="img-responsive materialboxed"  src="${datosPerfil.}" width="150"  /><br>
+                                        <img class="img-responsive materialboxed"  src="" width="150"  /><br>
                                         <div class="button-demo js-modal-buttons">
                                         <button class="btn bg-orange waves-effect" data-color="orange" type="button" data-toggle="modal" data-target="#smallModal">CAMBIAR FOTO
                                             <i class="material-icons right">update</i>
