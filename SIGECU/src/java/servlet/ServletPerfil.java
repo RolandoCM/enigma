@@ -7,7 +7,6 @@ package servlet;
 
 import dto.Evento;
 import dto.MensajesDTO;
-import dto.preInscripcion;
 import exception.BusinessException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import service.Implements.Evento.EventoService;
 import service.Interface.Evento.IEventoService;
 import dao.Interface.Iperfil.IPerfilDAO;
+import dto.Perfil;
+import dto.Usuario;
 import service.Implements.Perfil.PerfilService;
 import service.Interface.Perfil.IPerfilService;
 
@@ -49,7 +50,8 @@ public class ServletPerfil extends HttpServlet{
                     listarDatosPerfil(perfil , request, response);
                     break;
                     //CREAR EVENTOS 
-               
+               case "MP":
+                   modificarPerfil(perfil , request, response);
                 default:
                     break;
             }
@@ -67,7 +69,7 @@ public class ServletPerfil extends HttpServlet{
     {
        MensajesDTO msjDTO = new MensajesDTO();
         try {
-            List<preInscripcion> listaDatosPer = perfil.listaDatosPerfil();
+            List<Perfil> listaDatosPer = perfil.listaDatosPerfil();
             request.setAttribute("datosPerfil", listaDatosPer); 
             msjDTO.setId("000");
             msjDTO.setMensaje("Ejecuxion OK");
@@ -87,6 +89,27 @@ public class ServletPerfil extends HttpServlet{
             direccionar = "perfilInteresado.jsp";
         }
     }//fin del metodo listarEventosConfiemdos
+
+    private void modificarPerfil(IPerfilService perfil, HttpServletRequest request, HttpServletResponse response) {
+    
+        
+         MensajesDTO msjDTO = new MensajesDTO();
+        Perfil per = new Perfil();
+        Usuario usu = new Usuario();
+        try {
+            per.setNombre(request.getParameter("nombrep"));
+            per.setApellidop(request.getParameter("apellidop"));
+            per.setApellidom(request.getParameter("apellidom"));
+            per.setTelefono(request.getParameter("tel"));
+            per.setEmail(request.getParameter("email"));
+            per.setCarrera(request.getParameter("carrera"));
+            
+        } catch (Exception e) {
+        }
+    
+    }
+
+    
     
     
 }

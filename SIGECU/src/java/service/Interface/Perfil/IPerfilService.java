@@ -5,7 +5,7 @@
  */
 package service.Interface.Perfil;
 
-import dto.preInscripcion;
+import dto.Perfil;
 import exception.BusinessException;
 import java.util.List;
 /**
@@ -13,5 +13,5 @@ import java.util.List;
  * @author Dell
  */
 public interface IPerfilService {
-     public List<preInscripcion> listaDatosPerfil() throws BusinessException;
+     public List<Perfil> listaDatosPerfil() throws BusinessException;
 }
