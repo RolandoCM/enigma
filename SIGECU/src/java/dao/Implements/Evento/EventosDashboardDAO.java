@@ -28,7 +28,11 @@ public class EventosDashboardDAO implements IEventosDashboardDAO{
     @Override
     public List<Evento> dashEventoDAO() throws BusinessException {
         List<Evento> dashEvento= new ArrayList<>();
-        String sql = "SELECT idevento, nombre, fechaInicio, fechaTermino FROM eventos;";
+        String sql = "select  e.idevento, c.nombre, e.fechaInicio, e.fechaTermino, count(*)  \n" +
+                    "from alumno a, alumno_has_eventos ae, cursos c, eventos e\n" +
+                    "where ae.e_idevento = e.idevento and a.idalumno=ae.a_idalumno and ae.activo=1\n" +
+                    "group by e.idevento, c.nombre, e.fechaInicio, e.fechaTermino;";
+        
         try
         {
                         
@@ -54,6 +58,7 @@ public class EventosDashboardDAO implements IEventosDashboardDAO{
                     evento.setFecha("0000-00-00");
                     evento.setFechaTermino("0000-00-00");
                 }
+                 evento.setInscritos(rs.getInt(5));
                 dashEvento.add(evento);
             }
             conn.close();
