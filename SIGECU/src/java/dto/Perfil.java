@@ -5,53 +5,61 @@
  */
 package dto;
 
-import java.util.List;
-
 /**
  *
- * @author Anel
+ * @author Dell
  */
-public class preInscripcion {
+public class Perfil extends Usuario {
+    
+     private Integer idper;
+    private String nombreper;
+    private String apellidop;
+        private String apellidom;
 
-    private Integer idpreIns;
-    private String nombre;
-    private String apellido;
     private String telefono;
     private String email;
     private Integer idEmpresa;
     private String carrera;
     private String confirmar;
+
+    public Perfil() {
+    }
+
+    public Integer getIdper() {
+        return idper;
+    }
+
+    public void setIdper(Integer idper) {
+        this.idper = idper;
+    }
+
     
+
+    public String getNombreper() {
+        return nombreper;
+    }
+
+    public void setNombreper(String nombreper) {
+        this.nombreper = nombreper;
+    }
+
+    public String getApellidop() {
+        return apellidop;
+    }
+
+    public void setApellidop(String apellidop) {
+        this.apellidop = apellidop;
+    }
+
+    public String getApellidom() {
+        return apellidom;
+    }
+
+    public void setApellidom(String apellidom) {
+        this.apellidom = apellidom;
+    }
+
     
-    
-    public preInscripcion() {
-    }    
-    
-    
-
-    public Integer getIdpreIns() {
-        return idpreIns;
-    }
-
-    public void setIdpreIns(Integer idpreIns) {
-        this.idpreIns = idpreIns;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
 
     public String getTelefono() {
         return telefono;
@@ -92,16 +100,7 @@ public class preInscripcion {
     public void setConfirmar(String confirmar) {
         this.confirmar = confirmar;
     }
-    private Integer idpre_inscripcion;
-
-    public void setIdpre_inscripcion(Integer idpre_inscripcion) {
-        this.idpre_inscripcion = idpre_inscripcion;
-    }
-
-    public Integer getIdpre_inscripcion() {
-        return idpre_inscripcion;
-    }
-   
-
+    
+    
     
 }
