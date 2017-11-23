@@ -118,7 +118,7 @@
                         </a>
                     </li>
                      <li>
-                         <a href="Eventos?accion=LEC">
+                         <a href="cursosperfil.jsp">
                             <i class="material-icons">view_list</i>
                             <span>Lista de Eventos</span>
                         </a>

@@ -97,19 +97,33 @@ public class ServletPerfil extends HttpServlet{
         Perfil per = new Perfil();
         Usuario usu = new Usuario();
         try {
-            per.setNombre(request.getParameter("nombrep"));
+            per.setNombreper(request.getParameter("nombrep"));
             per.setApellidop(request.getParameter("apellidop"));
             per.setApellidom(request.getParameter("apellidom"));
             per.setTelefono(request.getParameter("tel"));
             per.setEmail(request.getParameter("email"));
             per.setCarrera(request.getParameter("carrera"));
+            per.setIdEmpresa(1);
             
-        } catch (Exception e) {
+            perfil.modificarPerfil(per);
+              msjDTO.setId("000");
+            msjDTO.setMensaje("Se ha encontrado el evento");
+            request.setAttribute("msj", msjDTO);
+        
+        }catch(BusinessException ex)
+        {
+            msjDTO.setId(ex.getIdException());
+            msjDTO.setMensaje(ex.getMensaje());
+            request.setAttribute("mensajeCrear", msjDTO);
+        }catch(Exception e){
+            e.printStackTrace();
+            msjDTO.setId("301");
+            msjDTO.setMensaje("Error en la llamada a recursos");
+            request.setAttribute("mensajeCrear", msjDTO);
         }
-    
-    }
-
-    
+        direccionar = "Perfil?accion=LDP";
+    }// fin del metodo actualizarEventoConfirmado
     
     
+ 
 }

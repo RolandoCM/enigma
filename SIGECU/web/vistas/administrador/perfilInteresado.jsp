@@ -88,11 +88,11 @@
                                 <div class="row clearfix">
                                      <c:forEach var="datos" items="${datosPerfil}">
                                     <div class="col-md-12">
-<<<<<<< HEAD
+
                                         <img class="img-responsive materialboxed"  src="" width="150"  /><br>
-=======
+
                                         <img class="img-responsive materialboxed"  src="${datos.foto}" width="150"  /><br>
->>>>>>> f477b9f883d52e816ff7184fd55db79e01024562
+
                                         <div class="button-demo js-modal-buttons">
                                         <button class="btn bg-orange waves-effect" data-color="orange" type="button" data-toggle="modal" data-target="#smallModal">CAMBIAR FOTO
                                             <i class="material-icons right">update</i>
@@ -168,7 +168,7 @@
                         <div class="modal-header">
                             <h4 class="modal-title" id="largeModalLabel">Modal title</h4>
                         </div>
-                        <form id="form_advanced_validation" action="Eventos" method="POST">
+                        <form id="form_advanced_validation" action="Perfil" method="POST">
                         <div class="modal-body">
                             
                                         <input type="hidden" name="accion" value="MP">
@@ -179,7 +179,7 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Nombre" name="nomrep" value="${datos.nombreper}">
+                                                <input type="text" class="form-control " placeholder="Nombre" name="nombrep" value="${datos.nombreper}">
                                             </div>
                                         </div>
                                     </div>

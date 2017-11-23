@@ -35,8 +35,9 @@ public class PerfilDAO implements IPerfilDAO{
     public List<Perfil> listaDatosPerfil() throws BusinessException{
         List<Perfil> datosPerfil= new ArrayList<>();
         String sql = "SELECT a.idalumno,a.aNombre,a.aPaterno, a.aMaterno, a.telefono,"
-                + "a.email,a.e_idEmpresa,a.carrera,u.userName,u.userPass,u.foto FROM alumno a, usuarios u"
+                + "a.email,a.e_idEmpresa,a.carrera,u.unombre,u.password,u.foto FROM alumno a, users u"
                 + " WHERE a.idalumno=1 AND u.idalumno=1";
+        
         
         try {
             Connection conection = database.getConnection();
@@ -71,5 +72,38 @@ public class PerfilDAO implements IPerfilDAO{
             throw be;
         }
     }
+    
+     public void modificarPerfil(Perfil per) throws BusinessException{
+         String sql = "UPDATE alumno SET aNombre=?,"
+                 + "aPaterno=?,aMaterno=?,telefono=?,"
+                 + "email=?,e_idEmpresa=?,carrera=?"
+                 + " WHERE idalumno=?";
+        
+        try
+        {
+            Connection conection = database.getConnection();
+            PreparedStatement ps = conection.prepareStatement(sql);
+            
+            ps.setString(1, per.getNombreper());
+            ps.setString(2, per.getApellidop());
+            ps.setString(3, per.getApellidom());
+            ps.setString(4, per.getTelefono());
+            ps.setString(5, per.getEmail());
+            ps.setInt(6, per.getIdEmpresa());
+            ps.setString(7, per.getCarrera());
+            ps.setInt(8, 1);
+           int exec = ps.executeUpdate();
+            ps.close();
+            conection.close();
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setMensaje("error en la capa de base de datos");
+            be.setIdException("001");
+            throw be;
+        }
+     }
+    
     
 }
