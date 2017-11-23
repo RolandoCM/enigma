@@ -5,26 +5,39 @@
  */
 package dto;
 
+import extras.Convierte;
+
 /**
  *
- * @author Anayeli Ramírez
+ * @author David
  */
-public class Curso {
-    private int idCurso;
-    private String nombre;
-    private String fechaInicio;
-    private String fechaFin;
-    private String tipo;
+public class curso {
+    String mensaje;
+    Integer idcurso;
+    String nombre;	        
+    String horario;
+    String fechaInicio;
+    String fechaFin;
+    String tipo;
+    String i_idinstructor;
 
-    public Curso() {
+    public curso() {
     }
 
-    public int getIdCurso() {
-        return idCurso;
+    public String getMensaje() {
+        return mensaje;
     }
 
-    public void setIdCurso(int idCurso) {
-        this.idCurso = idCurso;
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+
+    public Integer getIdcurso() {
+        return idcurso;
+    }
+
+    public void setIdcurso(Integer idcurso) {
+        this.idcurso = idcurso;
     }
 
     public String getNombre() {
@@ -33,6 +46,14 @@ public class Curso {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
 
     public String getFechaInicio() {
@@ -58,7 +79,13 @@ public class Curso {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
-    
+
+    public String getI_idinstructor() {
+        return i_idinstructor;
+    }
+
+    public void setI_idinstructor(String i_idinstructor) {
+        this.i_idinstructor = i_idinstructor;
+    }
     
 }
