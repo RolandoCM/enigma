@@ -73,6 +73,7 @@ public class PerfilDAO implements IPerfilDAO{
         }
     }
     
+        @Override
      public void modificarPerfil(Perfil per) throws BusinessException{
          String sql = "UPDATE alumno SET aNombre=?,"
                  + "aPaterno=?,aMaterno=?,telefono=?,"
@@ -105,5 +106,10 @@ public class PerfilDAO implements IPerfilDAO{
         }
      }
     
+     
+public void EventosPorAlumno(Evento eve) throws BusinessException{ 
     
+    String sql="";
+    
+}   
 }
