@@ -11,25 +11,19 @@ import extras.Convierte;
  *
  * @author rolando
  */
-public class Instructor extends Usuario {
+public class instructor extends Usuario {
    String mensaje = "<ul>";
-   private String id;
 	Integer idinstructor;
+	String iNombre;	        
+	String iMaterno;
+	String iPaterno;
         String carrera;
         String especialidad;
         String iEmail;
         String iTelefono;
         String iDireccion;
 
-    public Instructor() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public instructor() {
     }
 
     public String getMensaje() {
@@ -46,6 +40,30 @@ public class Instructor extends Usuario {
 
     public void setIdinstructor(Integer idinstructor) {
         this.idinstructor = idinstructor;
+    }
+
+    public String getiNombre() {
+        return iNombre;
+    }
+
+    public void setiNombre(String iNombre) {
+        this.iNombre = iNombre;
+    }
+
+    public String getiMaterno() {
+        return iMaterno;
+    }
+
+    public void setiMaterno(String iMaterno) {
+        this.iMaterno = iMaterno;
+    }
+
+    public String getiPaterno() {
+        return iPaterno;
+    }
+
+    public void setiPaterno(String iPaterno) {
+        this.iPaterno = iPaterno;
     }
 
     public String getCarrera() {
