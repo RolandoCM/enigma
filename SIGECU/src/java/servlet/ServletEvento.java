@@ -154,7 +154,6 @@ public class ServletEvento extends HttpServlet{
                 int capacidadEvento = Convierte.aInteger(request.getParameter("capacidadEvento"));
                 double costoEvento = Convierte.aDouble(request.getParameter("costoEvento"));
 
-
                 evento.setNombre(request.getParameter("nombreEvento"));
                 evento.setFecha(request.getParameter("fechaEvento"));
                 evento.setDescripcion(request.getParameter("descripcionEvento"));

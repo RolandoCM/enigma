@@ -75,7 +75,7 @@ public class EventoDAO implements IEventoDAO {
     @Override
     public List<Evento> listarEventoCondirmado() throws BusinessException{
         List<Evento> eventosConfirmados= new ArrayList<>();
-        String sql="select  e.idevento, c.nombre, cd.nombre, p.nombre, e.fechaInicio\n" +
+        String sql="select  e.idevento, c.nombre, cd.nombre, p.nombre, e.fechaInicio, e.estatus\n" +
                     "from eventos e, cursos c, ciudad cd, pais p, lugar l\n" +
                     "where e.cursos_idcursos=c.idcursos AND p.idPais=cd.p_idPais\n" +
                     "	AND l.ciudad_idCiudad=cd.idCiudad;"; //e.fechaTermino>sysdate()
@@ -101,6 +101,7 @@ public class EventoDAO implements IEventoDAO {
                 {
                     evento.setFecha("0000-00-00");
                 }
+                evento.setStatus(result.getString(6));
                 eventosConfirmados.add(evento);
             }
             connection.close();
@@ -121,9 +122,14 @@ public class EventoDAO implements IEventoDAO {
     @Override
     public List<Evento> listarEventosPublicos() throws BusinessException{
         List<Evento> eventosPublicos= new ArrayList<>();
-        String sql="SELECT e.idevento,e.nombre,e.fechaInicio,e.descripcion, e.programa,i.iNombre,i.iPaterno,i.iMaterno,e.lugar,c.nombre,e.capacidad,e.tipo,e.estatus,e.costo,p.tipo "
-                + "FROM eventos e, instructor i,ciudad c, promociones p "
-                + "WHERE e.i_idinstructor=i.idinstructor AND c.idCiudad=e.c_idCiudad AND e.p_idpromociones=p.idpromociones AND e.tipo='publico' AND e.estatus='on'";
+        
+        
+        
+        String sql="select  e.idevento, c.nombre, e.fechaInicio, c.descripcion, e.programa, i.iNombre,\n" +
+" i.iPaterno, i.iMaterno, l.lNombre, cd.nombre, e.capacidad, e.tipo, e.estatus, pre.precio, pro.tipo\n" +
+"from eventos e, cursos c, ciudad cd, pais p, lugar l, instructor i, precios pre, promociones pro\n" +
+"where e.cursos_idcursos=c.idcursos AND p.idPais=cd.p_idPais\n" +
+"	AND l.ciudad_idCiudad=cd.idCiudad and e.estatus='on';";
         
 //        String sqlins="SELECT iNombre,iPaterno,iMaterno FROM instructor WHERE idinstructor=?";
 //        String sqlciudad="SELECT nombre FROM ciudad WHERE idCiudad=?";
@@ -222,7 +228,7 @@ public class EventoDAO implements IEventoDAO {
     @Override
     public String cancelarEventoConfirmado(int idEvento) throws BusinessException {
         String eventocan="";
-        String sql="UPDATE eventos SET estatus=NULL WHERE idevento=?";
+        String sql="UPDATE eventos SET estatus='off' WHERE idevento=?";
         try {
             Connection con = database.getConnection();
             PreparedStatement ps;
@@ -237,7 +243,11 @@ public class EventoDAO implements IEventoDAO {
             eventocan="si";
             ps.close();
             con.close();
-        } catch (Exception e) {
+        } catch (Exception ex) {
+            BusinessException be = new BusinessException();
+            be.setIdException("0001");
+            be.setMensaje("Error en la capa de base de datos");
+            throw be;
         }
         return eventocan;
     }

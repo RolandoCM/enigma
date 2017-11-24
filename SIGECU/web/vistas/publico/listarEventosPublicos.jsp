@@ -38,6 +38,7 @@
         <div class="container-fluid">
             <div class="block-header">
                 <h2>Eventos publicos</h2>
+                <a href="vistas/comercial/Eventos?accion=LEC">Comercial</a>
             </div>
                           
 

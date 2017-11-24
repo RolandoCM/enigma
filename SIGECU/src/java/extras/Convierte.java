@@ -42,8 +42,18 @@ public class Convierte {
             DateFormat miFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaString = miFecha.format(fecha);
         }
-       
+ 
         return fechaString;
+    }
+    public static  String fechaBase (String fecha)
+    {
+        //System.out.println(fecha);
+        String newFecha="";
+        String arrayFecha [] = fecha.split("/");
+        newFecha=arrayFecha[2]+"-"+arrayFecha[1]+"-"+arrayFecha[0];
+        
+        return newFecha;
+        
     }
 	
 }
