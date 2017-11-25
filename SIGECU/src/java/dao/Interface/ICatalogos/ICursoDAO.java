@@ -8,7 +8,7 @@ package dao.Interface.Curso;
 import dao.Interface.Evento.*;
 import dto.Evento;
 import dto.IdentificadoresEvento;
-import dto.curso;
+import dto.Curso;
 import exception.BusinessException;
 import java.util.List;
 
@@ -17,9 +17,9 @@ import java.util.List;
  * @author alma
  */
 public interface ICursoDAO {
-    public void crearCurso(curso curso) throws BusinessException;
-    public List<curso> listarCurso() throws BusinessException; 
-    public void actualizarCurso(curso curso) throws BusinessException;
-    public curso buscarCursoDAO(int iCcurso) throws BusinessException;
+    public void crearCurso(Curso curso) throws BusinessException;
+    public List<Curso> listarCurso() throws BusinessException; 
+    public void actualizarCurso(Curso curso) throws BusinessException;
+    public Curso buscarCursoDAO(int iCcurso) throws BusinessException;
     public String cancelarCurso(int idCurso) throws BusinessException; 
 }

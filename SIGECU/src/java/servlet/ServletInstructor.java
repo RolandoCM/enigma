@@ -7,8 +7,8 @@ package controlador;
 
 import extras.Convierte;
 import dto.MensajesDTO;
-import dto.curso;
-import dto.instructor;
+import dto.Curso;
+import dto.Instructor;
 import exception.BusinessException;
 import java.io.IOException;
 import java.util.List;
@@ -39,17 +39,17 @@ public class ServletInstructor extends HttpServlet {
 		
         IInstructorService service = new IInstructorService() {
             @Override
-            public void crearInstructor(instructor instructor) throws BusinessException {
+            public void crearInstructor(Instructor instructor) throws BusinessException {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
-            public List<instructor> listarInstructor() throws BusinessException {
+            public List<Instructor> listarInstructor() throws BusinessException {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
-            public curso buscarInstructor(int idinstructor) throws BusinessException {
+            public Curso buscarInstructor(int idinstructor) throws BusinessException {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
@@ -96,7 +96,7 @@ public class ServletInstructor extends HttpServlet {
     private void DatosCur(IInstructorService InsService, HttpServletRequest request, HttpServletResponse response) {
         MensajesDTO msjDTO = new MensajesDTO();
         try {
-            curso DatosIns = InsService.buscarInstructor(0);
+            Curso DatosIns = InsService.buscarInstructor(0);
             request.setAttribute("DatosIns", DatosIns);
             msjDTO.setId("000");
             msjDTO.setMensaje("Exceute OK");
@@ -112,7 +112,7 @@ public class ServletInstructor extends HttpServlet {
             direccionar = "crearCurso.jsp";
         }
     }//cargarDatosEvento
-    private String verificar(HttpServletRequest request, instructor ins) {
+    private String verificar(HttpServletRequest request, Instructor ins) {
         
 	String mensaje = "<ul>";
 	Integer idinstructor = Convierte.aInteger(request.getParameter("idinstructor"));
@@ -169,7 +169,7 @@ public class ServletInstructor extends HttpServlet {
 
     private void nuevoInstructor(IInstructorService service, String mensaje, HttpServletRequest request, HttpServletResponse response) {
         MensajesDTO msjDTO = new MensajesDTO();
-        instructor ins = new instructor();
+        Instructor ins = new Instructor();
         mensaje = verificar(request, ins);
         if (mensaje == null)
         {

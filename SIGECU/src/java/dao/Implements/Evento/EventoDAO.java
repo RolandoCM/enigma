@@ -13,7 +13,7 @@ import java.util.List;
 import jdbc.ConectionDB;
 import dao.Interface.Evento.IEventoDAO;
 import dto.IdentificadoresEvento;
-import dto.instructor;
+import dto.Instructor;
 import dto.MensajesDTO;
 import exception.BusinessException;
 import extras.Convierte;
@@ -156,7 +156,7 @@ public class EventoDAO implements IEventoDAO {
                 }
                 evento.setDescripcion(result.getString(4));
                 evento.setPrograma(result.getString(5));
-                instructor ins= new instructor();
+                Instructor ins= new Instructor();
                 ins.setNombre(result.getString(6)+result.getString(7)+result.getString(8));
                 evento.setInstructor(ins);
                 evento.setLugar(result.getString(9));

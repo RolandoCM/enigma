@@ -5,8 +5,8 @@
  */
 package service.Interface.Curso;
 
-import dto.curso;
-import dto.instructor;
+import dto.Curso;
+import dto.Instructor;
 import exception.BusinessException;
 import java.util.List;
 
@@ -15,14 +15,14 @@ import java.util.List;
  * @author alma
  */
 public interface ICursoService {
-    public void crearCurso(curso curso) throws BusinessException;
-    public List<curso> listarEventoConfirmado() throws BusinessException; 
-    public curso buscarCurso(int idCurso) throws BusinessException;
+    public void crearCurso(Curso curso) throws BusinessException;
+    public List<Curso> listarEventoConfirmado() throws BusinessException; 
+    public Curso buscarCurso(int idCurso) throws BusinessException;
     public String eliminarCurso(int idcurso) throws BusinessException ; 
-    public curso detallesCurso(int idCurso) throws BusinessException;
-    public List<curso> listarCursos() throws BusinessException;
+    public Curso detallesCurso(int idCurso) throws BusinessException;
+    public List<Curso> listarCursos() throws BusinessException;
     public String getMensaje();
 
-    public void crearInstructor(instructor ins);
+    public void crearInstructor(Instructor ins);
     
 }

@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 import dao.Interface.Instructor.IInstructorDAO;
-import dto.curso;
+import dto.Curso;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 import jdbc.ConectionDB;
-import dto.instructor;
+import dto.Instructor;
 import exception.BusinessException;
 import extras.Convierte;
 import java.sql.SQLException;
@@ -27,7 +27,7 @@ public class InstructorDAO implements IInstructorDAO {
         this.database = new ConectionDB();
     }
     @Override
-    public void crearInstructor(instructor instructor) throws BusinessException{
+    public void crearInstructor(Instructor instructor) throws BusinessException{
         
         
         String sql = "insert into instructor (iNombre, iPaterno, iMaterno, Carrera, Especialidad, iEmail, iTelefono, iDireccion)"
@@ -64,8 +64,8 @@ public class InstructorDAO implements IInstructorDAO {
 
    
     @Override
-    public List<instructor> listarInstructor() throws BusinessException{
-        List<instructor> instructores= new ArrayList<>();
+    public List<Instructor> listarInstructor() throws BusinessException{
+        List<Instructor> instructores= new ArrayList<>();
         String sql="SELECT * FROM instructor";
                 
         try
@@ -75,7 +75,7 @@ public class InstructorDAO implements IInstructorDAO {
             ResultSet result = ps.executeQuery();
             while(result.next())
             {
-                instructor instructor = new instructor();
+                Instructor instructor = new Instructor();
                 instructor.setIdinstructor(Integer.parseInt(result.getString(1)));
                 instructor.setiNombre(result.getString(2));
                 instructor.setiPaterno(result.getString(3));
@@ -103,7 +103,7 @@ public class InstructorDAO implements IInstructorDAO {
    
 
     @Override
-    public void actualizarInstructor(instructor instructor) throws BusinessException {
+    public void actualizarInstructor(Instructor instructor) throws BusinessException {
         String sql = "UPDATE instructor SET iNombre=?, iPaterno=?, iMaterno=?, Carrera=?, Especialidad=?, iEmail=?, iTelefono=?, iDireccion=?"
                 + "WHERE idinstructor=?";
         
@@ -162,8 +162,8 @@ public class InstructorDAO implements IInstructorDAO {
    
 
     @Override
-    public instructor buscarInstructorDAO(int idInstructor) throws BusinessException {
-        instructor instructor = new instructor();
+    public Instructor buscarInstructorDAO(int idInstructor) throws BusinessException {
+        Instructor instructor = new Instructor();
  
         String sql = "select * from cursos" +
         "where idcursos=?;";

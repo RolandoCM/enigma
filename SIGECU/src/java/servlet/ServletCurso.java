@@ -7,8 +7,8 @@ package controlador;
 
 import extras.Convierte;
 import dto.MensajesDTO;
-import dto.curso;
-import dto.instructor;
+import dto.Curso;
+import dto.Instructor;
 import exception.BusinessException;
 import java.io.IOException;
 import java.util.List;
@@ -39,17 +39,17 @@ public class ServletCurso extends HttpServlet {
 		
         ICursoService service = new ICursoService() {
             @Override
-            public void crearCurso(curso curso) throws BusinessException {
+            public void crearCurso(Curso curso) throws BusinessException {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
-            public List<curso> listarEventoConfirmado() throws BusinessException {
+            public List<Curso> listarEventoConfirmado() throws BusinessException {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
-            public curso buscarCurso(int idCurso) throws BusinessException {
+            public Curso buscarCurso(int idCurso) throws BusinessException {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
@@ -59,12 +59,12 @@ public class ServletCurso extends HttpServlet {
             }
 
             @Override
-            public curso detallesCurso(int idCurso) throws BusinessException {
+            public Curso detallesCurso(int idCurso) throws BusinessException {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
-            public List<curso> listarCursos() throws BusinessException {
+            public List<Curso> listarCursos() throws BusinessException {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
@@ -74,7 +74,7 @@ public class ServletCurso extends HttpServlet {
             }
 
             @Override
-            public void crearInstructor(instructor ins) {
+            public void crearInstructor(Instructor ins) {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         };
@@ -111,7 +111,7 @@ public class ServletCurso extends HttpServlet {
     private void DatosCur(ICursoService curInsService, HttpServletRequest request, HttpServletResponse response) {
         MensajesDTO msjDTO = new MensajesDTO();
         try {
-            curso DatosCur = curInsService.buscarCurso(0);
+            Curso DatosCur = curInsService.buscarCurso(0);
             request.setAttribute("DatosCur", DatosCur);
             msjDTO.setId("000");
             msjDTO.setMensaje("Exceute OK");
@@ -127,7 +127,7 @@ public class ServletCurso extends HttpServlet {
             direccionar = "crearCurso.jsp";
         }
     }//cargarDatosEvento
-    private String verificar(HttpServletRequest request, curso cur) {
+    private String verificar(HttpServletRequest request, Curso cur) {
         
 	String mensaje = "<ul>";
 	Integer idcurso = Convierte.aInteger(request.getParameter("id_curso"));
@@ -174,7 +174,7 @@ public class ServletCurso extends HttpServlet {
 
     private void nuevoCurso(ICursoService service, String mensaje, HttpServletRequest request, HttpServletResponse response) {
         MensajesDTO msjDTO = new MensajesDTO();
-        curso cur = new curso();
+        Curso cur = new Curso();
         mensaje = verificar(request, cur);
         if (mensaje == null)
         {

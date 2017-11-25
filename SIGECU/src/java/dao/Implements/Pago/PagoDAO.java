@@ -4,7 +4,7 @@ import dto.EventoVO;
 import dao.Interface.Pago.IPagoDAO;
 import dto.Alumno;
 import dto.Cheque;
-import dto.curso;
+import dto.Curso;
 import dto.Evento;
 import dto.Pago;
 import dto.Tarjeta;
@@ -49,7 +49,7 @@ public class PagoDAO implements IPagoDAO{
            ResultSet result=ps.executeQuery();
            while(result.next()){
                Alumno a=new Alumno();
-               curso c=new curso();
+               Curso c=new Curso();
                a.setNombre(result.getString(1));
                c.setNombre(result.getString(2));               
            }mostrar.add(pago);

@@ -13,7 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 import jdbc.ConectionDB;
-import dto.curso;
+import dto.Curso;
 import exception.BusinessException;
 import extras.Convierte;
 import java.sql.SQLException;
@@ -30,7 +30,7 @@ public class CursoDAO implements ICursoDAO {
         this.database = new ConectionDB();
     }
     @Override
-    public void crearCurso(curso curso) throws BusinessException{
+    public void crearCurso(Curso curso) throws BusinessException{
         
         
         String sql = "insert into cursos (nombre, horario, fechaInicio, fechaFin, tipo, i_idinstructor)"
@@ -64,8 +64,8 @@ public class CursoDAO implements ICursoDAO {
 
    
     @Override
-    public List<curso> listarCurso() throws BusinessException{
-        List<curso> cursos= new ArrayList<>();
+    public List<Curso> listarCurso() throws BusinessException{
+        List<Curso> cursos= new ArrayList<>();
         String sql="SELECT c.idcursos, c.nombre, c.horario, c.fechaInicio, c.fechaFin, c.tipo, c.i_idinstructor FROM curssos";
                 
         try
@@ -75,7 +75,7 @@ public class CursoDAO implements ICursoDAO {
             ResultSet result = ps.executeQuery();
             while(result.next())
             {
-                curso curso = new curso();
+                Curso curso = new Curso();
                 curso.setIdcurso(Integer.parseInt(result.getString(1)));
                 curso.setNombre(result.getString(2));
                 curso.setHorario(result.getString(3));
@@ -111,7 +111,7 @@ public class CursoDAO implements ICursoDAO {
    
 
     @Override
-    public void actualizarCurso(curso curso) throws BusinessException {
+    public void actualizarCurso(Curso curso) throws BusinessException {
         String sql = "UPDATE cursos SET nombre=?, horario=?, fechaInicio=?, fechaFin=?, tipo=?, i_idinstructor=?"
                 + "WHERE idcursos=?";
         
@@ -168,8 +168,8 @@ public class CursoDAO implements ICursoDAO {
    
 
     @Override
-    public curso buscarCursoDAO(int idCurso) throws BusinessException {
-        curso curso = new curso();
+    public Curso buscarCursoDAO(int idCurso) throws BusinessException {
+        Curso curso = new Curso();
  
         String sql = "select * from cursos" +
         "where idcursos=?;";

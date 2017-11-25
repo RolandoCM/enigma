@@ -15,8 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import jdbc.ConectionDB;
-import dto.curso;
-import dto.instructor;
+import dto.Curso;
+import dto.Instructor;
 import java.util.ArrayList;
 /**
  *
@@ -25,8 +25,8 @@ import java.util.ArrayList;
 public class InstructorDashboardDAO implements IInstructorDashboardDAO{
     private ConectionDB database = new ConectionDB();
     @Override
-    public List<instructor> dashInstructorDAO() throws BusinessException {
-        List<instructor> dashInstructor= new ArrayList<>();
+    public List<Instructor> dashInstructorDAO() throws BusinessException {
+        List<Instructor> dashInstructor= new ArrayList<>();
         String sql = "SELECT * FROM cursos;";
         try
         {
@@ -38,7 +38,7 @@ public class InstructorDashboardDAO implements IInstructorDashboardDAO{
             
             while(result.next())
             {
-                instructor instructor = new instructor();
+                Instructor instructor = new Instructor();
                 instructor.setIdinstructor(Integer.parseInt(result.getString(1)));
                 instructor.setiNombre(result.getString(2));
                 instructor.setiPaterno(result.getString(3));

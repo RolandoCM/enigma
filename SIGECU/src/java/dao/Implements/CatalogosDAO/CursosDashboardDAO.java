@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import jdbc.ConectionDB;
-import dto.curso;
+import dto.Curso;
 import java.util.ArrayList;
 /**
  *
@@ -23,8 +23,8 @@ import java.util.ArrayList;
 public class CursosDashboardDAO implements ICursoDashboardDAO{
     private ConectionDB database = new ConectionDB();
     @Override
-    public List<curso> dashCursoDAO() throws BusinessException {
-        List<curso> dashCurso= new ArrayList<>();
+    public List<Curso> dashCursoDAO() throws BusinessException {
+        List<Curso> dashCurso= new ArrayList<>();
         String sql = "SELECT * FROM cursos;";
         try
         {
@@ -36,7 +36,7 @@ public class CursosDashboardDAO implements ICursoDashboardDAO{
             
             while(result.next())
             {
-                curso curso = new curso();
+                Curso curso = new Curso();
                 curso.setIdcurso(Integer.parseInt(result.getString(1)));
                 curso.setNombre(result.getString(2));
                 curso.setHorario(result.getString(3));

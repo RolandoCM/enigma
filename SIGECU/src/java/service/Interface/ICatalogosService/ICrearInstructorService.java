@@ -5,10 +5,10 @@
  */
 package service.Interface.ICatalogosService;
 
-import dto.instructor;
+import dto.Instructor;
 import exception.BusinessException;
 
 
 public interface ICrearInstructorService {
-    public void nuevoInstructor(instructor instructor) throws BusinessException;
+    public void nuevoInstructor(Instructor instructor) throws BusinessException;
 }

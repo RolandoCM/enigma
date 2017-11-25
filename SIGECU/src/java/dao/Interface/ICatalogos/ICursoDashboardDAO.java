@@ -7,7 +7,7 @@ package dao.Interface.Curso;
 
 import dao.Interface.Evento.*;
 import dto.Evento;
-import dto.curso;
+import dto.Curso;
 import exception.BusinessException;
 import java.util.List;
 
@@ -22,5 +22,5 @@ public interface ICursoDashboardDAO {
      * @return
      * @throws BusinessException
      */
-    public List<curso> dashCursoDAO() throws BusinessException;
+    public List<Curso> dashCursoDAO() throws BusinessException;
 }

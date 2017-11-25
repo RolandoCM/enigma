@@ -9,8 +9,8 @@ import dao.Implements.Evento.EventoDAO;
 import dao.Interface.Evento.IEventoDAO;
 import dto.Evento;
 import dto.IdentificadoresEvento;
-import dto.curso;
-import dto.instructor;
+import dto.Curso;
+import dto.Instructor;
 import exception.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,17 +24,17 @@ import service.Interface.Instructor.IInstructorService;
 public class InstructorService implements IInstructorService{
 
     @Override
-    public void crearInstructor(instructor instructor) throws BusinessException {
+    public void crearInstructor(Instructor instructor) throws BusinessException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<instructor> listarInstructor() throws BusinessException {
+    public List<Instructor> listarInstructor() throws BusinessException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public curso buscarInstructor(int idinstructor) throws BusinessException {
+    public Curso buscarInstructor(int idinstructor) throws BusinessException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

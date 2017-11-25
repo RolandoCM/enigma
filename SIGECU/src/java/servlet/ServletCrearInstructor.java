@@ -5,7 +5,7 @@
  */
 package servlet;
 
-import dto.instructor;
+import dto.Instructor;
 import exception.BusinessException;
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -11,7 +11,7 @@ import extras.Convierte;
  *
  * @author David
  */
-public class curso {
+public class Curso {
     String mensaje;
     Integer idcurso;
     String nombre;	        

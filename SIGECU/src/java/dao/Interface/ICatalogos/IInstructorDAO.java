@@ -5,8 +5,8 @@
  */
 package dao.Interface.Instructor;
 
-import dto.curso;
-import dto.instructor;
+import dto.Curso;
+import dto.Instructor;
 import exception.BusinessException;
 import java.util.List;
 
@@ -15,9 +15,9 @@ import java.util.List;
  * @author alma
  */
 public interface IInstructorDAO {
-    public void crearInstructor(instructor instructor) throws BusinessException;
-    public List<instructor> listarInstructor() throws BusinessException; 
-    public void actualizarInstructor(instructor instructor) throws BusinessException;
-    public instructor buscarInstructorDAO(int iInstructor) throws BusinessException;
+    public void crearInstructor(Instructor instructor) throws BusinessException;
+    public List<Instructor> listarInstructor() throws BusinessException; 
+    public void actualizarInstructor(Instructor instructor) throws BusinessException;
+    public Instructor buscarInstructorDAO(int iInstructor) throws BusinessException;
     public String cancelarInstructor(int idInstructor) throws BusinessException; 
 }

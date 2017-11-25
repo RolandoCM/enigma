@@ -5,7 +5,7 @@
  */
 package dao.Interface.Instructor;
 
-import dto.instructor;
+import dto.Instructor;
 import exception.BusinessException;
 import java.util.List;
 
@@ -20,5 +20,5 @@ public interface IInstructorDashboardDAO {
      * @return
      * @throws BusinessException
      */
-    public List<instructor> dashInstructorDAO() throws BusinessException;
+    public List<Instructor> dashInstructorDAO() throws BusinessException;
 }

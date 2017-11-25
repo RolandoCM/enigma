@@ -10,8 +10,8 @@ import dao.Implements.Evento.EventoDAO;
 import dao.Interface.Evento.IEventoDAO;
 import dto.Evento;
 import dto.IdentificadoresEvento;
-import dto.curso;
-import dto.instructor;
+import dto.Curso;
+import dto.Instructor;
 import exception.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,17 +25,17 @@ import service.Interface.Evento.IEventoService;
 public class CursoService implements ICursoService{
 
     @Override
-    public void crearCurso(curso curso) throws BusinessException {
+    public void crearCurso(Curso curso) throws BusinessException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<curso> listarEventoConfirmado() throws BusinessException {
+    public List<Curso> listarEventoConfirmado() throws BusinessException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public curso buscarCurso(int idCurso) throws BusinessException {
+    public Curso buscarCurso(int idCurso) throws BusinessException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -45,12 +45,12 @@ public class CursoService implements ICursoService{
     }
 
     @Override
-    public curso detallesCurso(int idCurso) throws BusinessException {
+    public Curso detallesCurso(int idCurso) throws BusinessException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<curso> listarCursos() throws BusinessException {
+    public List<Curso> listarCursos() throws BusinessException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -60,7 +60,7 @@ public class CursoService implements ICursoService{
     }
 
     @Override
-    public void crearInstructor(instructor ins) {
+    public void crearInstructor(Instructor ins) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
