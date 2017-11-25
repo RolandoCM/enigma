@@ -61,7 +61,7 @@ public class ServletPresInscripcion extends HttpServlet {
             msg += "</div></div>";
             request.setAttribute("mensaje", msg);
 	}
-	
+	request.setAttribute("idEvento", request.getParameter("idEvento"));
 	RequestDispatcher despachador = request.getRequestDispatcher(direccionar);
 	despachador.forward(request, response);
     }
@@ -75,6 +75,7 @@ public class ServletPresInscripcion extends HttpServlet {
         try {
             datoPre = preInsService.consulPre();
             request.setAttribute("datoPre", datoPre);
+            
             msjDTO.setId("000");
             msjDTO.setMensaje("Exceute OK");
             request.setAttribute("msj", msjDTO);
@@ -90,7 +91,7 @@ public class ServletPresInscripcion extends HttpServlet {
             request.setAttribute("msj", msjDTO);
         }
         finally{
-            direccionar = "registro.jsp";
+            direccionar = "vistas/alumno/pago.jsp";
         }
     }//cargarDatosEvento
     private String verificar(HttpServletRequest request, preInscripcion prein) {
@@ -130,7 +131,6 @@ public class ServletPresInscripcion extends HttpServlet {
         prein.setEmail(email);
         prein.setCarrera(carrera);
         prein.setConfirmar(confirmar);
-	prein.setIdEmpresa(Integer.parseInt(empresa));
                
 	if (mensaje.equals("<ul>")) {
 	    mensaje = null;
@@ -143,6 +143,7 @@ public class ServletPresInscripcion extends HttpServlet {
     private void nuevaPreInscripcion(IPreInscripcionService service, String mensaje, HttpServletRequest request, HttpServletResponse response) {
         MensajesDTO msjDTO = new MensajesDTO();
         preInscripcion prein = new preInscripcion();
+        
         mensaje = verificar(request, prein);
         if (mensaje == null)
         {

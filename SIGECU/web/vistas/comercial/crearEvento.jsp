@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%-- 
     Document   : crearEvento
     Created on : 31/10/2017, 06:48:41 AM

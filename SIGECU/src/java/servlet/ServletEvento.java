@@ -7,7 +7,7 @@ package servlet;
 
 import dto.Evento;
 import dto.IdentificadoresEvento;
-import dto.Instructor;
+import dto.instructor;
 import dto.MensajesDTO;
 import exception.BusinessException;
 import extras.Convierte;
@@ -147,7 +147,7 @@ public class ServletEvento extends HttpServlet{
         MensajesDTO msjDTO = new MensajesDTO();
         try {
             Evento evento = new Evento();
-            Instructor instructor = new Instructor();
+            instructor instructor = new instructor();
             String mensaje= verificar(request, evento);
             if(mensaje==null)
             {
@@ -199,7 +199,7 @@ public class ServletEvento extends HttpServlet{
     /*Metodo para actualizar un evento en la base de datos*/
     private void actualizarEventoConfirmado(IEventoService eventoService, HttpServletRequest request, HttpServletResponse response) {
         MensajesDTO msjDTO = new MensajesDTO();
-        Instructor instructor = new Instructor();
+        instructor instructor = new instructor();
         Evento evento = new Evento();
         try{
             evento.setId(request.getParameter("idEvento"));

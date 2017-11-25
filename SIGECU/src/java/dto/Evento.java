@@ -15,7 +15,7 @@ public class Evento {
     private String fechaTermino;
     private String descripcion;
     private String programa;  // definir prgrama
-    private Instructor instructor;
+    private instructor instructor;
     private String lugar;
     private String ciudad;
     private int capacidad;
@@ -157,7 +157,7 @@ public class Evento {
         this.programa = programa;
     }
 
-    public void setInstructor(Instructor instructor) {
+    public void setInstructor(instructor instructor) {
         this.instructor = instructor;
     }
 
@@ -185,7 +185,7 @@ public class Evento {
         return programa;
     }
 
-    public Instructor getInstructor() {
+    public instructor getInstructor() {
         return instructor;
     }
     public String getPromocion() {

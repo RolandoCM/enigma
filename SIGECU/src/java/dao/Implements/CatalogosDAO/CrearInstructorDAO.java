@@ -6,7 +6,7 @@
 package dao.Implements.CatalogosDAO;
 
 import dao.Interface.ICatalogos.ICrearInstructorDAO;
-import dto.Instructor;
+import dto.instructor;
 import exception.BusinessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +23,7 @@ public class CrearInstructorDAO implements ICrearInstructorDAO {
         this.db = new ConectionDB();
     }
     @Override
-    public void nuevoInstructor(Instructor instructor) throws BusinessException {
+    public void nuevoInstructor(instructor instructor) throws BusinessException {
         
         String sql = "insert into instructor (iNombre, iPaterno, iMaterno, Carrera, Especialidad, iEmail, iTelefono, iDireccion)\n" +
                      "values (?,?,?,?,?,?,?,?);";

@@ -11,7 +11,7 @@ import extras.Convierte;
  *
  * @author rolando
  */
-public class Instructor extends Usuario {
+public class instructor extends Usuario {
    String mensaje = "<ul>";
    private String id;
 	Integer idinstructor;
@@ -24,7 +24,7 @@ public class Instructor extends Usuario {
         String iTelefono;
         String iDireccion;
 
-    public Instructor() {
+    public instructor() {
     }
 
     public void setId(String id) {

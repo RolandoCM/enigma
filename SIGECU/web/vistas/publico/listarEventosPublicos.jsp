@@ -39,6 +39,7 @@
             <div class="block-header">
                 <h2>Eventos publicos</h2>
                 <a href="vistas/comercial/Eventos?accion=LEC">Comercial</a>
+                <a href="vistas/alumno/index.jsp">alumno</a>
             </div>
                           
 
@@ -54,7 +55,10 @@
                             </div>
                             <div class="body">
                                 <label data-toggle="modal" data-target="#largeModal${data.id}">Ver mas...</label>
+                                
+                                 <button data-toggle="modal" data-target="#ModalPreInscripcion${data.id}">Inscribirme</button>
                             </div>
+                            
                         </div>
                     </div>
                             
@@ -103,7 +107,63 @@
                             </div>
                         </div>
                     </div>
+                                    
+                    <div class="modal fade in" id="ModalPreInscripcion${data.id}" tabindex="-1" role="dialog" >
+                        <div class="modal-dialog" role="document">
+                           
+                            
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <blockquote class="m-b-25">
+                                        <h3>Pre-Inscripción al evento ${data.nombre}</h3>
+                                        <h4>Fecha de Inicio ${data.fecha}</h4>
+                                    </blockquote>
+                                </div>
+                                <div class="modal-body">
+                                   
+                                    <form style="margin-left: 30px" action="preInscripcion" method="POST"  class="form-horizontal">
+                                    <input type="hidden" name="accion" value="INS"/> 
+                                    <input type="hidden" name="idEvento" value="${data.id}"/> 
+                                    <div class="row clearfix">
+                                        <div class="form-line">
+                                            <h4>Estimado ${data.id} confirma Pre-Inscripción</h4>
+                                        </div>
+                                        <div class="form-group">
+                                                <div class="form-line">Nombre del curso<br>
+                                                    <input name="curso" value="${data.nombre}"class="form-control"required readonly/>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <div class="form-line">Fecha de Inicio<br>
+                                                    <input name="fechaTermino" value="${data.fecha}"class="form-control"required readonly/>
+                                                </div>
+                                        </div>
+                                        <br>
+                                        <p>Cuenta con Netbook</p>
+                                        <div class="demo-radio-button">
+                                            <input name="confirmar" type="radio" value="si" id="radio_1" class="with-gap radio-col-black" >
+                                            <label for="radio_1">Si</label>
+                                            <input name="confirmar" type="radio" value="no" id="radio_2" class="with-gap radio-col-black" >
+                                            <label for="radio_2">No</label>
+                                            <br><br>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                                                <button type="submit" class="btn bg-red btn-block btn-lg waves-effect">Enviar</button>
+                                            </div>
+                                            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                                                <button type="button" class="btn bg-red btn-block btn-lg waves-effect" data-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>              
+                                    </form>
+                                </div>        
+                            </div>
+                        </div>
+                    </div>
                </c:forEach>
+                
+                
 
                 <div class="block-header">
                     <h2>${msj.mensaje}</h2>

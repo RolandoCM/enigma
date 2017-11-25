@@ -5,7 +5,7 @@
  */
 package dao.Interface.ICatalogos;
 
-import dto.Instructor;
+import dto.instructor;
 import exception.BusinessException;
 
 /**
@@ -14,6 +14,6 @@ import exception.BusinessException;
  */
 public interface ICrearInstructorDAO {
     
-    public void nuevoInstructor(Instructor instructor) throws BusinessException;
+    public void nuevoInstructor(instructor instructor) throws BusinessException;
     
 }

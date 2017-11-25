@@ -4,6 +4,7 @@
     Author     : zoro
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,7 +14,11 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <h2>${pageContext.request.userPrincipal.name}</h2>
+        <c:if test="${!pageContext.request.userPrincipal.password}">
+            <h1>${pageContext.request.userPrincipal.name}</h1>
+        </c:if>
+
+        
         
     </body>
 </html>
