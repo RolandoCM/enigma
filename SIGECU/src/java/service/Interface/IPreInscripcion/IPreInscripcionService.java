@@ -6,7 +6,7 @@
 package service.Interface.IPreInscripcion;
 
 import dto.identiPreIns;
-import dto.preInscripcion;
+import dto.PreInscripcionEvento;
 import exception.BusinessException;
 import java.util.List;
 
@@ -15,11 +15,6 @@ import java.util.List;
  * @author Anel
  */
 public interface IPreInscripcionService {
-    public List<preInscripcion> preQry();
 
-    public void registroPreInscripcion(preInscripcion prein) throws BusinessException;
-
-    public String getMensaje();
-    
-    public List<identiPreIns> consulPre() throws BusinessException;
+    public boolean registroPreInscripcion(PreInscripcionEvento preInscripcion) throws BusinessException;
 }

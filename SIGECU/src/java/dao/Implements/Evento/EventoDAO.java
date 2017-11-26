@@ -125,11 +125,16 @@ public class EventoDAO implements IEventoDAO {
         
         
         
-        String sql="select  e.idevento, c.nombre, e.fechaInicio, c.descripcion, e.programa, i.iNombre,\n" +
-" i.iPaterno, i.iMaterno, l.lNombre, cd.nombre, e.capacidad, e.tipo, e.estatus, pre.precio, pro.tipo\n" +
-"from eventos e, cursos c, ciudad cd, pais p, lugar l, instructor i, precios pre, promociones pro\n" +
-"where e.cursos_idcursos=c.idcursos AND p.idPais=cd.p_idPais\n" +
-"	AND l.ciudad_idCiudad=cd.idCiudad and e.estatus='on';";
+        String sql="select  e.idevento, c.cNombre, e.eFechaInicio, c.cDescripcion, e.ePrograma, i.iNombre,\n" +
+"i.iPaterno, i.iMaterno, l.lNombre, cd.cNombre, e.eCapacidad, e.eTipo, e.eEstatus, pre.precio, pro.nombre\n" +
+"from eventos e, cursos c, ciudad cd, pais p, lugar l, instructor i, precios pre, promociones pro,\n" +
+"		templetes t, eventos_precios_destinatarios epd, destinatario d, eventos_has_promociones ep\n" +
+"        \n" +
+"where e.cursos_idcursos=c.idcursos AND p.idPais=cd.p_idPais AND i.idinstructor=e.i_idinstructor\n" +
+"	AND l.idlugar=e.lugar_idlugar AND t.idtempletes = e.t_idtempletes AND epd.p_idprecios=pre.idprecios\n" +
+"    AND epd.e_idevento=e.idevento AND epd.d_iddestinatario=d.iddestinatario AND pro.idpromociones=ep.p_idpromociones\n" +
+"    AND ep.e_idevento=e.idevento AND l.c_idCiudad=cd.idCiudad\n" +
+"	AND cd.p_idPais=p.idPais and e.eEstatus='on' AND e.eTipo='publico';";
         
 //        String sqlins="SELECT iNombre,iPaterno,iMaterno FROM instructor WHERE idinstructor=?";
 //        String sqlciudad="SELECT nombre FROM ciudad WHERE idCiudad=?";

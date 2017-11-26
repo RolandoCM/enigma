@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="modal-body">
                                    
-                                    <form style="margin-left: 30px" action="preInscripcion" method="POST"  class="form-horizontal">
+                                    <form style="margin-left: 30px" action="ServletPreInscripcionEvento" method="POST"  class="form-horizontal">
                                     <input type="hidden" name="accion" value="INS"/> 
                                     <input type="hidden" name="idEvento" value="${data.id}"/> 
                                     <div class="row clearfix">
@@ -130,18 +130,23 @@
                                         </div>
                                         <div class="form-group">
                                                 <div class="form-line">Nombre del curso<br>
-                                                    <input name="curso" value="${data.nombre}"class="form-control"required readonly/>
+                                                    <input name="nombreEvento" value="${data.nombre}"class="form-control"required readonly/>
                                                 </div>
                                         </div>
                                         <div class="form-group">
                                                 <div class="form-line">Fecha de Inicio<br>
-                                                    <input name="fechaTermino" value="${data.fecha}"class="form-control"required readonly/>
+                                                    <input name="fechaInicio" value="${data.fecha}"class="form-control"required readonly/>
                                                 </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-line">Monto a pagar<br>
+                                                <input name="montoEvento" value="${data.costo}"class="form-control"required readonly/>
+                                            </div>
                                         </div>
                                         <br>
                                         <p>Cuenta con Netbook</p>
                                         <div class="demo-radio-button">
-                                            <input name="confirmar" type="radio" value="si" id="radio_1" class="with-gap radio-col-black" >
+                                            <input name="confirmar" type="radio" value="si" id="radio_1" class="with-gap radio-col-black" checked >
                                             <label for="radio_1">Si</label>
                                             <input name="confirmar" type="radio" value="no" id="radio_2" class="with-gap radio-col-black" >
                                             <label for="radio_2">No</label>

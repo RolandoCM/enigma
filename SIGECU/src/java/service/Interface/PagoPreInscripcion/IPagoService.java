@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service.Interface.Pago;
+package service.Interface.PagoPreInscripcion;
 import dto.Cheque;
 import dto.Pago;
 import dto.Tarjeta;

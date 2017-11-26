@@ -1,7 +1,7 @@
-package dao.Implements.Pago;
+package dao.Implements.PagoPreIncripcion;
 
 import dto.EventoVO;
-import dao.Interface.Pago.IPagoDAO;
+import dao.Interface.PagoPreInscripcion.IPagoDAO;
 import dto.Alumno;
 import dto.Cheque;
 import dto.Curso;

@@ -6,7 +6,7 @@
 package servlet;
 
 import extras.Convierte;
-import dao.Implements.Pago.PagoDAO;
+import dao.Implements.PagoPreIncripcion.PagoDAO;
 import dto.Cheque;
 import dto.MensajesDTO;
 import dto.Pago;
@@ -21,8 +21,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import service.Implements.Pago.PagoService;
-import service.Interface.Pago.IPagoService;
+import service.Implements.PagoPreInscripcion.PagoService;
+import service.Interface.PagoPreInscripcion.IPagoService;
 
 
 /**
