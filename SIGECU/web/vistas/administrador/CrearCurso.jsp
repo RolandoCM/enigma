@@ -96,7 +96,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input name="fechaInicio" type="date" id="date" class="form-control"  maxlength="10" placeholder="Elige la fecha Inicio">
+                                                    <input name="fechaInicio" type="text" id="date" class="form-control"  maxlength="10" placeholder="Elige la fecha Inicio">
                                                     <div class="help-info">Fecha de Inicio en el formato de AAAA-MM-DD</div>
                                                 </div>
                                             </div>
@@ -104,7 +104,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input name="fechaFin" type="date" id="date" class="form-control" placeholder="Elige la fecha Fin">
+                                                    <input name="fechaFin" type="text" id="date" class="form-control" placeholder="Elige la fecha Fin">
                                                     <div class="help-info">Fecha De Fin en el formato de AAAA-MM-DD</div>
                                                 </div>
                                             </div>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao.Implements.CatalogosDAO;
+package dao.Implements.Curso;
 
 import dao.Implements.Evento.*;
 import dao.Interface.Curso.ICursoDAO;
@@ -41,7 +41,7 @@ public class CursoDAO implements ICursoDAO {
             Connection conection = database.getConnection();
             PreparedStatement ps = conection.prepareStatement(sql);
             
-            ps.setString(1, curso.getNombrecur());
+            ps.setString(1, curso.getNombre());
             ps.setString(2, curso.getHorario());
             ps.setString(3, curso.getFechaInicio());
             ps.setString(4, curso.getFechaFin());
@@ -77,7 +77,7 @@ public class CursoDAO implements ICursoDAO {
             {
                 Curso curso = new Curso();
                 curso.setIdcurso(Integer.parseInt(result.getString(1)));
-                curso.setNombrecur(result.getString(2));
+                curso.setNombre(result.getString(2));
                 curso.setHorario(result.getString(3));
                 curso.setTipo(result.getString(6)); 
                 curso.setI_idinstructor(result.getString(7));
@@ -120,7 +120,7 @@ public class CursoDAO implements ICursoDAO {
             Connection conection = database.getConnection();
             PreparedStatement ps = conection.prepareStatement(sql);
             
-            ps.setString(1, curso.getNombrecur());
+            ps.setString(1, curso.getNombre());
             ps.setString(2, curso.getHorario());
             ps.setString(3, curso.getFechaInicio());
             ps.setString(4, curso.getFechaFin());
@@ -182,7 +182,7 @@ public class CursoDAO implements ICursoDAO {
             while(result.next())
             {
                 curso.setIdcurso(Integer.parseInt(result.getString(1)));
-                curso.setNombrecur(result.getString(2));
+                curso.setNombre(result.getString(2));
                 curso.setHorario(result.getString(3));
                 curso.setTipo(result.getString(6)); 
                 curso.setI_idinstructor(result.getString(7));

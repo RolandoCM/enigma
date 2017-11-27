@@ -157,7 +157,7 @@ public class ServletCurso extends HttpServlet {
 	    mensaje += "<li>Verifique que halla ingresado correctamente confirmado</li>";
 	}       
 	cur.setIdcurso(idcurso);
-	cur.setNombrecur(nombre);
+	cur.setNombre(nombre);
 	cur.setHorario(horario);
 	cur.setFechaInicio(fechaInicio);
         cur.setFechaFin(fechaFin);

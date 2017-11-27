@@ -71,8 +71,8 @@
                                 </ul>
                             </div>
                             <div class="body">
-                                <form id="form_advanced_validation" action="Instructor" method="POST">
-                                    <input type="hidden" name="accion" value="II">
+                                <form id="form_advanced_validation" action="Eventos" method="POST">
+                                    <input type="hidden" name="accion" value="CI">
                                     <div class="row clearfix">
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
@@ -144,7 +144,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="iDireccion" required>
+                                                    <input type="number" class="form-control" name="iDireccion" required>
                                                     <label class="form-label">Dirección</label>
                                                 </div>
                                                 <div class="help-info">Dirección</div>
@@ -153,7 +153,7 @@
                                     </div>
                                     <div class="row clearfix">
                                         <div class="col-md-12">
-                                            <button class="btn btn-block btn-lg btn-primary waves-effect" type="submit">GUARDAR</button>              
+                                            <button class="btn btn-block btn-lg btn-primary waves-effect" type="submit">ENVIAR</button>              
                                         </div>
                                     </div>
                                 </form>

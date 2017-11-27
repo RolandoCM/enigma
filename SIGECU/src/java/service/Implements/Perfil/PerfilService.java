@@ -12,7 +12,6 @@ import exception.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
 import dao.Interface.Iperfil.IPerfilDAO;
-import dto.Evento;
 import service.Interface.Perfil.IPerfilService;
 
 
@@ -63,22 +62,4 @@ public class PerfilService implements IPerfilService{
             throw be;
         }
     }
-      
-     public List<Evento> EventosPorAlumno() throws BusinessException {
-        try {
-            IPerfilDAO perfilDAO = new PerfilDAO();
-            List<Evento> cursosal = new ArrayList<>();
-            cursosal = perfilDAO.EventosPorAlumno();
-            return cursosal;
-        } catch (BusinessException e) {
-            throw e;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            BusinessException be = new BusinessException();
-            be.setIdException("201");
-            be.setMensaje("Error en la capa de negocio, conexion a listar eventos");
-            throw be;
-        }
-    }
-      
 }

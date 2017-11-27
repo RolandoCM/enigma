@@ -5,7 +5,6 @@
  */
 package service.Interface.Perfil;
 
-import dto.Evento;
 import dto.Perfil;
 import exception.BusinessException;
 import java.util.List;
@@ -16,5 +15,4 @@ import java.util.List;
 public interface IPerfilService {
      public List<Perfil> listaDatosPerfil() throws BusinessException;
      public void modificarPerfil(Perfil per) throws BusinessException;
-      public List<Evento> EventosPorAlumno() throws BusinessException ;
 }

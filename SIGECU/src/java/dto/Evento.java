@@ -8,12 +8,10 @@ package dto;
  *
  * @author rolando
  */
-public class Evento extends Curso{
+public class Evento {
     private String id;
     private String nombre;
     private String fecha; // revisar fecha no es string
-    private Curso curos;
-    private Alumno alumno;
     private String fechaTermino;
     private String descripcion;
     private String programa;  // definir prgrama
@@ -31,7 +29,6 @@ public class Evento extends Curso{
     private int progreso;
     private String destinatarios;
     private int inscritos;
-    private String horario;
 
     public int getInscritos() {
         return inscritos;
@@ -194,32 +191,4 @@ public class Evento extends Curso{
     public String getPromocion() {
         return promocion;
     }
-
-    @Override
-    public String getHorario() {
-        return horario;
-    }
-
-    @Override
-    public void setHorario(String horario) {
-        this.horario = horario;
-    }
-
-    public Curso getCuros() {
-        return curos;
-    }
-
-    public void setCuros(Curso curos) {
-        this.curos = curos;
-    }
-
-    public Alumno getAlumno() {
-        return alumno;
-    }
-
-    public void setAlumno(Alumno alumno) {
-        this.alumno = alumno;
-    }
-    
-    
 }
