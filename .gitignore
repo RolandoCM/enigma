@@ -25,10 +25,3 @@ hs_err_pid*
 /SIGECU/build/
 /ejemploAmulnos/nbproject/private/
 /SIGECU/dist/
-SIGECU/nbproject/ant-deploy.xml
-SIGECU/nbproject/ant-deploy.xml
-*.xml~
-SIGECU/nbproject/build-impl.xml
-SIGECU/nbproject/build-impl.xml
-SIGECU/nbproject/build-impl.xml~
-SIGECU/web/WEB-INF/web.xml
