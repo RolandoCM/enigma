@@ -13,7 +13,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Crear Evento</title>
+        <title>Listar Eventos</title>
         <!-- Favicon-->
         <link rel="icon" href="../../favicon.ico" type="image/x-icon">
  <link rel="stylesheet" href="../../fonts/material-design-icons-master/material-icons.css">
@@ -98,20 +98,45 @@
                                         <p id="salida"></p>
                                             <c:forEach var="data" items="${listaEvento}">
                                                 <c:if test="${data.status.equals('on')}">
-                                                    <tr >
+                                                <tr >
                                                     <td>${data.nombre}</td>
                                                     <td>${data.nombreCiudad}</td>
                                                     <td>${data.nombrePais}</td>
                                                     <td>${data.fecha}</td>
                                                     <td>
-                                                        <a href="Eventos?accion=BE&idEvento=${data.id}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>
-                                                    </td><td>
+                                                        <a href="Eventos?accion=BE&idEvento=${data.id}"</a><button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>
+                                                    </td>
+                                                    <td>
                                                         <div class="button-demo js-modal-buttons">
-                                                            <button type="button" data-color="red" class="btn bg-red waves-effect" >Cancelar Evento</button></a>
+                                                            <button data-toggle="modal" data-target="#ModalCancelar${data.id}" data-color="red" class="btn bg-red waves-effect">Cancelar Evento</button>
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                
+                                                <!--Modal-->
+                                                <div class="modal fade" id="ModalCancelar${data.id}" tabindex="-1" role="dialog">
+                                                    <div class="modal-dialog modal-sm" role="document">
+                                                        <div class="modal-content modal-col-red">
+
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="smallModalLabel">SEGURO QUE DESEA CANCELAR EL EVENTO:
+                                                                <br> ${data.nombre}, ${data.id}?</h4>
+                                                            </div>
+
+                                                            <div class="modal-body">
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a role="button" class="btn btn-link waves-effect" href="Eventos?accion=CAE&idEvento=${data.id}">Si</a>
+                                                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--Fin modal On-->
                                                 </c:if>
+                                                
                                                 <c:if test="${data.status.equals('off')}">
                                                     <tr style="background-color: <%=color="#da9a6d"%>">
                                                     <td>${data.nombre}</td>
@@ -122,31 +147,15 @@
                                                         <a href="Eventos?accion=BE&idEvento=${data.id}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>
                                                     </td><td>
                                                         <div class="button-demo js-modal-buttons">
-                                                            <button type="button" data-color="red" class="btn bg-red waves-effect" >Cancelar Evento</button></a>
+                                                            <button type="button" class="btn bg-green waves-effect" >Confirmar evento</button>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 </c:if>
                     
-                                            <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
-                                                           <div class="modal-dialog modal-sm" role="document">
-                                                               <div class="modal-content">
-
-                                                                   <div class="modal-header">
-                                                                       <h4 class="modal-title" id="smallModalLabel">SEGURO QUE DESEA CANCELAR EL EVENTO  ${data.nombre}, ${data.id}?</h4>
-                                                                   </div>
-
-                                                                   <div class="modal-body">
-
-                                                                   </div>
-                                                                   <div class="modal-footer">
-                                                                       <a href="Eventos?accion=CAE&idEvento=${data.id}"<button type="button" class="btn btn-link waves-effect">SI</button></a>
-                                                                       <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                                                                   </div>
-
-                                                               </div>
-                                                           </div>
-                                                       </div>
+                                                <div class="block-header">
+                                                    <h2>${msj.mensaje}</h2>
+                                                </div>
                                             </c:forEach>
 
                                         </tbody>
