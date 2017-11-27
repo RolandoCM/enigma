@@ -28,10 +28,18 @@ public class PagoService implements IPagoService{
     
     
     @Override
-    public void insertarPago(Pago pago) throws BusinessException{
+    public void registrarPago(Pago pago) throws BusinessException{
         try{
             IPagoDAO pagoDAO= new PagoDAO();
-            pagoDAO.registrarPago(pago);
+            Pago pagoDatosCompletos;
+            /*buscar id del tipo de pago*/
+            pagoDatosCompletos =pagoDAO.tipoPago(pago);
+            /*buscar id de historial de pagos*/
+            pagoDatosCompletos=pagoDAO.buscarIdUsuario(pagoDatosCompletos); //buscar id de usuario
+            
+            pagoDatosCompletos = pagoDAO.buscarIdHistorialPago(pagoDatosCompletos);
+            
+            pagoDAO.registrarPago(pagoDatosCompletos);
         }catch(Exception ex){
             
             ex.printStackTrace();

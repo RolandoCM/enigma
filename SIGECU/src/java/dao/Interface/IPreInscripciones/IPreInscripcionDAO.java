@@ -18,5 +18,6 @@ import java.util.List;
 public interface IPreInscripcionDAO {
     public boolean nuevaPreInscripcion(PreInscripcionEvento preInscripcion) throws BusinessException;
     public PreInscripcionEvento datosPreInscripcion(PreInscripcionEvento preInscripcion) throws BusinessException;
+    public void generarHistorialDePagos(PreInscripcionEvento preInscripcion) throws BusinessException;
     
 }

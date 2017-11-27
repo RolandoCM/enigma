@@ -45,7 +45,7 @@ public class ServletPago extends HttpServlet {
            switch(accion){
                //registrar un pago
                case "RP":
-               registrarPago(pago, request, response);
+               //registrarPago(pago, request, response);
                break;
                case "HP":
                historialPagosR(pago, request, response);
@@ -113,43 +113,43 @@ public class ServletPago extends HttpServlet {
         }
     }
     
-    private void registrarPago(IPagoService pagoService, HttpServletRequest request, HttpServletResponse response){
-        MensajesDTO msj= new MensajesDTO();
-        try{
-            Pago pago=new Pago();
-            String mensaje= verificar(request, pago);
-            if(mensaje==null){
-                int monto=Convierte.aInteger(request.getParameter("monto"));
-                int f_idFactura=Convierte.aInteger(request.getParameter("f_idfactura"));
-                int status=Convierte.aInteger(request.getParameter("status"));
-                pago.setFechaPago(request.getParameter("fechaPago"));
-                pago.setFormaPago(request.getParameter("formaPago"));
-                pago.setTipo(request.getParameter("tipo"));
-                pago.setMonto(monto);
-                pago.setF_idPago(f_idFactura);
-                pago.setStatus(status);
-                
-                pagoService.insertarPago(pago);
-               
-            }else{
-              request.setAttribute("pagoService", pagoService);
-        }
-    } catch (BusinessException ex) {
-            msj.setId(ex.getIdException());
-            msj.setMensaje(ex.getMensaje());
-            request.setAttribute("msj", msj);
-            
-        }catch(Exception e){
-            e.printStackTrace();
-            msj.setId("1");
-            msj.setMensaje("Error");
-            request.setAttribute("mensajeCrear", msj);
-        }
-        finally{
-            direccionar = "pago.jsp";
-        }   
-    
-    }
+//    private void registrarPago(IPagoService pagoService, HttpServletRequest request, HttpServletResponse response){
+//        MensajesDTO msj= new MensajesDTO();
+//        try{
+//            Pago pago=new Pago();
+//            String mensaje= verificar(request, pago);
+//            if(mensaje==null){
+//                int monto=Convierte.aInteger(request.getParameter("monto"));
+//                int f_idFactura=Convierte.aInteger(request.getParameter("f_idfactura"));
+//                int status=Convierte.aInteger(request.getParameter("status"));
+//                pago.setFechaPago(request.getParameter("fechaPago"));
+//                pago.setFormaPago(request.getParameter("formaPago"));
+//                pago.setTipo(request.getParameter("tipo"));
+//                pago.setMonto(monto);
+//               // pago.setF_idPago(f_idFactura);
+//                pago.setStatus(status);
+//                
+//               // pagoService.insertarPago(pago);
+//               
+//            }else{
+//              request.setAttribute("pagoService", pagoService);
+//        }
+//    } catch (BusinessException ex) {
+//            msj.setId(ex.getIdException());
+//            msj.setMensaje(ex.getMensaje());
+//            request.setAttribute("msj", msj);
+//            
+//        }catch(Exception e){
+//            e.printStackTrace();
+//            msj.setId("1");
+//            msj.setMensaje("Error");
+//            request.setAttribute("mensajeCrear", msj);
+//        }
+//        finally{
+//            direccionar = "pago.jsp";
+//        }   
+//    
+//    }
       private void tarjetaCredito(IPagoService pagoService, HttpServletRequest request, HttpServletResponse response){
         MensajesDTO msj= new MensajesDTO();
         try{

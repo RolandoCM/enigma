@@ -138,7 +138,9 @@
                                             <div class="form-group form-float">
                                                 <div class="form-line ">
                                                     <select class=" form-control show-tick" name="nombreEvento"  required>
-                                                        <option value="">Ninguno</option>
+                                                        <option value="pendiente">Pendiente</option>
+                                                        <option value="parcial">Parcial</option>
+                                                        <option value="total">Total</option>
                                                        
                                                     </select>
                                                 </div>
@@ -153,9 +155,9 @@
                                  
                             
                                        
-                                <button name="formaPago" type="button" class="btn bg-deep-orange waves-effect m-r-20" value="${pago.forma}" id="tarjeta" data-color="deep-orange" data-toggle="modal" data-target="#defaultModal">Tarjeta de Crédito</button>
-                                <button name="formaPago" type="button" class="btn bg-deep-orange waves-effect m-r-20" value="${pago.forma}" id="cheque" data-toggle="modal" data-target="#largeModal">Cheque</button>
-                                <button name="formaPago" type="button" class="btn bg-deep-orange waves-effect" data-toggle="modal" value="${pago.forma}" id="efectivo" data-target="#smallModal">Efectivo</button>           
+                                <button name="formaPago" type="button" class="btn bg-deep-orange waves-effect m-r-20" value="tarjeta" id="tarjeta" data-color="deep-orange" data-toggle="modal" data-target="#defaultModal">Tarjeta de Crédito</button>
+                                <button name="formaPago" type="button" class="btn bg-deep-orange waves-effect m-r-20" value="cheque" id="cheque" data-toggle="modal" data-target="#largeModal">Cheque</button>
+                                <button name="formaPago" type="button" class="btn bg-deep-orange waves-effect" data-toggle="modal" value="efectivo" id="efectivo" data-target="#smallModal">Efectivo</button>           
                                
                                        </div>  
                                     </div>
@@ -172,15 +174,16 @@
                                 </div>
                             </div>
                             </div> 
-                           
 
-
-
-                                    </div>
-                                </div>
-                            </form> 
-                                <h1>${msj.mensaje}</h1>
-                            </div>
+                        </div>
+                    </div>
+                                        
+                                        
+                                        
+                                        
+                </form> 
+                <h1>${msj.mensaje}</h1>
+            </div>
 
 
 
@@ -196,20 +199,20 @@
                         </div>
                         <div class="modal-body">
                            <div class="form-line">Número de Tarjeta<br>
-                              <input type="number" name="numeroTarjeta" value="${tarjeta.numero}" class="form-control"required/>
+                              <input type="number" name="numeroTarjeta"  class="form-control"required/>
                              </div>
                              <div class="form-line">Titular de Tarjeta<br>
-                              <input type="text" name="titular" value="${tarjeta.titular}" class="form-control"required/>
+                              <input type="text" name="titular" class="form-control"required/>
                              </div>
                              <div class="form-line">Fecha de Expiración<br>
-                              <input type="date" name="fechaExpiracion" value="${tarjeta.fecha}" class="form-control"required/>
+                              <input type="date" name="fechaExpiracion"  class="form-control"required/>
                              </div>
                              <div class="form-line">Código de Seguridad<br>
-                              <input type="date" name="fechaPago" value="${tarjeta.codigo}" class="form-control"required/>
+                              <input type="date" name="codigoSeguridad" class="form-control"required/>
                              </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-link waves-effect">GUARDAR</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">GUARDAR</button>
                             <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                         </div>
                     </div>
@@ -231,7 +234,7 @@
                              </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-link waves-effect">GUARDAR</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal" >GUARDAR</button>
                             <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                         </div>
                     </div>
@@ -247,10 +250,10 @@
                         </div>
                         <div class="modal-body">
                             <img src="images/oxxo.png" >
-                            <p style="color:gray">No demores en pagar, solo podemos reservarte stock cuando el pago se acredite</p>
+                            <p style="color:gray">No demores en pagar, solo podemos reservarte stock cuando el pago se acredite. 
+                             Al terminar se evnará al correo registrado los pasos a seguir para realizar el pago.</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-link waves-effect">GUARDAR</button>
                             <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                         </div>
                     </div>

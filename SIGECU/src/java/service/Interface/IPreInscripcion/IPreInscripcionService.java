@@ -16,5 +16,6 @@ import java.util.List;
  */
 public interface IPreInscripcionService {
 
+    public void generarHistorialDePago(PreInscripcionEvento preInscripcion) throws BusinessException;
     public boolean registroPreInscripcion(PreInscripcionEvento preInscripcion) throws BusinessException;
 }

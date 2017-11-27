@@ -8,6 +8,7 @@ package servlet;
 import dto.MensajesDTO;
 import dto.Pago;
 import dto.PreInscripcionEvento;
+import dto.Tarjeta;
 import exception.BusinessException;
 import extras.Convierte;
 import java.io.IOException;
@@ -45,17 +46,34 @@ public class ServletPagoEvento extends HttpServlet {
             preInscripcion.setConfirmadoPago("0");
             preInscripcion.setActivoInscrito("1");
             
-            Pago pago= new Pago();
-            pago.setFormaPago(request.getParameter("formaPago"));
+            String formaPago = "tarjeta";//request.getParameter("formaPago");
            // pago.setMonto(Convierte.aDouble(request.getParameter("montoEvento")));
             
-
             IPreInscripcionService preInscribir = new PreInscripcionService();
             boolean preInscripcionConfirmada =preInscribir.registroPreInscripcion(preInscripcion);
             
             if(preInscripcionConfirmada)
             {
                 IPagoService pagoPreInscripcion = new PagoService();
+                if(formaPago.equals("tarjeta"))
+                {
+                    Tarjeta pagoTarjeta = new Tarjeta();
+//                    pagoTarjeta.setNumeroTarjeta(Convierte.aInteger(request.getParameter("numeroTarjeta")));
+//                    pagoTarjeta.setTitularTarjeta(request.getParameter("titular"));
+//                    pagoTarjeta.setFechaExpiracion(request.getParameter("fechaExpiracion"));
+//                    pagoTarjeta.setCodigo(Convierte.aInteger(request.getParameter("codigoSeguridad")));
+
+                    pagoTarjeta.setMonto(Convierte.aDouble(request.getParameter("montoEvento")));
+                    pagoTarjeta.setTipo(request.getParameter(formaPago));
+                    pagoTarjeta.setFechaPago(request.getParameter("fechaPago"));
+                    pagoTarjeta.setQuienPago(request.getParameter("nombreUsuario"));
+                    pagoTarjeta.setIdEvento(request.getParameter("idEvento"));
+                    pagoTarjeta.setQuePago(request.getParameter("nombreEvento"));
+                    pagoPreInscripcion.tarjetaCredito(pagoTarjeta);
+                    
+                }
+                
+                
             }
              
         } catch (BusinessException ex) {

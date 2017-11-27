@@ -27,15 +27,16 @@ public class PreInscripcionService implements IPreInscripcionService {
         try
         {
             IPreInscripcionDAO preIns = new PreInscripcionDAO();
-            PreInscripcionEvento datosCompletos =preIns.datosPreInscripcion(preinscripcion);
+            PreInscripcionEvento datosCompletos =preIns.datosPreInscripcion(preinscripcion); 
             boolean preInscripcionConfirmada = preIns.nuevaPreInscripcion(datosCompletos);
+            preIns.generarHistorialDePagos(datosCompletos);
             if(preInscripcionConfirmada)
             {
                 String registro="Id Evento\tNombre Evento\tNombre pre-inscrito\n";
                         registro+=datosCompletos.getIdEvento()+"\t"+datosCompletos.getNombreEvento()+"\t"+
                         datosCompletos.getNombreAlumno();
                 try {
-                    Email.send("sigecu0@gmail.com", "Nueva Inscripcion", registro );
+                    Email.send("sigecu0@gmail.com", "Nueva PreIscripcion", registro );
                 } catch (MessagingException ex) {
                     ex.printStackTrace();
                     BusinessException be = new BusinessException();
@@ -58,5 +59,10 @@ public class PreInscripcionService implements IPreInscripcionService {
             throw be;
         }
         
+    }
+
+    @Override
+    public void generarHistorialDePago(PreInscripcionEvento preInscripcion) throws BusinessException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

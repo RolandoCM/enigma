@@ -34,6 +34,7 @@ public class PreInscripcionDAO implements IPreInscripcionDAO {
      * @return
      * @throws exception.BusinessException
      */
+        
     @Override
     public boolean nuevaPreInscripcion (PreInscripcionEvento preInscripcion) throws BusinessException{
         boolean correcto = false;
@@ -99,6 +100,36 @@ public class PreInscripcionDAO implements IPreInscripcionDAO {
             be.setIdException("001");
             throw be;
         }
+    }
+
+    @Override
+    public void generarHistorialDePagos(PreInscripcionEvento preInscripcion) throws BusinessException {
+        String sql = "insert into historialPagos (ahe_a_idalumno, ahe_e_idevento, pagoCompleto) "
+                + "values(?,?,'0');";
+	Connection cn = null;
+        try
+        {
+            cn = db.getConnection();
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, preInscripcion.getIdUsuario());
+            ps.setString(2, preInscripcion.getIdEvento());
+				
+            int exec = ps.executeUpdate();
+		
+            if (exec == 0) {
+		throw new SQLException();
+            }
+            ps.close();
+            
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setMensaje("error en la capa de base de datos");
+            be.setIdException("001");
+            throw be;
+        }
+
     }
 }
 
