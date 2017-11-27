@@ -118,7 +118,7 @@
                         </a>
                     </li>
                      <li>
-                         <a href="cursospPerfil.jsp">
+                         <a href="Perfil?accion=CA">
                             <i class="material-icons">view_list</i>
                             <span>Cursos</span>
                         </a>

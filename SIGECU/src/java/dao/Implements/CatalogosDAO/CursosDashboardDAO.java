@@ -1,4 +1,4 @@
-package dao.Implements.Curso;
+package dao.Implements.CatalogosDAO;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -38,7 +38,7 @@ public class CursosDashboardDAO implements ICursoDashboardDAO{
             {
                 Curso curso = new Curso();
                 curso.setIdcurso(Integer.parseInt(result.getString(1)));
-                curso.setNombre(result.getString(2));
+                curso.setNombrecur(result.getString(2));
                 curso.setHorario(result.getString(3));
                 curso.setTipo(result.getString(6)); 
                 curso.setI_idinstructor(result.getString(7));

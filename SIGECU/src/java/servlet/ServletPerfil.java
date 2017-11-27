@@ -52,6 +52,10 @@ public class ServletPerfil extends HttpServlet{
                     //CREAR EVENTOS 
                case "MP":
                    modificarPerfil(perfil , request, response);
+                   break;
+                   case "CA":
+                   EventosPorAlumno(perfil , request, response);
+                   break;
                 default:
                     break;
             }
@@ -123,6 +127,31 @@ public class ServletPerfil extends HttpServlet{
         }
         direccionar = "Perfil?accion=LDP";
     }// fin del metodo actualizarEventoConfirmado
+
+    private void EventosPorAlumno(IPerfilService perfil, HttpServletRequest request, HttpServletResponse response) {
+    MensajesDTO msjDTO = new MensajesDTO();
+        try {
+            List<Evento> listaCursosAl = perfil.EventosPorAlumno();
+            request.setAttribute("cursosalumnos", listaCursosAl); 
+            msjDTO.setId("000");
+            msjDTO.setMensaje("Ejecuxion OK");
+            request.setAttribute("msj", msjDTO);
+        } catch (BusinessException ex) {
+            msjDTO.setId(ex.getIdException());
+            msjDTO.setMensaje(ex.getMensaje());
+            request.setAttribute("msj", msjDTO);
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            msjDTO.setId("301");
+            msjDTO.setMensaje("Error en la llamada de recursos");
+            request.setAttribute("msj", msjDTO);
+        }
+        finally{
+            direccionar = "cursosPerfil.jsp";
+        }
+        
+    }
     
     
  

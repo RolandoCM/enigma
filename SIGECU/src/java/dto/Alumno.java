@@ -11,7 +11,7 @@ package dto;
  */
 public class Alumno {
     private int idAlumno;
-    private String nombre;
+    private String nombreal;
     private String aParterno;
     private String aMaterno;
     private String telefono; 
@@ -31,14 +31,15 @@ public class Alumno {
         this.idAlumno = idAlumno;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreal() {
+        return nombreal;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreal(String nombreal) {
+        this.nombreal = nombreal;
     }
 
+   
     public String getaParterno() {
         return aParterno;
     }
