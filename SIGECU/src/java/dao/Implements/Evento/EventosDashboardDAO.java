@@ -28,18 +28,11 @@ public class EventosDashboardDAO implements IEventosDashboardDAO{
     @Override
     public List<Evento> dashEventoDAO() throws BusinessException {
         List<Evento> dashEvento= new ArrayList<>();
-<<<<<<< HEAD
-        String sql = "SELECT e.idevento, c.cNombre, e.eFechaInicio, e.eFechaTermino, count(*)\n" +
-            "FROM eventos e, alumno_has_eventos ae, cursos c, alumno a\n" +
-            "WHERE ae.e_idevento=e.idevento AND a.idalumno=ae.a_idalumno AND c.idcursos=e.cursos_idcursos\n" +
-            "	AND ae.activo=1\n" +
-            "GROUP BY e.idevento, c.cNombre, e.eFechaInicio, e.eFechaTermino;";
-=======
+
         String sql = "select  e.idevento, c.cNombre, e.eFechaInicio, e.eFechaTermino, count(*)\n" +
                     "from alumno a, alumno_has_eventos ae, cursos c, eventos e\n" +
                     "where ae.e_idevento = e.idevento and a.idalumno=ae.a_idalumno and e.cursos_idcursos = c.idcursos and ae.activo=1\n" +
                     "group by e.idevento, c.cNombre, e.eFechaTermino, e.eFechaTermino;";
->>>>>>> aa80e385e264fb5da75b62ebb22649689d050af5
         
         try
         {
