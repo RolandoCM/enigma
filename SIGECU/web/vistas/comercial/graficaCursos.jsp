@@ -73,7 +73,7 @@
                             <%=color="green"%>
                         </c:if>
                         
-                        <div class="card">
+                    <div class="card">
                         <div class="header">
                             <h2>${dash.nombre}</h2>
                             <p>Fecha programada: ${dash.fecha} al ${dash.fechaTermino}</p>
