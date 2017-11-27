@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service.Implements.Pago;
+package service.Implements.PagoPreInscripcion;
 
 import service.Implements.Evento.*;
 import dao.Implements.Evento.EventoDAO;
-import dao.Implements.Pago.PagoDAO;
+import dao.Implements.PagoPreIncripcion.PagoDAO;
 import dao.Interface.Evento.IEventoDAO;
-import dao.Interface.Pago.IPagoDAO;
+import dao.Interface.PagoPreInscripcion.IPagoDAO;
 import dto.Cheque;
 import dto.Evento;
 import dto.IdentificadoresEvento;
@@ -18,7 +18,7 @@ import dto.Tarjeta;
 import exception.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
-import service.Interface.Pago.IPagoService;
+import service.Interface.PagoPreInscripcion.IPagoService;
 
 /**
  *
@@ -28,10 +28,18 @@ public class PagoService implements IPagoService{
     
     
     @Override
-    public void insertarPago(Pago pago) throws BusinessException{
+    public void registrarPago(Pago pago) throws BusinessException{
         try{
             IPagoDAO pagoDAO= new PagoDAO();
-            pagoDAO.registrarPago(pago);
+            Pago pagoDatosCompletos;
+            /*buscar id del tipo de pago*/
+            pagoDatosCompletos =pagoDAO.tipoPago(pago);
+            /*buscar id de historial de pagos*/
+            pagoDatosCompletos=pagoDAO.buscarIdUsuario(pagoDatosCompletos); //buscar id de usuario
+            
+            pagoDatosCompletos = pagoDAO.buscarIdHistorialPago(pagoDatosCompletos);
+            
+            pagoDAO.registrarPago(pagoDatosCompletos);
         }catch(Exception ex){
             
             ex.printStackTrace();

@@ -8,7 +8,7 @@ package service.Implements.PreInscripcion;
 import dao.Implements.PreInscripcion.PreInscripcionDAO;
 import dao.Interface.IPreInscripciones.IPreInscripcionDAO;
 import dto.identiPreIns;
-import dto.preInscripcion;
+import dto.PreInscripcionEvento;
 import exception.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,25 +22,21 @@ import service.Interface.IPreInscripcion.IPreInscripcionService;
  */
 public class PreInscripcionService implements IPreInscripcionService {
 
-    private String mensaje;
     @Override
-    public List<preInscripcion> preQry() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        return null;
-    }
-
-    @Override
-    public void registroPreInscripcion(preInscripcion preIn) throws BusinessException {
+    public boolean registroPreInscripcion(PreInscripcionEvento preinscripcion) throws BusinessException {
         try
         {
             IPreInscripcionDAO preIns = new PreInscripcionDAO();
-            boolean enviarEmail = preIns.nuevaPreInscripcion(preIn);
-            if(enviarEmail)
+            PreInscripcionEvento datosCompletos =preIns.datosPreInscripcion(preinscripcion); 
+            boolean preInscripcionConfirmada = preIns.nuevaPreInscripcion(datosCompletos);
+            preIns.generarHistorialDePagos(datosCompletos);
+            if(preInscripcionConfirmada)
             {
-                String registro = preIn.getNombre()+"   "+preIn.getApellido()+"     "+
-                preIn.getTelefono()+"   "+preIn.getEmail()+"\n";
+                String registro="Id Evento\tNombre Evento\tNombre pre-inscrito\n";
+                        registro+=datosCompletos.getIdEvento()+"\t"+datosCompletos.getNombreEvento()+"\t"+
+                        datosCompletos.getNombreAlumno();
                 try {
-                    Email.send("sigecu0@gmail.com", "Nueva Inscripcion", registro );
+                    Email.send("sigecu0@gmail.com", "Nueva PreIscripcion", registro );
                 } catch (MessagingException ex) {
                     ex.printStackTrace();
                     BusinessException be = new BusinessException();
@@ -49,6 +45,7 @@ public class PreInscripcionService implements IPreInscripcionService {
                     throw be;
                 }
             }
+            return preInscripcionConfirmada;
         }catch (BusinessException e)
         {
             throw e;
@@ -63,23 +60,9 @@ public class PreInscripcionService implements IPreInscripcionService {
         }
         
     }
-    @Override
-    public String getMensaje() {
-		return mensaje;
-	}
 
-    public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
-	} 
-    
     @Override
-    public List<identiPreIns> consulPre() throws BusinessException {
-        List<identiPreIns> empresaPreIns = new ArrayList<>();
-        
-        IPreInscripcionDAO preIns = new PreInscripcionDAO();
-        empresaPreIns = preIns.consultaPreIns();
-        
-        return empresaPreIns;
+    public void generarHistorialDePago(PreInscripcionEvento preInscripcion) throws BusinessException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

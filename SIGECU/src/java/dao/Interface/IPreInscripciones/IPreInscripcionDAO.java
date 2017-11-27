@@ -7,7 +7,7 @@ package dao.Interface.IPreInscripciones;
 
 import dto.Evento;
 import dto.identiPreIns;
-import dto.preInscripcion;
+import dto.PreInscripcionEvento;
 import exception.BusinessException;
 import java.util.List;
 
@@ -16,7 +16,8 @@ import java.util.List;
  * @author Anel
  */
 public interface IPreInscripcionDAO {
-    public List<identiPreIns> consultaPreIns() throws BusinessException;
-    public boolean nuevaPreInscripcion(preInscripcion preIn) throws BusinessException;
+    public boolean nuevaPreInscripcion(PreInscripcionEvento preInscripcion) throws BusinessException;
+    public PreInscripcionEvento datosPreInscripcion(PreInscripcionEvento preInscripcion) throws BusinessException;
+    public void generarHistorialDePagos(PreInscripcionEvento preInscripcion) throws BusinessException;
     
 }

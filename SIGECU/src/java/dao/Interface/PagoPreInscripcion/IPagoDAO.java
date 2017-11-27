@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao.Interface.Pago;
+package dao.Interface.PagoPreInscripcion;
 
 import dto.Cheque;
 import dto.Pago;
 import dto.Tarjeta;
+import exception.BusinessException;
 import java.util.List;
 
 /**
@@ -20,5 +21,8 @@ public interface IPagoDAO {
     public List<Pago> mostrarDatos();
     public void tarjetaCredito(Tarjeta Tarjeta);
     public void cheque(Cheque cheque);
+    public Pago tipoPago(Pago pago) throws BusinessException;
+    public Pago buscarIdHistorialPago(Pago pago) throws BusinessException;
+    public Pago buscarIdUsuario(Pago pago) throws BusinessException;
     
 }

@@ -560,6 +560,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_sigecu`.`roles` (
   `idroles` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL,
   `role` VARCHAR(45) NULL,
   `descripcion` VARCHAR(45) NULL,
   `u_idusers` INT NOT NULL,

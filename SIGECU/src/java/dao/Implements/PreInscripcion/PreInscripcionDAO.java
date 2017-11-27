@@ -6,15 +6,13 @@
 package dao.Implements.PreInscripcion;
 
 import dao.Interface.IPreInscripciones.IPreInscripcionDAO;
-import dto.identiPreIns;
-import dto.preInscripcion;
+import dto.PreInscripcionEvento;
 import exception.BusinessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
 import jdbc.ConectionDB;
 /**
  *
@@ -31,27 +29,27 @@ public class PreInscripcionDAO implements IPreInscripcionDAO {
         
     /**
      *
+     * @param preInscripcion
      * @param preIn
      * @return
      * @throws exception.BusinessException
      */
+        
     @Override
-    public boolean nuevaPreInscripcion (preInscripcion preIn) throws BusinessException{
+    public boolean nuevaPreInscripcion (PreInscripcionEvento preInscripcion) throws BusinessException{
         boolean correcto = false;
-        String sql = "INSERT INTO pre_inscripcion VALUES(null,?,?,?,?,?,?,?)";
+        String sql = "insert into alumno_has_eventos (a_idalumno, e_idevento, confirmado,activo)\n" +
+                        "values(?,?,?,?);";
 	Connection cn = null;
         try
         {
             cn = db.getConnection();
             PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, preInscripcion.getIdUsuario());
+            ps.setString(2, preInscripcion.getIdEvento());
+            ps.setString(3,preInscripcion.getConfirmadoPago());
+            ps.setString(4, preInscripcion.getActivoInscrito());
 				
-            ps.setString(1, preIn.getNombre());
-            ps.setString(2, preIn.getApellido());
-            ps.setString(3, preIn.getTelefono());
-            ps.setString(4, preIn.getEmail());
-            ps.setString(5, preIn.getIdEmpresa().toString());
-            ps.setString(6, preIn.getCarrera());
-            ps.setString(7, preIn.getConfirmar());
             int exec = ps.executeUpdate();
 		
             if (exec == 0) {
@@ -74,59 +72,65 @@ public class PreInscripcionDAO implements IPreInscripcionDAO {
         return correcto;
     }
 
-       /*Metodo para generar los datos necesarios de rellono automatico en crear evento*/
-
-    /**
-     *
-     * @return
-     * @throws BusinessException
-     */
-
     @Override
-    public List<identiPreIns> consultaPreIns() throws BusinessException {
-        List<identiPreIns> listaDatos= new ArrayList<>();
-        String EMPRESA= "SELECT idEmpresa, nombre FROM empresa";
+    public PreInscripcionEvento datosPreInscripcion(PreInscripcionEvento preInscripcion) throws BusinessException {
+        String sql = "Select a.idalumno, a.aNombre, a.aPaterno, a.aMaterno, a.aEmail, a.aTelefono\n" +
+                        "from alumno a, users u\n" +
+                        "where a.u_idusers=u.idusers AND u.username=?";
+        PreInscripcionEvento preInscripcionReturn = preInscripcion;
+        
         try
         {
-            Connection conn = db.getConnection();
-            PreparedStatement ps;
-           
-                ps = conn.prepareStatement(EMPRESA);
-                ResultSet result = ps.executeQuery();
-                
-                
-                while(result.next())
-                {
-                    identiPreIns idPre = new identiPreIns();
-                    idPre.setId(result.getString(1));
-                    idPre.setNombre(result.getString(2));
-                    listaDatos.add(idPre);
-                }   
-        }catch(Exception e)
+            Connection cn = db.getConnection();
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, preInscripcion.getUsuario());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                preInscripcion.setIdUsuario(rs.getString(1));
+                preInscripcion.setNombreAlumno(rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4));
+            }
+            return preInscripcion;
+        }catch (Exception e)
         {
+            
+            e.printStackTrace();
             BusinessException be = new BusinessException();
+            be.setMensaje("error en la capa de base de datos");
             be.setIdException("001");
-            be.setMensaje("Error en la base de datos");
             throw be;
         }
-        
-        return listaDatos;
-    } //fin de metodo consultatDatosCrearEvento
-    
-   
-	public String getMensaje() {
-		return mensaje;
-	}
-	
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
-	}    
-
-    public List<preInscripcion> preQry() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        return null;
     }
 
+    @Override
+    public void generarHistorialDePagos(PreInscripcionEvento preInscripcion) throws BusinessException {
+        String sql = "insert into historialPagos (ahe_a_idalumno, ahe_e_idevento, pagoCompleto) "
+                + "values(?,?,'0');";
+	Connection cn = null;
+        try
+        {
+            cn = db.getConnection();
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, preInscripcion.getIdUsuario());
+            ps.setString(2, preInscripcion.getIdEvento());
+				
+            int exec = ps.executeUpdate();
+		
+            if (exec == 0) {
+		throw new SQLException();
+            }
+            ps.close();
+            
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setMensaje("error en la capa de base de datos");
+            be.setIdException("001");
+            throw be;
+        }
+
+    }
 }
 
 

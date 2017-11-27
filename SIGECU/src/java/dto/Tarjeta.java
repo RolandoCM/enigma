@@ -9,7 +9,7 @@ package dto;
  *
  * @author Anayeli Ramírez
  */
-public class Tarjeta {
+public class Tarjeta extends Pago {
     private int numeroTarjeta;
     private String titularTarjeta;
     private String fechaExpiracion;
