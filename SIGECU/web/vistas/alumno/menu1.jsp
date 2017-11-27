@@ -118,7 +118,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="ServletPagosPendientes">
+                        <a href="ServletPagosPendientes?alumno=${pageContext.request.userPrincipal.name}">
                             <i class="material-icons">view_list</i>
                             <span>Pagos Pendientes</span>
                         </a>

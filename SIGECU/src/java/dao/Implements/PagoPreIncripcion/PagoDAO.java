@@ -95,11 +95,13 @@ public class PagoDAO implements IPagoDAO{
     @Override
     public List<Pago> historialPagos(int idAlumno) throws BusinessException{
         List<Pago> historial=new ArrayList<>();
-        String sql="SELECT c.cNombre, pre.precio, p.pCantidad,p.pFecha\n" +
-                    "FROM eventos e, cursos c, pagos p, historialPagos hp, alumno_has_eventos ae, precios pre,\n" +
-                    "	eventos_precios_destinatarios epd, alumno a\n" +
-                    "WHERE e.cursos_idcursos=c.idcursos AND pre.idprecios=epd.p_idprecios AND epd.e_idevento=e.idevento\n" +
-                    "	AND ae.e_idevento=e.idevento AND ae.a_idalumno=?;";
+        String sql="SELECT c.cNombre, pre.precio, p.pCantidad,p.pFecha, tp.tpNombre\n" +
+            "FROM eventos e, cursos c, pagos p, historialPagos hp, alumno_has_eventos ae, precios pre,\n" +
+            "eventos_precios_destinatarios epd, alumno a, tipoPago tp\n" +
+            "WHERE e.cursos_idcursos=c.idcursos AND pre.idprecios=epd.p_idprecios AND epd.e_idevento=e.idevento\n" +
+            "	AND ae.e_idevento=e.idevento AND hp.idhistorialPagos=p.hP_idhistorialPagos AND hp.ahe_a_idalumno=ae.a_idalumno\n" +
+            "    AND hp.ahe_e_idevento=ae.e_idevento AND tp.idtipoPago=p.tP_idtipoPago\n" +
+            "    AND ae.a_idalumno=?;";
         try{
           Connection connection=database.getConnection();
           PreparedStatement ps=connection.prepareStatement(sql);
@@ -113,12 +115,13 @@ public class PagoDAO implements IPagoDAO{
               pago.setPrecio(result.getDouble(2));
               pago.setMonto(result.getDouble(3));   
               try{
-                  String fecha= Convierte.fechaString(result.getDate(3));
+                  String fecha= Convierte.fechaString(result.getDate(4));
                   pago.setFechaPago(fecha);
               }
               catch(SQLException e){
                  pago.setFechaPago("0000-00-00");
               }
+              pago.setTipo(result.getString(5));
               historial.add(pago);
           }
           connection.close();
