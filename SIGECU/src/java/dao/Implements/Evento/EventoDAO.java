@@ -75,10 +75,12 @@ public class EventoDAO implements IEventoDAO {
     @Override
     public List<Evento> listarEventoCondirmado() throws BusinessException{
         List<Evento> eventosConfirmados= new ArrayList<>();
-        String sql="select  e.idevento, c.nombre, cd.nombre, p.nombre, e.fechaInicio, e.estatus\n" +
-                    "from eventos e, cursos c, ciudad cd, pais p, lugar l\n" +
-                    "where e.cursos_idcursos=c.idcursos AND p.idPais=cd.p_idPais\n" +
-                    "	AND l.ciudad_idCiudad=cd.idCiudad;"; //e.fechaTermino>sysdate()
+        String sql="select e.idevento, c.cNombre, t.idtempletes ,cd.cNombre, p.pNombre, e.eFechaInicio, e.eFechaTermino, e.eEstatus\n" +
+                    "from eventos e, cursos c, instructor i, lugar l, ciudad cd, pais p, templetes t\n" +
+                    "where e.cursos_idcursos = c.idcursos\n" +
+                    "AND e.i_idinstructor = i.idinstructor\n" +
+                    "AND e.lugar_idlugar = l.idlugar AND l.c_idCiudad = cd.idCiudad AND cd.p_idPais = p.idPais\n" +
+                    "AND e.t_idtempletes = t.idtempletes;"; //e.fechaTermino>sysdate()
                // + "AND e.estatus IS NOT NULL;";
         try
         {
