@@ -271,6 +271,33 @@ public class EventoDAO implements IEventoDAO {
         }
         return eventocan;
     }
+    
+    @Override
+    public String confirmarEvento(int idEvento) throws BusinessException {
+        String eventocon="";
+        String sql="UPDATE eventos SET eEstatus='on' WHERE idevento=?";
+        try {
+            Connection con = database.getConnection();
+            PreparedStatement ps;
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idEvento);
+            int execute = ps.executeUpdate();
+            
+            if(execute == 0){
+                throw  new BusinessException();
+                
+            }
+            eventocon="si";
+            ps.close();
+            con.close();
+        } catch (Exception ex) {
+            BusinessException be = new BusinessException();
+            be.setIdException("0001");
+            be.setMensaje("Error en la capa de base de datos");
+            throw be;
+        }
+        return eventocon;
+    }
 
     @Override
     public Evento detallesEvento(int idEvento) throws BusinessException{

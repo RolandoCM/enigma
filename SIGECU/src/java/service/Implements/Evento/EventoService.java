@@ -104,6 +104,26 @@ public class EventoService implements IEventoService{
     }
 
     @Override
+    public String confirmarEvento(int idEvento) throws BusinessException{
+        try
+        {
+            EventoDAO eventoDAO = new EventoDAO();
+            String estado = eventoDAO.confirmarEvento(idEvento);
+            return estado;
+        }catch(BusinessException e)
+        {
+            throw e;
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setIdException("201");
+            be.setMensaje("Error en la capa de negocio, conecion a cancelar Evento Confirmado");
+            throw be;
+        }
+    }
+    
+    @Override
     public Evento detallesEvento(int idEvento) throws BusinessException{
         try
         {

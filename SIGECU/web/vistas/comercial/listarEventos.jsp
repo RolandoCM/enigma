@@ -94,11 +94,10 @@
                                             </tr>
                                         </tfoot>
                                         <tbody>
-                                            <% String color="";%>
                                         <p id="salida"></p>
                                             <c:forEach var="data" items="${listaEvento}">
                                                 <c:if test="${data.status.equals('on')}">
-                                                <tr >
+                                                <tr class="bg-teal">
                                                     <td>${data.nombre}</td>
                                                     <td>${data.nombreCiudad}</td>
                                                     <td>${data.nombrePais}</td>
@@ -113,7 +112,7 @@
                                                     </td>
                                                 </tr>
                                                 
-                                                <!--Modal-->
+                                                <!--Modal cancelar-->
                                                 <div class="modal fade" id="ModalCancelar${data.id}" tabindex="-1" role="dialog">
                                                     <div class="modal-dialog modal-sm" role="document">
                                                         <div class="modal-content modal-col-red">
@@ -134,23 +133,46 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!--Fin modal On-->
+                                                <!--Fin modal OFF-->
                                                 </c:if>
                                                 
                                                 <c:if test="${data.status.equals('off')}">
-                                                    <tr style="background-color: <%=color="#da9a6d"%>">
+                                                <tr class="bg-grey">
                                                     <td>${data.nombre}</td>
                                                     <td>${data.nombreCiudad}</td>
                                                     <td>${data.nombrePais}</td>
                                                     <td>${data.fecha}</td>
                                                     <td>
-                                                        <a href="Eventos?accion=BE&idEvento=${data.id}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>
+                                                        <a href="Eventos?accion=BE&idEvento=${data.id}"<button type="button" class="btn bg-blue waves-effect" data-toggle="modal" data-target="">Modificar</button>
                                                     </td><td>
                                                         <div class="button-demo js-modal-buttons">
-                                                            <button type="button" class="btn bg-green waves-effect" >Confirmar evento</button>
+                                                            <button data-toggle="modal" data-target="#ModalConfirmar${data.id}" class="btn bg-teal waves-effect">Confirmar Evento</button>
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                
+                                                <!--Modal Confirmar-->
+                                                <div class="modal fade" id="ModalConfirmar${data.id}" tabindex="-1" role="dialog">
+                                                    <div class="modal-dialog modal-sm" role="document">
+                                                        <div class="modal-content modal-col-teal">
+
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="smallModalLabel">SEGURO QUE DESEA CONFIRMAR EVENTO:
+                                                                <br> ${data.nombre}, ${data.id}?</h4>
+                                                            </div>
+
+                                                            <div class="modal-body">
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a role="button" class="btn btn-link waves-effect" href="Eventos?accion=CER&idEvento=${data.id}">Si</a>
+                                                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--Fin modal ON-->
                                                 </c:if>
                     
                                                 <div class="block-header">
