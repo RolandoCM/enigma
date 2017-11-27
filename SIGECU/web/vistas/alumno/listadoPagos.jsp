@@ -63,22 +63,20 @@
                                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                         <thead>
                                             <tr>
-                                                <th>Número de Pago</th>
-                                                <th>Nombre del Evento</th>
-                                                <th>Fecha de Pago</th>
-                                                <th>Tipo de Pago</th>
-                                                <th>Monto</th>
+                                                <th>Nombre Curso</th>
+                                                <th>Costo Total</th>
+                                                <th>Abono</th>
+                                                <th>Fecha Limite de Pago</th>
                                                 <th>Forma de Pago</th>
 
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
-                                               <th>Número de Pago</th>
-                                                <th>Nombre del Evento</th>
-                                                <th>Fecha de Pago</th>
-                                                <th>Tipo de Pago</th>
-                                                <th>Monto</th>
+                                              <th>Nombre Curso</th>
+                                                <th>Costo Total</th>
+                                                <th>Abono</th>
+                                                <th>Fecha Limite de Pago</th>
                                                 <th>Forma de Pago</th>
 
                                             </tr>
@@ -90,6 +88,7 @@
                                                 <td>${pago.precio}</td>
                                                 <td>${pago.monto}</td>
                                                 <td>${pago.fechaPago}</td>
+                                                <td>${pago.tipo}</td>
                                                 </tr>
                                             </c:forEach>
                                      

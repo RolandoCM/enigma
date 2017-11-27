@@ -14,7 +14,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>HISTORIAL DE PAGOS</title>
+        <title>Mis Cursos</title>
         <!-- Favicon-->
         <link rel="icon" href="../../favicon.ico" type="image/x-icon">
  <link rel="stylesheet" href="../../fonts/material-design-icons-master/material-icons.css">
@@ -53,7 +53,7 @@
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                   HISTORIAL DE PAGOS
+                                   MIS CURSOS
                                 </h2>
                                
                             </div>
@@ -63,34 +63,39 @@
                                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                         <thead>
                                             <tr>
-                                                <th>Número de Pago</th>
-                                                <th>Nombre del Evento</th>
-                                                <th>Fecha de Pago</th>
-                                                <th>Tipo de Pago</th>
-                                                <th>Monto</th>
-                                                <th>Forma de Pago</th>
+                                                <th>Nombre Curso</th>
+                                                <th>Horario</th>
+                                                <th>Fecha de Inicio</th>
+                                                <th>Fecha de Termino</th>
+                                                <th>Instructor</th>
+                                                <th>Baja</th>
 
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
-                                               <th>Número de Pago</th>
-                                                <th>Nombre del Evento</th>
-                                                <th>Fecha de Pago</th>
-                                                <th>Tipo de Pago</th>
-                                                <th>Monto</th>
-                                                <th>Forma de Pago</th>
+                                               <th>Nombre Curso</th>
+                                                <th>Horario</th>
+                                                <th>Fecha de Inicio</th>
+                                                <th>Fecha de Termino</th>
+                                                <th>Instructor</th>
+                                                <th>Baja</th>
 
                                             </tr>
                                         </tfoot>
                                         <tbody>
-                                            <c:forEach var="pago" items="${misPagos}">
+                                            <c:forEach var="curso" items="${cursos}">
                                                 <tr>
-                                                <td>${pago.quePago}</td>
-                                                <td>${pago.precio}</td>
-                                                <td>${pago.monto}</td>
-                                                <td>${pago.fechaPago}</td>
+                                                <td>${curso.nombre}</td>
+                                                <td>${curso.horario}</td>
+                                                <td>${curso.fechaInicio}</td>
+                                                <td>${curso.fechaFin}</td>
+                                                <td>${curso.nombreInstructor}</td>
+                                                <td>
+                                                    <a href="Pagos?accion=AE&idPago=${curso.idcurso}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Darme de Baja</button>></a>
+                                                </td>
                                                 </tr>
+                                                
                                             </c:forEach>
                                      
                                                 

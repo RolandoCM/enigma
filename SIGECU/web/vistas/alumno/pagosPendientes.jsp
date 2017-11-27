@@ -14,7 +14,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>HISTORIAL DE PAGOS</title>
+        <title>PAGOS PENDIENTES</title>
         <!-- Favicon-->
         <link rel="icon" href="../../favicon.ico" type="image/x-icon">
  <link rel="stylesheet" href="../../fonts/material-design-icons-master/material-icons.css">
@@ -52,7 +52,7 @@
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                   HISTORIAL DE PAGOS
+                                  PAGOS PENDIENTES
                                 </h2>
                                
                             </div>
@@ -61,77 +61,53 @@
                                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                         <thead>
                                             <tr>
-                                                <th>Número de Pago</th>
-                                                <th>Nombre del Evento</th>
+                                                <th>Nombre del Curso</th>
+                                                <th>Precio</th>
                                                 <th>Fecha de Pago</th>
-                                                <th>Tipo de Pago</th>
-                                                <th>Monto</th>
-                                                <th>Forma de Pago</th>
-
+                                                <th>Cantidad por Pagar</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
-                                               <th>Número de Pago</th>
-                                                <th>Nombre del Evento</th>
+                                               <th>Nombre del Curso</th>
+                                                <th>Precio</th>
                                                 <th>Fecha de Pago</th>
-                                                <th>Tipo de Pago</th>
-                                                <th>Monto</th>
-                                                <th>Forma de Pago</th>
+                                                <th>Cantidad por Pagar</th>
+                                                <th>Tipo de pago</th>
 
                                             </tr>
                                         </tfoot>
                                         <tbody>
 
-                                            
-                                     
+                                            <c:forEach var="pago" items="${pagos}">
                                                 <tr>
-                                                <td>${evento.nombreEvento}</td>
-                                                <td>${pago.fechaPago}</td>
-                                                <td>${pago.tipoPago}</td>
-                                                <td>${pago.monto}</td>
-                                                <td>${pago.formaPago}</td>
-                                                <td>
-                                                    <a href="Pagos?accion=AE&idPago=${pago.idPago}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Pagar Evento</button>></a>
-                                                </td>
-                                            </tr>
+                                                    <td>${pago.quePago}</td>
+                                                    <td>${pago.precio}</td>
+                                                    <td>${pago.fechaPago}</td>
+                                                    <td>${pago.monto}</td>
+                                                    <td>
+                                                        <a href="Pagos?accion=AE&idPago=${pago.idPago}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Pagar Evento</button>></a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                     
+                                                
                                             
 
                                         </tbody>
                                     </table>
+                                    <h3>${msj.mensaje}</h3>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
 
             
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary waves-effect">GUARDAR</button>
-                                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CERRAR</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                                
-                                
- <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="smallModalLabel">SEGURO QUE DESEA CANCELAR EL EVENTO?</h4>
-                        </div>
-                        <div class="modal-body">
-                         
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link waves-effect">SI</button>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                          
+                               
 
         </section>
 

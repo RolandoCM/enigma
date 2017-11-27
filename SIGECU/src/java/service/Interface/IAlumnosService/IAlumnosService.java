@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao.Interface.IAlumnosDAO;
+package service.Interface.IAlumnosService;
 
 import dto.Curso;
 import dto.Pago;
@@ -14,9 +14,7 @@ import java.util.List;
  *
  * @author zoro
  */
-public interface IAlumnosDAO {
-    public List<Curso> listarCursosAlumno(int idAlumno) throws BusinessException;
-    public int buscarAlumno(String alumno) throws BusinessException;
-    public List<Pago> listaPagosPendientes(int idAlumno) throws BusinessException;
-    
+public interface IAlumnosService {
+    public List<Curso> listarCursosAlumno(String alumno) throws BusinessException;
+    public List<Pago> listarPagosPendiente (String alumno) throws BusinessException;
 }
