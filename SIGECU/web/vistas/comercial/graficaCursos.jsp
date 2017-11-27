@@ -43,7 +43,7 @@
     <!-- Demo Js -->
     </head>
     <body class="theme-red">
-     <jsp:include page="menu1.jsp" flush="true" />
+    <jsp:include page="menu1.jsp" flush="true" />
 
     <section class="content">
         <div class="container-fluid">
@@ -53,18 +53,16 @@
             <!-- #END# Basic Example -->
             <!-- Rounded Corners -->
             <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <%
-                        String color = "#000000";
+                        String color = "000000";
                         int progreso = 20;     
                     %>
                     <c:forEach var="dash" items="${dashEvento}"> 
-                        <c:if test ="${dash.progreso<50}">
+                        <c:if test ="${dash.progreso<50}">  
                             <%=color="red"%>
                         </c:if>
-                        
                         <c:if test ="${dash.progreso>=50 && dash.progreso<=75}">
-                            <%=color="orage"%>
+                            <%=color="orange"%>
                         </c:if>
                         <c:if test ="${dash.progreso>75 && dash.progreso<=90}">
                             <%=color="yellow"%>
@@ -72,43 +70,35 @@
                         <c:if test ="${dash.progreso>90 && dash.progreso<=100}">
                             <%=color="green"%>
                         </c:if>
-                        
-                    <div class="card">
-                        <div class="header">
-                            <h2>${dash.nombre}</h2>
-                            <p>Fecha programada: ${dash.fecha} al ${dash.fechaTermino}</p>
-                           
-                        </div>
-                        <div class="body">
-                            <div class="row clearfix">
-                                <div class="col-md-2">
-                                    <i>Proceso del curso</i>
-                                    <input type="text" class="knob" value="${dash.progreso}" data-linecap="round"  data-width="70 " data-height="70" data-thickness="0"
-                                           data-fgColor="<%=color%>" >
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="demo-google-material-icon">
-                                        <i class="material-icons">local_library</i>
-                                        <samp class="icon-name">Alumnos Inscritos</samp>
-                                         <h2>${dash.inscritos}</h2>
+                    
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="card">
+                            <div class="header">
+                                <h2>${dash.nombre}</h2>
+                                <p>Fecha programada: ${dash.fecha} al ${dash.fechaTermino}</p>
+                            </div>
+                            <div class="body">
+                                <div class="row clearfix">
+                                    <div class="col-md-6">
+                                        <input class="knob" value="${dash.progreso}" data-width="100" data-height="100" data-thickness="0.20" data-fgcolor="<%=color%>" data-skin="tron" readonly="readonly" style="width: 74px; height: 46px; position: absolute; vertical-align: middle; margin-top: 46px; margin-left: -107px; border: 0px none; font: normal normal bold normal 28px Arial; text-align: center; padding: 0px;" type="text">
                                     </div>
-                                   
+                                    <div class="col-md-6">
+                                        <div class="demo-google-material-icon">
+                                            <i class="material-icons">local_library</i>
+                                            <samp class="icon-name">Alumnos Inscritos</samp>
+                                             <h2>${dash.inscritos}</h2>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
-                                
                         </div>
                     </div>
+                                    
                     </c:forEach>
-                    
-                                
-                </div>
-                <div>${msj.mensaje}</div>
+                    <div>${msj.mensaje}</div>
             </div>
-                               
             
-            
-           
-           
             <!-- #END# Tron Style -->
         </div>
     </section>

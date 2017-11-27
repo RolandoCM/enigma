@@ -31,7 +31,7 @@ public class EventosDashboardDAO implements IEventosDashboardDAO{
         String sql = "select  e.idevento, c.cNombre, e.eFechaInicio, e.eFechaTermino, count(*)\n" +
                     "from alumno a, alumno_has_eventos ae, cursos c, eventos e\n" +
                     "where ae.e_idevento = e.idevento and a.idalumno=ae.a_idalumno and e.cursos_idcursos = c.idcursos and ae.activo=1\n" +
-                    "group by e.idevento, c.cNombre, e.eFechaTermino, e.eFechaTermino;";
+                    "group by e.idevento, c.cNombre, e.eFechaInicio, e.eFechaTermino;";
         
         try
         {
