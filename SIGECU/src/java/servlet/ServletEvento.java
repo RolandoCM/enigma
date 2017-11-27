@@ -94,9 +94,9 @@ public class ServletEvento extends HttpServlet{
         try {
             List<Evento> listaEventos = evento.listarEventoConfirmado();
             request.setAttribute("listaEvento", listaEventos); 
-            msjDTO.setId("000");
+            /*msjDTO.setId("000");
             msjDTO.setMensaje("Ejecuxion OK");
-            request.setAttribute("msj", msjDTO);
+            request.setAttribute("msj", msjDTO);*/
         } catch (BusinessException ex) {
             msjDTO.setId(ex.getIdException());
             msjDTO.setMensaje(ex.getMensaje());

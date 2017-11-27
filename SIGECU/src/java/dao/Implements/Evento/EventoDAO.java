@@ -75,12 +75,13 @@ public class EventoDAO implements IEventoDAO {
     @Override
     public List<Evento> listarEventoCondirmado() throws BusinessException{
         List<Evento> eventosConfirmados= new ArrayList<>();
-        String sql="select e.idevento, c.cNombre, t.idtempletes ,cd.cNombre, p.pNombre, e.eFechaInicio, e.eFechaTermino, e.eEstatus\n" +
+        String sql="select e.idevento, c.cNombre, t.idtempletes ,cd.cNombre, p.pNombre, e.eFechaInicio, e.eFechaTermino, e.eEstatus, e.eTipo\n" +
                     "from eventos e, cursos c, instructor i, lugar l, ciudad cd, pais p, templetes t\n" +
                     "where e.cursos_idcursos = c.idcursos\n" +
                     "AND e.i_idinstructor = i.idinstructor\n" +
                     "AND e.lugar_idlugar = l.idlugar AND l.c_idCiudad = cd.idCiudad AND cd.p_idPais = p.idPais\n" +
-                    "AND e.t_idtempletes = t.idtempletes;"; //e.fechaTermino>sysdate()
+                    "AND e.t_idtempletes = t.idtempletes\n" +
+                    "ORDER BY e.eEstatus DESC;";//e.fechaTermino>sysdate()
                // + "AND e.estatus IS NOT NULL;";
         try
         {
@@ -92,18 +93,30 @@ public class EventoDAO implements IEventoDAO {
                 Evento evento = new Evento();
                 evento.setId(result.getString(1));
                 evento.setNombre(result.getString(2));
-                evento.setNombreCiudad(result.getString(3));
-                evento.setNombrePais(result.getString(4));                 
+                evento.setTemplete(result.getString(3));
+                evento.setNombreCiudad(result.getString(4));
+                evento.setNombrePais(result.getString(5));               
                 try
                 {
-                    String fecha = Convierte.fechaString(result.getDate(5));
-                    evento.setFecha(fecha);
+                    String fechaI = Convierte.fechaString(result.getDate(6));
+                    evento.setFecha(fechaI);
                 }
                 catch(SQLException e)
                 {
                     evento.setFecha("0000-00-00");
                 }
-                evento.setStatus(result.getString(6));
+                
+                try
+                {
+                    String fechaT = Convierte.fechaString(result.getDate(7));
+                    evento.setFechaTermino(fechaT);
+                }
+                catch(SQLException e)
+                {
+                    evento.setFecha("0000-00-00");
+                }
+                evento.setStatus(result.getString(8));
+                
                 eventosConfirmados.add(evento);
             }
             connection.close();
@@ -235,7 +248,7 @@ public class EventoDAO implements IEventoDAO {
     @Override
     public String cancelarEventoConfirmado(int idEvento) throws BusinessException {
         String eventocan="";
-        String sql="UPDATE eventos SET estatus='off' WHERE idevento=?";
+        String sql="UPDATE eventos SET eEstatus='off' WHERE idevento=?";
         try {
             Connection con = database.getConnection();
             PreparedStatement ps;
