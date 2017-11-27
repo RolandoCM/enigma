@@ -50,8 +50,8 @@ public class PagoDAO implements IPagoDAO{
            while(result.next()){
                Alumno a=new Alumno();
                Curso c=new Curso();
-               a.setNombre(result.getString(1));
-               c.setNombre(result.getString(2));               
+               a.setNombreal(result.getString(1));
+               c.setNombrecur(result.getString(2));               
            }mostrar.add(pago);
                    
        }catch (Exception e){

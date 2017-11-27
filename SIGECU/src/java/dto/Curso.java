@@ -11,10 +11,10 @@ import extras.Convierte;
  *
  * @author David
  */
-public class Curso {
+public class Curso  extends Alumno{
     String mensaje;
     Integer idcurso;
-    String nombre;	        
+    String nombrecur;	        
     String horario;
     String fechaInicio;
     String fechaFin;
@@ -36,13 +36,15 @@ public class Curso {
         this.idcurso = idcurso;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombrecur() {
+        return nombrecur;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombrecur(String nombrecur) {
+        this.nombrecur = nombrecur;
     }
+
+   
 
     public String getHorario() {
         return horario;

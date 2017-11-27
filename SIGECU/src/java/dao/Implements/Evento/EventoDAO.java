@@ -289,7 +289,7 @@ public class EventoDAO implements IEventoDAO {
     } //fin del metodo detallesEvento
 
     
-    /*Metodo para generar los datos necesarios de rellono automatico en crear evento*/
+    /*Metodo para generar los datos necesarios de relleno automatico en crear evento*/
     @Override
     public List<List<IdentificadoresEvento>> consultaDatosCrearEvento() throws BusinessException {
         List<List<IdentificadoresEvento>> datosParaEvento =  new ArrayList<>();
