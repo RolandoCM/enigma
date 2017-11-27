@@ -20,6 +20,17 @@ public class Curso {
     String fechaFin;
     String tipo;
     String i_idinstructor;
+    String nombreInstructor;
+
+    public String getNombreInstructor() {
+        return nombreInstructor;
+    }
+
+    public void setNombreInstructor(String nombreInstructor) {
+        this.nombreInstructor = nombreInstructor;
+    }
+    
+    
     public String getMensaje() {
         return mensaje;
     }

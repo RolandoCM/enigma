@@ -5,6 +5,7 @@
  */
 package dao.Implements.PreInscripcion;
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import dao.Interface.IPreInscripciones.IPreInscripcionDAO;
 import dto.PreInscripcionEvento;
 import exception.BusinessException;
@@ -49,16 +50,18 @@ public class PreInscripcionDAO implements IPreInscripcionDAO {
             ps.setString(2, preInscripcion.getIdEvento());
             ps.setString(3,preInscripcion.getConfirmadoPago());
             ps.setString(4, preInscripcion.getActivoInscrito());
-				
-            int exec = ps.executeUpdate();
-		
-            if (exec == 0) {
-		throw new SQLException();
-            }
-            else
+            
+            int exec=0;
+            try
             {
-                correcto = true;
+               exec = ps.executeUpdate();
+               correcto = true;
+            }catch(Exception e)
+            {
+                correcto=false;
             }
+            
+            
             ps.close();
             
         }catch (Exception e)
@@ -77,7 +80,6 @@ public class PreInscripcionDAO implements IPreInscripcionDAO {
         String sql = "Select a.idalumno, a.aNombre, a.aPaterno, a.aMaterno, a.aEmail, a.aTelefono\n" +
                         "from alumno a, users u\n" +
                         "where a.u_idusers=u.idusers AND u.username=?";
-        PreInscripcionEvento preInscripcionReturn = preInscripcion;
         
         try
         {

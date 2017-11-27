@@ -16,13 +16,17 @@ import java.util.List;
  * @author Anayeli Ramírez
  */
 public interface IPagoDAO {
-    public void registrarPago(Pago pago);
-    public List<Pago> historialPagosR();
-    public List<Pago> mostrarDatos();
-    public void tarjetaCredito(Tarjeta Tarjeta);
-    public void cheque(Cheque cheque);
+    public void registrarPago(Pago pago)throws BusinessException;
+    public List<Pago> historialPagos(int idAlumno)throws BusinessException;
     public Pago tipoPago(Pago pago) throws BusinessException;
     public Pago buscarIdHistorialPago(Pago pago) throws BusinessException;
     public Pago buscarIdUsuario(Pago pago) throws BusinessException;
+    
+    
+    
+    public List<Pago> mostrarDatos() throws BusinessException;
+    public void tarjetaCredito(Tarjeta Tarjeta) throws BusinessException;
+    public void cheque(Cheque cheque) throws BusinessException;
+    
     
 }

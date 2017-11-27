@@ -67,13 +67,22 @@ public class PagoService implements IPagoService{
     }
     
     
-    public List<Pago> historialPagos() throws  BusinessException{
+    @Override
+    public List<Pago> historialPagos( String alumno) throws  BusinessException{
         try{
             IPagoDAO pagoDAO=new PagoDAO();
-            List<Pago> historialDePagos=new ArrayList<>();
-            historialDePagos=pagoDAO.historialPagosR();
+            List<Pago> historialDePagos;
+            Pago pagoAlumno =new Pago();
+            pagoAlumno.setQuienPago(alumno);
+            Pago pagosAlumno = pagoDAO.buscarIdUsuario(pagoAlumno);
+            
+            historialDePagos=pagoDAO.historialPagos(pagosAlumno.getIdUsuario());
+            
             return historialDePagos;
-        } 
+        }catch(BusinessException e)
+        {
+            throw e;
+        }
         catch (Exception ex)
         {
             ex.printStackTrace();

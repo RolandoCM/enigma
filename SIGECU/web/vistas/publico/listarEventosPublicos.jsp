@@ -39,7 +39,7 @@
             <div class="block-header">
                 <h2>Eventos publicos</h2>
                 <a href="vistas/comercial/Eventos?accion=LEC">Comercial</a>
-                <a href="vistas/alumno/index.jsp">alumno</a>
+                <a href="vistas/alumno/listadoPagos.jsp">alumno</a>
             </div>
                           
 

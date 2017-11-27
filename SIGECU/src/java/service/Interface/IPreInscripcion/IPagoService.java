@@ -6,6 +6,7 @@
 package service.Interface.IPreInscripcion;
 
 import dto.Pago;
+import exception.BusinessException;
 import java.util.List;
 
 /**
@@ -13,8 +14,7 @@ import java.util.List;
  * @author Anayeli Ramírez
  */
 public interface IPagoService {
-    public void registrarPago(Pago pago);
-    public List<Pago> listarPagoPendienteE();
-    public String getMensaje();
+    public void registrarPago(Pago pago) throws BusinessException;
+    public List<Pago> listarPagoPendienteE() throws BusinessException;
     
 }

@@ -106,45 +106,24 @@
                         </a>
                     </li>
                     <li>
-                         <a href="Eventos?accion=CE">
+                         <a href="ServletCursosInscritoAlumno?alumno=${pageContext.request.userPrincipal.name}">
                             <i class="material-icons">note_add</i>
-                            <span>Crear Evento</span>
+                            <span>Mis Cursos</span>
                         </a>
                     </li>
                      <li>
-                         <a href="Eventos?accion=LEC">
+                         <a href="ServletListaPagos?alumno=${pageContext.request.userPrincipal.name}">
                             <i class="material-icons">view_list</i>
-                            <span>Lista de Eventos</span>
+                            <span>Historial de Pagos</span>
                         </a>
                     </li>
                     <li>
-                        <a href="Eventos?accion=LEP">
+                        <a href="ServletPagosPendientes">
                             <i class="material-icons">view_list</i>
-                            <span>Lista de Eventos Publicos</span>
+                            <span>Pagos Pendientes</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="preInscripcion?accion=LE">
-                            <i class="material-icons">dashboard</i>
-                            <span>Preinscripcion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dashInscripcion?accion=RG">
-                            <i class="material-icons">equalizer</i>
-                            <span>Graficas de cusros</span>
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a href="Pago?accion=QRY">
-                            <i class="material-icons">payment</i>
-                            <span>Pago de curso</span>
-                        </a>
-                    </li>
-                    
-                   
-                   
+
                 </ul>
             </div>
            

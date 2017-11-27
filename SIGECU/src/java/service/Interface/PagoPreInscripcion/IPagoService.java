@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface IPagoService {
     public void registrarPago(Pago pago) throws BusinessException;
-    public List<Pago> historialPagos() throws BusinessException;
+    public List<Pago> historialPagos(String alumno) throws BusinessException;
      public List<Pago> mostrarDatos()throws  BusinessException;
      public void tarjetaCredito(Tarjeta tarjeta) throws BusinessException;
       public void cheque(Cheque cheque) throws BusinessException;

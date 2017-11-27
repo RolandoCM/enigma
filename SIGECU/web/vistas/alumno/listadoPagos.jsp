@@ -43,6 +43,7 @@
 
     <body class="theme-red">
        <jsp:include page="menu1.jsp" flush="true" /> 
+       
         <section class="content">
             <div class="container-fluid">
 
@@ -57,6 +58,7 @@
                                
                             </div>
                             <div class="body">
+                                
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                         <thead>
@@ -82,56 +84,26 @@
                                             </tr>
                                         </tfoot>
                                         <tbody>
-
-                                            
-                                     
+                                            <c:forEach var="pago" items="${misPagos}">
                                                 <tr>
-                                                <td>${evento.nombreEvento}</td>
-                                                <td>${pago.fechaPago}</td>
-                                                <td>${pago.tipoPago}</td>
+                                                <td>${pago.quePago}</td>
+                                                <td>${pago.precio}</td>
                                                 <td>${pago.monto}</td>
-                                                <td>${pago.formaPago}</td>
-                                                <td>
-                                                    <a href="Pagos?accion=AE&idPago=${pago.idPago}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Pagar Evento</button>></a>
-                                                </td>
-                                            </tr>
+                                                <td>${pago.fechaPago}</td>
+                                                </tr>
+                                            </c:forEach>
+                                     
+                                                
                                             
 
                                         </tbody>
                                     </table>
                                 </div>
+                                <h2>${msj.mensaje}</h2>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-            
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary waves-effect">GUARDAR</button>
-                                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CERRAR</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                                
-                                
- <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="smallModalLabel">SEGURO QUE DESEA CANCELAR EL EVENTO?</h4>
-                        </div>
-                        <div class="modal-body">
-                         
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link waves-effect">SI</button>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </section>
 

@@ -71,13 +71,13 @@ public class PagoDAO implements IPagoDAO{
          Connection conection= database.getConnection();
          PreparedStatement ps=conection.prepareStatement(pagosSQL);
        
-         ps.setString(1, pago.getIdTipoPago());
-         ps.setInt(2, pago.getStatus());
-         ps.setDouble(3, pago.getMonto());
-         ps.setString(4, pago.getFechaPago());
-         ps.setString(5, pago.getIdHistorial());
+         ps.setInt(1, pago.getIdTipoPago());
+         ps.setDouble(2, pago.getMonto());
+         ps.setString(3, pago.getFechaPago());
+         ps.setInt(4, pago.getStatus());
+         ps.setInt(5, pago.getIdHistorial());
          
-         int exec =ps.executeUpdate();
+         ps.executeUpdate();
          ps.close();
          conection.close();    
      } catch (Exception e){
@@ -91,28 +91,27 @@ public class PagoDAO implements IPagoDAO{
         
     }
 
-   
+   /*Metodo para mostrar todos los pagos que a realizado un alumno*/
     @Override
-    public List<Pago> historialPagosR() {
+    public List<Pago> historialPagos(int idAlumno) throws BusinessException{
         List<Pago> historial=new ArrayList<>();
-        String sql="select p.idpagos, e.nombre, p.fechaPago, p.tipo, p.monto, p.formaPago\n" +
-        "FROM db_sigecu.eventos as e inner join  db_sigecu.eventos_has_pagos as ep on ep.e_idevento=e.idevento\n" +
-        "inner join db_sigecu.pagos as p on p.idpagos=ep.p_idpagos;";
+        String sql="SELECT c.cNombre, pre.precio, p.pCantidad,p.pFecha\n" +
+                    "FROM eventos e, cursos c, pagos p, historialPagos hp, alumno_has_eventos ae, precios pre,\n" +
+                    "	eventos_precios_destinatarios epd, alumno a\n" +
+                    "WHERE e.cursos_idcursos=c.idcursos AND pre.idprecios=epd.p_idprecios AND epd.e_idevento=e.idevento\n" +
+                    "	AND ae.e_idevento=e.idevento AND ae.a_idalumno=?;";
         try{
           Connection connection=database.getConnection();
           PreparedStatement ps=connection.prepareStatement(sql);
+          ps.setInt(1, idAlumno);
           ResultSet result=ps.executeQuery();
           while(result.next()){
               Pago pago=new Pago();
               Evento evento=new Evento();
               
-              pago.setIdPago(result.getInt(1));
-              evento.setNombre(result.getString(2));
-              //pago.setFechaPago(result.getString(3));
-              pago.setTipo(result.getString(4));
-              pago.setMonto(result.getInt(5));
-              pago.setFormaPago(result.getString(6));
-              
+              pago.setQuePago(result.getString(1));
+              pago.setPrecio(result.getDouble(2));
+              pago.setMonto(result.getDouble(3));   
               try{
                   String fecha= Convierte.fechaString(result.getDate(3));
                   pago.setFechaPago(fecha);
@@ -132,10 +131,9 @@ public class PagoDAO implements IPagoDAO{
             be.printStackTrace();
             be.setMensaje("Error al conectar la base de datos");
             be.setIdException("1");
-        
-        
+            throw be;
         }
-            return historial;
+            
     }
     @Override
     public void tarjetaCredito(Tarjeta tarjeta){
@@ -191,7 +189,7 @@ public class PagoDAO implements IPagoDAO{
     * para hecer el registro de pago*/
     @Override
     public Pago tipoPago(Pago pago) throws BusinessException{
-        String tipo ="select tp.idtipoPago\n" +
+        String tipo ="select distinct tp.idtipoPago\n" +
             "FROM tipoPago tp, pagos p\n" +
             "WHERE p.tP_idtipoPago=tp.idtipoPago AND tp.tpNombre=?;";
         try
@@ -203,8 +201,10 @@ public class PagoDAO implements IPagoDAO{
             
             while(rs.next())
             {
-                pago.setIdTipoPago(rs.getString(1));
+                pago.setIdTipoPago(rs.getInt(1));
             }
+            ps.close();
+            cn.close();
             return pago;
         }catch(Exception e)
         {
@@ -220,20 +220,21 @@ public class PagoDAO implements IPagoDAO{
     @Override
     public Pago buscarIdHistorialPago(Pago pago) throws BusinessException {
         String tipo ="select idhistorialPagos\n" +
-            "FROM historialPagos" +
-            "WHERE ahe_a_idalumno=? AND ahe_e_idevento=?;";
+                        "from historialPagos\n" +
+                        "where ahe_a_idalumno=? AND ahe_e_idevento=?;";
         try
         {
             Connection cn = database.getConnection();
             PreparedStatement ps = cn.prepareStatement(tipo);
-            ps.setString(1, pago.getIdUsuario());
-            ps.setString(2, pago.getIdEvento());
+            ps.setInt(1, pago.getIdUsuario());
+            ps.setInt(2, pago.getIdEvento());
             ResultSet rs = ps.executeQuery();
-            
             while(rs.next())
             {
-                pago.setIdHistorial(rs.getString(1));
+                pago.setIdHistorial(rs.getInt(1));
             }
+            ps.close();
+            cn.close();
             return pago;
         }catch(Exception e)
         {
@@ -259,9 +260,11 @@ public class PagoDAO implements IPagoDAO{
             ResultSet rs = ps.executeQuery();
             while(rs.next())
             {
-                pago.setIdUsuario(rs.getString(1));
+                pago.setIdUsuario(rs.getInt(1));
                 pago.setNombreAlumno(rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4));
             }
+            ps.close();
+            cn.close();
             return pago;
         }catch (Exception e)
         {

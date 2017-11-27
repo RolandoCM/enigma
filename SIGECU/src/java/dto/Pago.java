@@ -19,11 +19,21 @@ public class Pago {
     private String fechaPago;
     private String quienPago;
     private String quePago;
-    private String idEvento;
-    private String idUsuario;
-    private String idTipoPago;
-    private String idHistorial;
+    private int idEvento;
+    private int idUsuario;
+    private int idTipoPago;
+    private int idHistorial;
     private String nombreAlumno;
+    private double precio;
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+    
 
     public String getNombreAlumno() {
         return nombreAlumno;
@@ -34,37 +44,37 @@ public class Pago {
     }
     
 
-    public String getIdHistorial() {
+    public int getIdHistorial() {
         return idHistorial;
     }
 
-    public void setIdHistorial(String idHistorial) {
+    public void setIdHistorial(int idHistorial) {
         this.idHistorial = idHistorial;
     }
     
 
-    public String getIdTipoPago() {
+    public int getIdTipoPago() {
         return idTipoPago;
     }
 
-    public void setIdTipoPago(String idTipoPago) {
+    public void setIdTipoPago(int idTipoPago) {
         this.idTipoPago = idTipoPago;
     }
     
 
-    public String getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
-    public String getIdEvento() {
+    public int getIdEvento() {
         return idEvento;
     }
 
-    public void setIdEvento(String idEvento) {
+    public void setIdEvento(int idEvento) {
         this.idEvento = idEvento;
     }
 
-    public void setIdUsuario(String idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
     

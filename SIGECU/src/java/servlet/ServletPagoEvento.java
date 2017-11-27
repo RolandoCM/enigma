@@ -64,12 +64,12 @@ public class ServletPagoEvento extends HttpServlet {
 //                    pagoTarjeta.setCodigo(Convierte.aInteger(request.getParameter("codigoSeguridad")));
 
                     pagoTarjeta.setMonto(Convierte.aDouble(request.getParameter("montoEvento")));
-                    pagoTarjeta.setTipo(request.getParameter(formaPago));
+                    pagoTarjeta.setTipo(formaPago);
                     pagoTarjeta.setFechaPago(request.getParameter("fechaPago"));
                     pagoTarjeta.setQuienPago(request.getParameter("nombreUsuario"));
-                    pagoTarjeta.setIdEvento(request.getParameter("idEvento"));
+                    pagoTarjeta.setIdEvento(Convierte.aInteger(request.getParameter("idEvento")));
                     pagoTarjeta.setQuePago(request.getParameter("nombreEvento"));
-                    pagoPreInscripcion.tarjetaCredito(pagoTarjeta);
+                    pagoPreInscripcion.registrarPago(pagoTarjeta);
                     
                 }
                 

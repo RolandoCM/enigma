@@ -29,9 +29,10 @@ public class PreInscripcionService implements IPreInscripcionService {
             IPreInscripcionDAO preIns = new PreInscripcionDAO();
             PreInscripcionEvento datosCompletos =preIns.datosPreInscripcion(preinscripcion); 
             boolean preInscripcionConfirmada = preIns.nuevaPreInscripcion(datosCompletos);
-            preIns.generarHistorialDePagos(datosCompletos);
+            
             if(preInscripcionConfirmada)
             {
+                preIns.generarHistorialDePagos(datosCompletos);
                 String registro="Id Evento\tNombre Evento\tNombre pre-inscrito\n";
                         registro+=datosCompletos.getIdEvento()+"\t"+datosCompletos.getNombreEvento()+"\t"+
                         datosCompletos.getNombreAlumno();
@@ -44,6 +45,9 @@ public class PreInscripcionService implements IPreInscripcionService {
                     be.setMensaje("Error en la capa de negocio, no se envio el correo");
                     throw be;
                 }
+            }
+            else{
+                preInscripcionConfirmada=true;
             }
             return preInscripcionConfirmada;
         }catch (BusinessException e)
