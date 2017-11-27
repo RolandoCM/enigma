@@ -79,14 +79,14 @@
                             </div>
                             <div class="body">
                                 <div class="row clearfix">
-                                    <div class="col-md-6">
+                                    <div class="col-xs-6">
                                         <input class="knob" value="${dash.progreso}" data-width="100" data-height="100" data-thickness="0.20" data-fgcolor="<%=color%>" data-skin="tron" readonly="readonly" style="width: 74px; height: 46px; position: absolute; vertical-align: middle; margin-top: 46px; margin-left: -107px; border: 0px none; font: normal normal bold normal 28px Arial; text-align: center; padding: 0px;" type="text">
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-xs-6">
                                         <div class="demo-google-material-icon">
                                             <i class="material-icons">local_library</i>
-                                            <samp class="icon-name">Alumnos Inscritos</samp>
-                                             <h2>${dash.inscritos}</h2>
+                                            <span class="icon-name">Alumnos Inscritos</span>
+                                            <h2>${dash.inscritos}</h2>
                                         </div>
 
                                     </div>
