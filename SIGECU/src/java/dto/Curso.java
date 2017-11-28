@@ -21,6 +21,36 @@ public class Curso {
     String tipo;
     String i_idinstructor;
     String nombreInstructor;
+    private String descripcion;
+    private String especialidad;
+    private int idEspecialidad;
+
+    public int getIdEspecialidad() {
+        return idEspecialidad;
+    }
+
+    public void setIdEspecialidad(int idEspecialidad) {
+        this.idEspecialidad = idEspecialidad;
+    }
+    
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+    
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
 
     public String getNombreInstructor() {
         return nombreInstructor;

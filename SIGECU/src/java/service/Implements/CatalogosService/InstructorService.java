@@ -4,18 +4,13 @@
  * and open the template in the editor.
  */
 
-import service.Implements.Evento.*;
-import dao.Implements.Evento.EventoDAO;
-import dao.Interface.Evento.IEventoDAO;
-import dto.Evento;
-import dto.IdentificadoresEvento;
-import dto.Curso;
+package service.Implements.CatalogosService;
+import dao.Implements.CatalogosDAO.InstructorDAO;
+import dao.Interface.ICatalogos.IInstructorDAO;
 import dto.Instructor;
 import exception.BusinessException;
-import java.util.ArrayList;
 import java.util.List;
-import service.Interface.Evento.IEventoService;
-import service.Interface.Instructor.IInstructorService;
+import service.Interface.ICatalogosService.IInstructorService;
 
 /**
  *
@@ -30,24 +25,21 @@ public class InstructorService implements IInstructorService{
 
     @Override
     public List<Instructor> listarInstructor() throws BusinessException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try
+        {
+            IInstructorDAO instructorDAO = new InstructorDAO();
+            List<Instructor> instructor = instructorDAO.listarInstructor();
+            return instructor;
+        }catch(BusinessException e){
+            throw e;
+        }
+        catch(Exception e){
+            BusinessException be = new BusinessException();
+            be.setIdException("2001");
+            be.setMensaje("Error en la capa de negocio");
+            throw be;
+        }
     }
-
-    @Override
-    public Curso buscarInstructor(int idinstructor) throws BusinessException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String eliminarInstructor(int idinstructor) throws BusinessException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getMensaje() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
     
 }

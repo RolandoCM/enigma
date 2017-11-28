@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <servlet-mapping>
-        <servlet-name>ServletCrearInstructor</servlet-name>
-        <url-pattern>/ServletCrearInstructor</url-pattern>
-    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
         <welcome-file>/publico/*</welcome-file>
+        <welcome-file>indexPrueba.jsp</welcome-file>
     </welcome-file-list>
     <security-constraint>
         <display-name>ACCESO SOLO A COMERCIAL</display-name>
@@ -56,18 +53,6 @@
             <form-error-page>/login.jsp</form-error-page>
         </form-login-config>
     </login-config>
-    <servlet>
-        <servlet-name>ServletPerfil</servlet-name>
-        <servlet-class>servlet.ServletPerfil</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ServletCrearInstructor</servlet-name>
-        <servlet-class>servlet.ServletCrearInstructor</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletPerfil</servlet-name>
-        <url-pattern>/ServletPerfil</url-pattern>
-    </servlet-mapping>
     <resource-ref>
         <description>MySQL DataSource</description>
         <res-ref-name>jdbc/SIGECU</res-ref-name>

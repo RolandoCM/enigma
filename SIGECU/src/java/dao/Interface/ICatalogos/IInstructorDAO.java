@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao.Interface.Instructor;
+package dao.Interface.ICatalogos;
 
 import dto.Curso;
 import dto.Instructor;
@@ -17,7 +17,4 @@ import java.util.List;
 public interface IInstructorDAO {
     public void crearInstructor(Instructor instructor) throws BusinessException;
     public List<Instructor> listarInstructor() throws BusinessException; 
-    public void actualizarInstructor(Instructor instructor) throws BusinessException;
-    public Instructor buscarInstructorDAO(int iInstructor) throws BusinessException;
-    public String cancelarInstructor(int idInstructor) throws BusinessException; 
 }

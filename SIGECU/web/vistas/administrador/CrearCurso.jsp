@@ -71,62 +71,34 @@
                                 </ul>
                             </div>
                             <div class="body">
-                                <form id="form_advanced_validation" action="Eventos" method="POST">
+                                <form id="form_advanced_validation" action="ServletCursoCatalogo" method="POST">
                                     <input type="hidden" name="accion" value="CC">
                                     <div class="row clearfix">
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="inombre"  minlength="3" required>
+                                                    <input type="text" class="form-control" name="nombre"  minlength="3" required>
                                                     <label class="form-label"> Nombre</label>
                                                 </div>
                                                 <div class="help-info">Solo texto</div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input name="horario" type="time" id="date" class="form-control" placeholder="Elige el horario del curso">
-                                                    <div class="help-info">Horario del curso en el formato de HH-MM</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input name="fechaInicio" type="text" id="date" class="form-control"  maxlength="10" placeholder="Elige la fecha Inicio">
-                                                    <div class="help-info">Fecha de Inicio en el formato de AAAA-MM-DD</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input name="fechaFin" type="text" id="date" class="form-control" placeholder="Elige la fecha Fin">
-                                                    <div class="help-info">Fecha De Fin en el formato de AAAA-MM-DD</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="Texto" class="form-control" name="tipo" required>
-                                                    <label class="form-label">tipo</label>
+                                                    <input type="text" class="form-control" name="descripcion"  minlength="3" required>
+                                                    <label class="form-label"> Descripcion</label>
                                                 </div>
-                                                <div class="help-info">tipo</div>
+                                                <div class="help-info">Solo texto</div>
                                             </div>
                                         </div>
+                                     
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line ">
-                                                    <select class=" form-control show-tick" name="instructorCurso"  required>
-                                                        <option value="">Ninguno</option>
-                                                        <c:forEach var="ins" items="${datosParaCurso.get(0)}">
-                                                            <option  value="${ins.id}">${ins.nombre}</option>
+                                                    <select class=" form-control show-tick" name="idEspecialidad"  required>
+                                                        <c:forEach var="ins" items="${especialidad}">
+                                                            <option  value="${ins.idEspecialidad}">${ins.nombreEspecialidad}</option>
                                                         </c:forEach>
                                                     </select>
                                                 </div>

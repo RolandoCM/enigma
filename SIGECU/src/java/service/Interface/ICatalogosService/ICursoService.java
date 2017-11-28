@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service.Interface.Curso;
+package service.Interface.ICatalogosService;
 
 import dto.Curso;
+import dto.Especialidad;
 import dto.Instructor;
 import exception.BusinessException;
 import java.util.List;
@@ -16,13 +17,6 @@ import java.util.List;
  */
 public interface ICursoService {
     public void crearCurso(Curso curso) throws BusinessException;
-    public List<Curso> listarEventoConfirmado() throws BusinessException; 
-    public Curso buscarCurso(int idCurso) throws BusinessException;
-    public String eliminarCurso(int idcurso) throws BusinessException ; 
-    public Curso detallesCurso(int idCurso) throws BusinessException;
     public List<Curso> listarCursos() throws BusinessException;
-    public String getMensaje();
-
-    public void crearInstructor(Instructor ins);
-    
+    public List<Especialidad> buscarEspecialidad() throws BusinessException;
 }

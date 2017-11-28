@@ -52,7 +52,7 @@
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    EXPORTABLE TABLE
+                                    LISTA DE INSTRUCTORES
                                 </h2>
                                 <ul class="header-dropdown m-r--5">
                                     <li class="dropdown">
@@ -68,7 +68,6 @@
                                 </ul>
                             </div>
                             <div class="body">
-                                <div>${intructor}</div>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                         <thead>
@@ -81,6 +80,8 @@
                                                 <th>Email</th>
                                                 <th>Telefono</th>
                                                 <th>Dirección</th>
+                                                <th>Modificar</th>
+                                                <th>Baja</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
@@ -93,6 +94,8 @@
                                                 <th>Email</th>
                                                 <th>Telefono</th>
                                                 <th>Dirección</th>
+                                                 <th>Modificar</th>
+                                                <th>Baja</th>
 
                                             </tr>
                                         </tfoot>
@@ -109,10 +112,10 @@
                                                     <td>${data.iTelefono}</td>
                                                     <td>${data.iDireccion}</td>
                                                     <td>
-                                                        <a href="Eventos?accion=BE&idEvento=${data.id}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>
+                                                        <a href="Eventos?accion=BE&idEvento=${data.idinstructor}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>
                                                     </td><td>
                                                         <div class="button-demo js-modal-buttons">
-                                                            <button type="button" data-color="red" class="btn bg-red waves-effect" >Eliminar Instructor</button></a>
+                                                            <button type="button" data-color="red" class="btn bg-red waves-effect" >Dar de Baja</button></a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -130,7 +133,7 @@
 
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <a href="Eventos?accion=CAE&idEvento=${data.id}"<button type="button" class="btn btn-link waves-effect">SI</button></a>
+                                                            <a href="Eventos?accion=CAE&idEvento=${data.idinstructor}"<button type="button" class="btn btn-link waves-effect">SI</button></a>
                                                             <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
                                                         </div>
 
@@ -240,7 +243,7 @@
                                         </div>    
                                     </form>
                                     <div>
-                                        ${mensaje.mensaje}</div>
+                                        ${msj.mensaje}</div>
                                 </div>
                             </div>
                             <div class="modal-footer">

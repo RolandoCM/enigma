@@ -58,7 +58,7 @@
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    EXPORTABLE TABLE
+                                    LISTA DE CURSOS
                                 </h2>
                                 <ul class="header-dropdown m-r--5">
                                     <li class="dropdown">
@@ -74,62 +74,35 @@
                                 </ul>
                             </div>
                             <div class="body">
-                                <div>${curso}</div>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                         <thead>
                                             <tr>
+                                                <th>Modificar</th>
                                                 <th>Nombre</th>
-                                                <th>Horario</th>
-                                                <th>Fecha Inicio</th>
-                                                <th>Fecha Fin</th>
-                                                <th>Tipo</th>
-                                                <th>Instructor</th>
+                                                <th>Descripción</th>
+                                                <th>Especialidad</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
+                                                <th>Modificar</th>
                                                 <th>Nombre</th>
-                                                <th>Horario</th>
-                                                <th>Fecha Inicio</th>
-                                                <th>Fecha Fin</th>
-                                                <th>Tipo</th>
-                                                <th>Instructor</th>
+                                                <th>Descripción</th>
+                                                <th>Especialidad</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
-                                            <tr>
-                                                <td> Java Avanzado </td>
-                                                <td>9:00am - 6:00pm</td>
-                                                <td>12/10/2017</td>
-                                                <td>30/11/2017</td>
-                                                <td>Publico</td>
-                                                <td>Rolando</td>
-                                            </tr>
-                                              <tr>
-                                                <td>Informatica </td>
-                                                <td>9:00am - 6:00pm</td>
-                                                <td>10/10/2018</td>
-                                                <td>30/11/2018</td>
-                                                <td>Privado</td>
-                                                <td>Jorge Luis</td>
-                                            </tr>
+                                           
 
                                             <c:forEach var="data" items="${listaCurso}">
                                                 <tr>
-                                                    <td>${data.nombre}</td>
-                                                    <td>${data.horario}</td>
-                                                    <td>${data.fechaInicio}</td>
-                                                    <td>${data.fechaFin}</td>
-                                                    <td>${data.tipo}</td>
-                                                    <td>${data.instructor}</td>
                                                     <td>
-                                                        <a href="Eventos?accion=BE&idEvento=${data.id}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>
-                                                    </td><td>
-                                                        <div class="button-demo js-modal-buttons">
-                                                            <button type="button" data-color="red" class="btn bg-red waves-effect" >Eliminar Instructor</button></a>
-                                                        </div>
+                                                        <a href="${data.idcurso}"<button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="">Modificar</button>
                                                     </td>
+                                                    <td>${data.nombre}</td>
+                                                    <td>${data.descripcion}</td>
+                                                    <td>${data.especialidad}</td>    
                                                 </tr>
 
 
@@ -145,7 +118,7 @@
 
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <a href="Eventos?accion=CAE&idEvento=${data.id}"<button type="button" class="btn btn-link waves-effect">SI</button></a>
+                                                            <a href="Eventos?accion=CAE&idEvento=${data.idcurso}"<button type="button" class="btn btn-link waves-effect">SI</button></a>
                                                             <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
                                                         </div>
 
@@ -161,92 +134,6 @@
                         </div>
                     </div>
                 </div>
-
-
-                <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg-blue">
-                                <h4 class="modal-title  " id="largeModalLabel">Modificar Curso</h4>
-                            </div>
-                            <div class="modal-body">
-
-                                <div class="body">
-                                    <br><br>
-                                    <form id="form_advanced_validation" action="Eventos" method="post">
-                                        <input type="hidden" name="accion" value="MC">
-                                        <div class="row clearfix">
-                                            <div class="col-md-6">
-                                                <div class="form-group form-float">
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" name="inombre"  minlength="3" required>
-                                                        <label class="form-label"> Nombre</label>
-                                                    </div>
-                                                    <div class="help-info">Solo texto</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <input name="horario" type="time" id="date" class="form-control" placeholder="Elige el horario del curso">
-                                                        <div class="help-info">Horario del curso en el formato de HH-MM</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row clearfix">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <input name="fechaInicio" type="text" id="date" class="form-control"  maxlength="10" placeholder="Elige la fecha Inicio">
-                                                        <div class="help-info">Fecha de Inicio en el formato de AAAA-MM-DD</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <input name="fechaFin" type="text" id="date" class="form-control" placeholder="Elige la fecha Fin">
-                                                        <div class="help-info">Fecha De Fin en el formato de AAAA-MM-DD</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row clearfix">
-                                            <div class="col-md-6">
-                                                <div class="form-group form-float">
-                                                    <div class="form-line">
-                                                        <input type="Texto" class="form-control" name="tipo" required>
-                                                        <label class="form-label">tipo</label>
-                                                    </div>
-                                                    <div class="help-info">tipo</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group form-float">
-                                                    <div class="form-line ">
-                                                        <select class=" form-control show-tick" name="instructorCurso"  required>
-                                                            <option value="">Ninguno</option>
-                                                            <c:forEach var="ins" items="${datosParaCurso.get(0)}">
-                                                                <option  value="${ins.id}">${ins.nombre}</option>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </div>
-                                                    <div class="help-info">Seleccione el Instructor</div>
-                                                </div>
-                                            </div>
-                                        </div>   
-                                    </form>
-                                    <div>
-                                        ${mensaje.mensaje}</div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary waves-effect">GUARDAR</button>
-                                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CERRAR</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>   
         </section>
 
