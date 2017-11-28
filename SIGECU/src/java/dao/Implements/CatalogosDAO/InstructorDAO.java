@@ -7,6 +7,7 @@ package dao.Implements.CatalogosDAO;
 
 import dao.Interface.ICatalogos.IInstructorDAO;
 import dto.Curso;
+import dto.Especialidad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,48 +31,58 @@ public class InstructorDAO implements IInstructorDAO {
     public void crearInstructor(Instructor instructor) throws BusinessException{
         
         
-        /*
-        insert into users (nombre, email, utelefono, username, password, imagen)
-values ('Rodrigo', 'rodrigo@gmail.com','4425783658','rodrigo', md5('root'),'sin imagen');
+        String sqlUser =
+        "insert into users (nombre, email, utelefono, username, password, imagen)"+
+        "values (?,?,?,?, md5(?),?)";
+        
+        String sqlRole = "insert into roles (username, role, descripcion, u_idusers) "+
+                "value ((SELECT username FROM users WHERE email=?),"+
+                " ?, ?, (SELECT idusers FROM users WHERE email=? ));";
+        
+        String sqlInstructor = "insert into instructor(iNombre, iPaterno, iMaterno, Carrera, iEmail, iTelefono, iDireccion, u_idusers)"+
+        "values(?, ?, ?, ?, ?, ?, ?, "+
+        "(SELECT idusers FROM users WHERE email=?));";
 
-insert into roles (username, role, descripcion, u_idusers) value (
-					(SELECT username FROM users WHERE email='rodrigo@gmail.com'),
-					'instructor', 'instructor', 
-					(SELECT idusers FROM users WHERE email='rodrigo@gmail.com' ));
+        String sqlIE = "insert instructor_has_especialidad (i_idinstructor, e_idespecialidad) "
+                + "values ((SELECT idinstructor FROM instructor WHERE iEmail=?),?)";
 
-insert into instructor(iNombre, iPaterno, iMaterno, Carrera, iEmail, iTelefono, iDireccion, u_idusers)
-values('Rodrigo', 'Salas', 'Rodriguez', 'ISC','rodrigo@gmail.com', '4425783658', 'centro 21', 
-(SELECT idusers FROM users WHERE email='rodrigo@gmail.com'));
-
-insert instructor_has_especialidad (i_idinstructor, e_idespecialidad)
-values ((SELECT idinstructor FROM instructor WHERE iEmail='rodrigo@gmail.com'),2)
-        
-        
-        */
-        
-        
-        
-        
-        
-        String sql = "insert into instructor (iNombre, iPaterno, iMaterno, Carrera, Especialidad, iEmail, iTelefono, iDireccion)"
-                + " VALUES (?,?,?,?,?,?,?,?)";
         
         try
         {
             Connection conection = database.getConnection();
-            PreparedStatement ps = conection.prepareStatement(sql);
-            
+            PreparedStatement ps = conection.prepareStatement(sqlUser);
             ps.setString(1, instructor.getiNombre());
-            ps.setString(2, instructor.getiPaterno());
-            ps.setString(3, instructor.getiMaterno());
-            ps.setString(4, instructor.getCarrera());
-            ps.setString(5, instructor.getEspecialidad());
-            ps.setString(6, instructor.getiEmail());
-            ps.setString(7, instructor.getiTelefono());
-            ps.setString(8, instructor.getiDireccion());
-              
-              
+            ps.setString(2, instructor.getiEmail());
+            ps.setString(3, instructor.getiTelefono());
+            ps.setString(4, instructor.getUsername());
+            ps.setString(5, instructor.getPassword());
+            ps.setString(6, instructor.getImagen());
             int exec = ps.executeUpdate();
+            
+            
+            ps = conection.prepareStatement(sqlRole);
+                ps.setString(1, instructor.getiEmail());
+                ps.setString(2, instructor.getRole());
+                ps.setString(3, instructor.getDescripcion());
+                ps.setString(4, instructor.getiEmail());
+                 ps.executeUpdate();
+            
+            ps = conection.prepareStatement(sqlInstructor);
+                ps.setString(1, instructor.getiNombre());
+                ps.setString(2, instructor.getiPaterno());
+                ps.setString(3, instructor.getiPaterno());
+                ps.setString(4, instructor.getCarrera());
+                ps.setString(5, instructor.getiEmail());
+                ps.setString(6, instructor.getiTelefono());
+                ps.setString(7, instructor.getiDireccion());
+                ps.setString(8, instructor.getiEmail());
+                ps.executeUpdate();
+            
+            ps = conection.prepareStatement(sqlIE);
+                ps.setString(1, instructor.getiEmail());
+                ps.setInt(2, instructor.getIdEspecialidad());
+                ps.executeUpdate();
+            
             ps.close();
             conection.close();
         }catch(Exception e)
@@ -115,6 +126,36 @@ values ((SELECT idinstructor FROM instructor WHERE iEmail='rodrigo@gmail.com'),2
             connection.close();
             ps.close();
             return instructores;
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.printStackTrace();
+            be.setMensaje("Error en la capa de base de datos");
+            be.setIdException("0001");
+            throw be;
+        }
+    }
+
+    @Override
+    public List<Especialidad> buscarEspecialidad() throws BusinessException {
+        String sql = "select idespecialidad, eNombre from especialidad;";
+         List<Especialidad> especialidad = new ArrayList<>();
+        try
+        {
+            Connection connection = database.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet result = ps.executeQuery();
+            while(result.next())
+            {
+                Especialidad esp = new Especialidad();
+                esp.setIdEspecialidad(result.getInt(1));
+                esp.setNombreEspecialidad(result.getString(2));
+                especialidad.add(esp);
+            }
+            connection.close();
+            ps.close();
+            return especialidad;
         }catch(Exception ex)
         {
             ex.printStackTrace();

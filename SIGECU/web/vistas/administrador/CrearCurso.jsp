@@ -102,7 +102,7 @@
                                                         </c:forEach>
                                                     </select>
                                                 </div>
-                                                <div class="help-info">Seleccione el Instructor</div>
+                                                <div class="help-info">Seleccione el Especialidad</div>
                                             </div>
                                         </div>
                                     </div>

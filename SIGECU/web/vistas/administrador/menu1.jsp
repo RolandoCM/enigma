@@ -123,6 +123,13 @@
                             <span>Listar Instructores</span>
                         </a>
                     </li>
+                    <li>
+                         <a href="ServletInstructorCatalogo?accion=BE">
+                            <i class="material-icons">note_add</i>
+                            <span>Crear Instructores</span>
+                        </a>
+                    </li>
+                    
                     
                     
                    

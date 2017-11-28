@@ -71,13 +71,13 @@
                                 </ul>
                             </div>
                             <div class="body">
-                                <form id="form_advanced_validation" action="Eventos" method="POST">
+                                <form id="form_advanced_validation" action="ServletInstructorCatalogo" method="POST">
                                     <input type="hidden" name="accion" value="CI">
                                     <div class="row clearfix">
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="inombre"  minlength="3" required>
+                                                    <input type="text" class="form-control" name="iNombre"  minlength="3" required>
                                                     <label class="form-label"> Nombre</label>
                                                 </div>
                                                 <div class="help-info">Solo texto</div>
@@ -106,7 +106,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="Texto" class="form-control" name="carrera" required>
+                                                    <input type="Texto" class="form-control" name="iCarrera" required>
                                                     <label class="form-label">Carrera</label>
                                                 </div>
                                                 <div class="help-info">Carrera</div>
@@ -114,11 +114,14 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="especialidad" required>
-                                                    <label class="form-label">Especialidad</label>
+                                                <div class="form-line ">
+                                                    <select class=" form-control show-tick" name="idEspecialidad"  required>
+                                                        <c:forEach var="ins" items="${especialidad}">
+                                                            <option  value="${ins.idEspecialidad}">${ins.nombreEspecialidad}</option>
+                                                        </c:forEach>
+                                                    </select>
                                                 </div>
-                                                <div class="help-info">Especialidad</div>
+                                                <div class="help-info">Seleccione el Especialidad</div>
                                             </div>
                                         </div>
                                     </div>
@@ -144,10 +147,28 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="number" class="form-control" name="iDireccion" required>
+                                                    <input type="text" class="form-control" name="iDireccion" required>
                                                     <label class="form-label">Dirección</label>
                                                 </div>
                                                 <div class="help-info">Dirección</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="iUsername" required>
+                                                    <label class="form-label">Username</label>
+                                                </div>
+                                                <div class="help-info">Username</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="password" class="form-control" name="iPassword" required>
+                                                    <label class="form-label">Password</label>
+                                                </div>
+                                                <div class="help-info">Password</div>
                                             </div>
                                         </div>
                                     </div>

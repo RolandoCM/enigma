@@ -163,7 +163,7 @@ public class ServletEvento extends HttpServlet{
                 evento.setFecha(request.getParameter("fechaEvento"));
                 evento.setDescripcion(request.getParameter("descripcionEvento"));
                 evento.setPrograma(request.getParameter("programaEvento"));
-                instructor.setId(request.getParameter("instructorEvento"));
+                instructor.setIdinstructor(Convierte.aInteger(request.getParameter("instructorEvento")));
                 evento.setInstructor(instructor);           
                 evento.setLugar(request.getParameter("lugarEvento"));
                 evento.setCiudad(request.getParameter("ciudadEvento"));
@@ -214,7 +214,7 @@ public class ServletEvento extends HttpServlet{
             evento.setFecha(request.getParameter("fechaEvento"));
             evento.setDescripcion(request.getParameter("descripcionEvento"));
             evento.setPrograma(request.getParameter("programaEvento"));
-            instructor.setId(request.getParameter("instructorEvento"));
+            instructor.setIdinstructor(Convierte.aInteger(request.getParameter("instructorEvento")));
             evento.setInstructor(instructor);           
             evento.setLugar(request.getParameter("lugarEvento"));
             evento.setCiudad(request.getParameter("ciudadEvento"));

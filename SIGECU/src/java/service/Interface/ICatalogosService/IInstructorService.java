@@ -6,6 +6,7 @@
 package service.Interface.ICatalogosService;
 
 import dto.Curso;
+import dto.Especialidad;
 import dto.Instructor;
 import exception.BusinessException;
 import java.util.List;
@@ -17,5 +18,6 @@ import java.util.List;
 public interface IInstructorService {
     public void crearInstructor(Instructor instructor) throws BusinessException;
     public List<Instructor> listarInstructor() throws BusinessException; 
+    public List<Especialidad> buscarEspecialidad() throws BusinessException;
     
 }
