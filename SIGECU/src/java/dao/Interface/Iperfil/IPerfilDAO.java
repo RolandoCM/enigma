@@ -5,6 +5,7 @@
  */
 package dao.Interface.Iperfil;
 
+import dto.Alumno;
 import dto.Perfil;
 import exception.BusinessException;
 import java.util.List;
@@ -15,4 +16,7 @@ import java.util.List;
 public interface IPerfilDAO {
     public List<Perfil> listaDatosPerfil() throws BusinessException;
      public void modificarPerfil(Perfil per) throws BusinessException;
+          public List<Alumno> alumnosInscritos() throws BusinessException;
+          public void insertarAlumnos(Alumno alu) throws  BusinessException;
+
 }
