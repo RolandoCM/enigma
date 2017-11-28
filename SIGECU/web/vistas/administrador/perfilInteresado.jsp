@@ -20,6 +20,7 @@
     <!--<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">-->
     <link rel="stylesheet" href="../../fonts/material-design-icons-master/material-icons.css">
+    <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- Bootstrap Core Css -->
     <link href="../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -68,8 +69,9 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                    <div class="demo-google-material-icon"> <i class="material-icons">person</i> <span class="icon-name">Perfil de Usuario</span> </div>
+                                    <div class="demo-google-material-icon"> <i class="material-icons">person</i> <span class="icon-name">Alumnos Registrados</span> </div>
                                 </h2>
+                            <!--
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -82,23 +84,27 @@
                                     </ul>
                                 </li>
                             </ul>
+                            -->
                         </div>
                         <div class="body">
-                            <div class="demo-masked-input">
+                            
+                            <button type="button" class="btn btn-primary waves-effect
+                                                        btn-large" data-toggle="modal" data-target="#insertarAlumno">
+                                                    <i class="material-icons left">group_add</i> Agregar Alumno</button> 
+                                          
+                                                    
+               <div class="modal fade" id="insertarAlumno" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="largeModalLabel">Modal title</h4>
+                        </div>
+                        <form id="form_advanced_validation" action="Perfil" method="POST">
+                        <div class="modal-body">
+                             <div class="demo-masked-input">
                                 <div class="row clearfix">
-                                     <c:forEach var="datos" items="${datosPerfil}">
-                                    <div class="col-md-12">
+                                    <input name="accion" value="IA" hidden> 
 
-                                        <img class="img-responsive materialboxed"  src="" width="150"  /><br>
-
-                                        <img class="img-responsive materialboxed"  src="${datos.foto}" width="150"  /><br>
-
-                                        <div class="button-demo js-modal-buttons">
-                                        <button class="btn bg-orange waves-effect" data-color="orange" type="button" data-toggle="modal" data-target="#smallModal">CAMBIAR FOTO
-                                            <i class="material-icons right">update</i>
-                                        </button>
-                                        </div>
-                                    </div>
                                     <div class="col-md-6">
                                         <b>Nombre</b>
                                         <div class="input-group">
@@ -106,7 +112,29 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Nombre" value="${datos.nombreper} ${datos.apellidop} ${datos.apellidom}" disabled>
+                                                <input type="text" class="form-control " placeholder="Nombre" name="nombre" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Apellido Paterno</b>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">person</i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control " placeholder="Nombre" name="apellidop" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Apellido Materno</b>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">person</i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control " placeholder="Nombre" name="C" required>
                                             </div>
                                         </div>
                                     </div>
@@ -117,7 +145,7 @@
                                                 <i class="material-icons">phone_iphone</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control mobile-phone-number" placeholder="Ex: +00 (000) 000-00-00" value="${datos.telefono}" disabled>
+                                                <input type="text" class="form-control mobile-phone-number" name="telefonoa" placeholder="Ex: +00 (000) 000-00-00" required>
                                             </div>
                                         </div>
                                     </div>
@@ -128,18 +156,23 @@
                                                 <i class="material-icons">email</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control email" placeholder="Ex: example@example.com" value="${datos.email}" disabled>
+                                                <input type="text" class="form-control email" placeholder="Ex: example@example.com" name="emaila" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <b>Tipo de cliente</b>
+                                        <b>Notbook</b>
                                         <div class="input-group">
                                             <span class="input-group-addon">
-                                                <i class="material-icons">people</i>
+                                                <i class="material-icons">computer</i>
                                             </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Tipo de cliente" >
+                                            <div class="demo-radio-button">
+                                                <input name="notbook" type="radio" id="radio_1" checked value="Si" />
+                                                <label for="radio_1">SI</label>
+                                                <input name="notbook" type="radio" id="radio_2" value="No"/>
+                                                <label for="radio_2">NO</label>
+                                                <br>
+                                                <br>
                                             </div>
                                         </div>
                                     </div>
@@ -150,23 +183,101 @@
                                                 <i class="material-icons">school</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Ingenieria en TIC'S" value="${datos.carrera}" disabled>
+                                                <input type="text" class="form-control " placeholder="Ingenieria en TIC'S" name="acarrera" required>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        
-                                        <div class="col-md-4 col-md-offset-8">
-                                       <button type="button" class="btn btn-warning waves-effect btn-large" data-toggle="modal" data-target="#largeModal"><i class="material-icons left">update</i> MODIFICAR</button> 
-                                        </div>
-                                    </div>
+                                   
+                                </div>
+                            </div>
                                     
+                                    
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">GUARDAR</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+                                                    
+                           
+                                         <!--
+                                         <div>${msj.mensaje}</div>
+                                    <div>${msj.id}</div>
+                                         -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </section>
+   
+ <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    Alumnos Inscritos
+                </h2>
+            </div><div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                EXPORTABLE TABLE
+                            </h2>
+                            <!--
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            -->
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                    <thead>
+                                        <tr>
+                                            <!--<th>Elimniar</th>-->
+                                            <th>Modificar</th>
+                                            <th>Id</th>
+                                            <th>Nombre</th>
+                                            <th>Carrera</th>
+                                            <th>Email</th>
                                             
-   <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
+                                        </tr>
+                                    </thead>
+                                   
+                                    <tbody>
+                                         <c:forEach var="datos" items="${datosAlumnos}">
+                                        <tr>
+                                            <!--<td>$320,800</td>-->
+                                             <td><button type="button" class="btn btn-warning waves-effect
+                                                        btn-large" data-toggle="modal" data-target="#largeModal${datos.idAlumno}">
+                                                    <i class="material-icons left">update</i> MODIFICAR</button> 
+                                            </td>
+                                            <td>${datos.idAlumno}</td>
+                                            <td>${datos.nombre} ${datos.aParterno} ${datos.aMaterno}</td>
+                                            <td>${datos.carrera}</td>
+                                            <td>${datos.email}</td>
+                                           
+                                            
+                                        </tr>
+                                        
+                                         <div class="modal fade" id="largeModal${datos.idAlumno}" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="largeModalLabel">Modal title</h4>
+                            <h4 class="modal-title" id="largeModalLabel">Modificar Alumno</h4>
                         </div>
                         <form id="form_advanced_validation" action="Perfil" method="POST">
                         <div class="modal-body">
@@ -179,7 +290,7 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Nombre" name="nombrep" value="${datos.nombreper}">
+                                                <input type="text" class="form-control " placeholder="Nombre" name="nombrep" value="${datos.nombre}">
                                             </div>
                                         </div>
                                     </div>
@@ -190,7 +301,7 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Nombre" name="apellidop" value="${datos.apellidop}">
+                                                <input type="text" class="form-control " placeholder="Nombre" name="apellidop" value="${datos.aParterno}">
                                             </div>
                                         </div>
                                     </div>
@@ -201,7 +312,7 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Nombre" name="apellidom" value="${datos.apellidom}">
+                                                <input type="text" class="form-control " placeholder="Nombre" name="apellidom" value="${datos.aMaterno}">
                                             </div>
                                         </div>
                                     </div>
@@ -233,8 +344,13 @@
                                             <span class="input-group-addon">
                                                 <i class="material-icons">people</i>
                                             </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Tipo de cliente">
+                                            <div class="demo-radio-button">
+                                                <input name="notbook" type="radio" id="radio_1"  value="Si" />
+                                                <label for="radio_1">SI</label>
+                                                <input name="notbook" type="radio" id="radio_2" value="No"/>
+                                                <label for="radio_2">NO</label>
+                                                <br>
+                                                <br>
                                             </div>
                                         </div>
                                     </div>
@@ -253,25 +369,26 @@
                                     
                         </div>
                         <div class="modal-footer">
+                            <div class="col-md-12">
                             <button type="submit" class="btn btn-link waves-effect">MODIFICAR</button>
                             <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            </div>
                         </div>
                         </form>
                     </div>
                 </div>
             </div>
-   
-                                     </c:forEach>
-                                </div>
-                            </div><div>${msj.mensaje}</div>
-                                    <div>${msj.id}</div>
+                                         </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-   </section>
-   
+ </section>
+                        
    <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
@@ -337,6 +454,16 @@
 
     <!-- Waves Effect Plugin Js -->
     <script src="../../plugins/node-waves/waves.js"></script>
+<script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+    <script src="../../js/pages/tables/jquery-datatable.js"></script>
 
     <!-- Custom Js -->
     <script src="../../js/admin.js"></script>
@@ -346,6 +473,7 @@
     <script src="../../js/demo.js"></script>
      <script src="../../js/pages/ui/modals.js"></script>
 
+     
     </body>
 </html>
 

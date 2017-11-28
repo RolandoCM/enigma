@@ -5,6 +5,7 @@
  */
 package servlet;
 
+
 import dto.Evento;
 import dto.MensajesDTO;
 import exception.BusinessException;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.Implements.Evento.EventoService;
 import service.Interface.Evento.IEventoService;
 import dao.Interface.Iperfil.IPerfilDAO;
+import dto.Alumno;
 import dto.Perfil;
 import dto.Usuario;
 import service.Implements.Perfil.PerfilService;
@@ -30,7 +32,7 @@ import service.Interface.Perfil.IPerfilService;
  * @author JorgeLuna
  */
 
-@WebServlet({ "/Perfil", "/vistas/administrador/Perfil" })
+@WebServlet( name="/Perfil", urlPatterns ={"/vistas/administrador/Perfil" })
 public class ServletPerfil extends HttpServlet{
     private String direccionar = null;
     @Override
@@ -52,7 +54,18 @@ public class ServletPerfil extends HttpServlet{
                     //CREAR EVENTOS 
                case "MP":
                    modificarPerfil(perfil , request, response);
+                   break;
+                    //todos los alumnos registrados
+                   case "TA":
+                    listarAlumnosRegistrados(perfil , request, response);
+                   break;
+                   //INSERTAR ALUMNOS
+                    case "IA":
+                    insertarAlumnos(perfil , request, response);
+                   break;
                 default:
+                   
+                 
                     break;
             }
             
@@ -121,8 +134,65 @@ public class ServletPerfil extends HttpServlet{
             msjDTO.setMensaje("Error en la llamada a recursos");
             request.setAttribute("mensajeCrear", msjDTO);
         }
-        direccionar = "Perfil?accion=LDP";
+        direccionar = "Perfil?accion=TA";
     }// fin del metodo actualizarEventoConfirmado
+
+    private void listarAlumnosRegistrados(IPerfilService perfil, HttpServletRequest request, HttpServletResponse response) {
+ MensajesDTO msjDTO = new MensajesDTO();
+        try {
+            List<Alumno> listarAlumnosRegistrdaos = perfil.alumnosInscritos();
+            request.setAttribute("datosAlumnos", listarAlumnosRegistrdaos); 
+            msjDTO.setId("000");
+            msjDTO.setMensaje("Ejecuxion OK");
+            request.setAttribute("msj", msjDTO);
+        } catch (BusinessException ex) {
+            msjDTO.setId(ex.getIdException());
+            msjDTO.setMensaje(ex.getMensaje());
+            request.setAttribute("msj", msjDTO);
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            msjDTO.setId("301");
+            msjDTO.setMensaje("Error en la llamada de recursos");
+            request.setAttribute("msj", msjDTO);
+        }
+        finally{
+            direccionar = "perfilInteresado.jsp";
+        }    }
+
+    private void insertarAlumnos(IPerfilService perfil, HttpServletRequest request, HttpServletResponse response) {
+
+         MensajesDTO msjDTO = new MensajesDTO();
+         Alumno alu=new Alumno();
+         
+         try {
+            alu.setNombre(request.getParameter("nombre"));
+            alu.setaParterno(request.getParameter("apellidop"));
+            alu.setaMaterno(request.getParameter("apellidop"));
+            alu.setTelefono(request.getParameter("telefonoa"));
+            alu.setEmail(request.getParameter("emaila"));
+            alu.setCarrera(request.getParameter("acarrera"));
+            alu.setNotbook(request.getParameter("notbook"));
+            
+            perfil.insertarAlumnos(alu);
+         msjDTO.setId("000");
+            msjDTO.setMensaje("Se ha encontrado el evento");
+            request.setAttribute("msj", msjDTO);
+        
+        }catch(BusinessException ex)
+        {
+            msjDTO.setId(ex.getIdException());
+            msjDTO.setMensaje(ex.getMensaje());
+            request.setAttribute("mensajeCrear", msjDTO);
+        }catch(Exception e){
+            e.printStackTrace();
+            msjDTO.setId("301");
+            msjDTO.setMensaje("Error en la llamada a recursos");
+            request.setAttribute("mensajeCrear", msjDTO);
+        }
+        direccionar = "Perfil?accion=TA";
+    
+    }
     
     
  
