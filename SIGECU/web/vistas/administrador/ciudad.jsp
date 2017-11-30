@@ -99,14 +99,25 @@
                         <div class="modal-header">
                             <h4 class="modal-title" id="largeModalLabel">Agregar Ciudad</h4>
                         </div>
-                        <form id="form_advanced_validation" action="PAIS" method="POST">
+                        <form id="form_advanced_validation" action="Pais" method="POST">
                         <div class="modal-body">
                              <div class="demo-masked-input">
                                 <div class="row clearfix">
-                                    <input name="accion" value="IP" hidden> 
-
+                                    <input name="accion" value="IC" hidden> 
                                     <div class="col-md-6">
                                         <b>Nombre</b>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">person</i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control " placeholder="Nombre del pais" name="nombreciudad" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <b>Pais</b>
                                         <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="material-icons">person</i>
@@ -195,7 +206,7 @@
                                         <tr>
                                             <!--<td>$320,800</td>-->
                                              <td><button type="button" class="btn btn-warning waves-effect
-                                                        btn-large" data-toggle="modal" data-target="#largeModal${pais.ispais}">
+                                                        btn-large" data-toggle="modal" data-target="#largeModal${pais.idpais}">
                                                     <i class="material-icons left">update</i> MODIFICAR</button> 
                                             </td>
                                             <td>${pais.idpais}</td>

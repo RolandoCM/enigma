@@ -157,7 +157,8 @@ public void EventosPorAlumno(Evento eve) throws BusinessException{
     
 }   
 
-public void insertarAlumnos(Alumno alu) throws  BusinessException{
+        @Override
+        public void insertarAlumnos(Alumno alu) throws  BusinessException{
     
     String sql="INSERT INTO alumno(aNombre,aPaterno,aMaterno,telefono,email,e_idEmpresa,carrera,notebook,status)"
             + " VALUES (?,?,?,?,?,?,?,?,?)";

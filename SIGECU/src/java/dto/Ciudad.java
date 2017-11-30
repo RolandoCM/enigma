@@ -9,7 +9,7 @@ package dto;
  *
  * @author Memo
  */
-public class Ciudad {
+public class Ciudad extends Pais{
     private int idCiudad;
     private String nombreCiudad;
 

@@ -6,6 +6,7 @@
 package dao.Implements.Pais;
 
 import dao.Interface.IPais.IPaisDAO;
+import dto.Ciudad;
 import dto.Pais;
 import exception.BusinessException;
 import java.sql.Connection;
@@ -35,10 +36,10 @@ public class PaisDAO implements IPaisDAO{
              Connection conection = database.getConnection();
             PreparedStatement ps = conection.prepareStatement(sql);
             
-            Pais pais= new Pais();
-           ps.setInt(1, pais.getIdpais());
-           ps.setString(2,pais.getNombrepais());
-           ps.setString(3,pais.getRegion());
+            
+          
+           ps.setString(1,pa.getNombrepais());
+           ps.setString(2,pa.getRegion());
            
          int exec = ps.executeUpdate();
             ps.close();
@@ -58,7 +59,7 @@ public class PaisDAO implements IPaisDAO{
         
         List<Pais> listarPais =new ArrayList<>();
         
-        String sql="SELECT idPais, pNombre, pRegion FROM pais";
+        String sql="SELECT idPais, Nombre, Region FROM pais";
          try {
             Connection conection = database.getConnection();
             PreparedStatement ps = conection.prepareStatement(sql);
@@ -111,5 +112,63 @@ public class PaisDAO implements IPaisDAO{
             throw be;
         }
      }
+    
+     
+    @Override
+    public void insertarCiudad(Ciudad ci) throws  BusinessException{
+        
+        String sql="INSERT INTO ciudad(nombre, p_idPais) values (?,?)";
+        
+        try {
+             Connection conection = database.getConnection();
+            PreparedStatement ps = conection.prepareStatement(sql);
+            
+           ps.setString(1,ci.getNombreCiudad());
+           ps.setInt(2,ci.getIdpais());
+           
+         int exec = ps.executeUpdate();
+            ps.close();
+            conection.close();
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setMensaje("error en la capa de base de datos");
+            be.setIdException("001");
+            throw be;
+        }
+    }
+    public List<Pais> listarCiudades() throws BusinessException{
+        
+        List<Pais> listarPais =new ArrayList<>();
+        
+        String sql="SELECT c.idCiudad, c.nombre, c.p_idPais,p.idPais,p.nombre FROM ciudadc ,pais p";
+         try {
+            Connection conection = database.getConnection();
+            PreparedStatement ps = conection.prepareStatement(sql);
+           ResultSet result = ps.executeQuery();
+            while(result.next())
+            {
+                Ciudad p=new Ciudad();
+                p.setIdCiudad(result.getInt(1));
+                p.setNombreCiudad(result.getString(2));
+                p.setIdpais(result.getInt(4));
+                p.setNombrepais(result.getString(5));
+               
+                listarPais.add(p);
+                
+            }
+            conection.close();
+            ps.close();
+            return listarPais;
+    } catch (Exception ex) {
+             ex.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.printStackTrace();
+            be.setMensaje("Error en la capa de base de datos");
+            be.setIdException("0001");
+            throw be;
+        }
+    }
     
 }

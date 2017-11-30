@@ -5,11 +5,14 @@
  */
 package servlet;
 
+import dto.Ciudad;
 import dto.MensajesDTO;
 import dto.Pais;
 import exception.BusinessException;
+import extras.Convierte;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,11 +27,12 @@ import service.Interface.IPais.IPaisService;
  *
  * @author Dell
  */
-@WebServlet( name="/PAISES", urlPatterns ={"/vistas/administrador/PAISES" })
+@WebServlet( name="/Pais", urlPatterns ={"/vistas/administrador/Pais" })
 public class ServletPais extends HttpServlet {
 
      private String direccionar = null;
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+     @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             String accion = request.getParameter("accion");
@@ -44,6 +48,10 @@ public class ServletPais extends HttpServlet {
                     break;
                 case "CP":
                     listarPaises(pais , request, response);
+                     direccionar = "ciudad.jsp";
+                    break;
+                case "IC":
+                    insertarCiudad(pais,request,response);
                     break;
                     //CREAR EVENTOS 
 
@@ -64,7 +72,7 @@ public class ServletPais extends HttpServlet {
                     //todos los paises registrados
                    case "TP":
                     listarPaises(pais , request, response);
-
+ direccionar = "pais.jsp";
                    break;
 //                   //INSERTAR ALUMNOS
 //                    case "IA":
@@ -103,7 +111,7 @@ public class ServletPais extends HttpServlet {
             msjDTO.setMensaje("Error en la llamada a recursos");
             request.setAttribute("mensajeCrear", msjDTO);
         }
-        direccionar = "pais.jsp";  
+        direccionar = "Pais?accion=TP";  
     }
 
     private void listarPaises(IPaisService pais, HttpServletRequest request, HttpServletResponse response) {
@@ -127,8 +135,33 @@ public class ServletPais extends HttpServlet {
             request.setAttribute("msj", msjDTO);
         }
         finally{
-            direccionar = "pais.jsp";
+           
         }
+    }
+
+    private void insertarCiudad(IPaisService pais, HttpServletRequest request, HttpServletResponse response) {
+         MensajesDTO msjDTO = new MensajesDTO();
+         Ciudad ci = new Ciudad();
+         try {
+            ci.setNombreCiudad(request.getParameter("nombreciudad"));
+            ci.setIdpais(Convierte.aInteger(request.getParameter("idPais")));
+            pais.insertarCiudad(ci);
+         msjDTO.setId("000");
+            msjDTO.setMensaje("Se ha encontrado el pais");
+            request.setAttribute("msj", msjDTO);
+        
+        }catch(BusinessException ex)
+        {
+            msjDTO.setId(ex.getIdException());
+            msjDTO.setMensaje(ex.getMensaje());
+            request.setAttribute("mensajeCrear", msjDTO);
+        }catch(Exception e){
+            e.printStackTrace();
+            msjDTO.setId("301");
+            msjDTO.setMensaje("Error en la llamada a recursos");
+            request.setAttribute("mensajeCrear", msjDTO);
+        }
+        direccionar = "Pais?accion=CP";  
     }
     
         

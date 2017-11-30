@@ -5,6 +5,7 @@
  */
 package service.Interface.IPais;
 
+import dto.Ciudad;
 import dto.Pais;
 import exception.BusinessException;
 import java.util.List;
@@ -16,4 +17,6 @@ import java.util.List;
 public interface IPaisService {
      public void insertar(Pais pa) throws  BusinessException;
      public List<Pais> listarPaises() throws BusinessException;
+      public void insertarCiudad(Ciudad ci) throws  BusinessException;
+       public List<Pais> listarCiudades() throws BusinessException;
 }

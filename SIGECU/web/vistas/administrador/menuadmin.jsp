@@ -124,15 +124,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="PAISES?accion=TP">
+                        <a href="Pais?accion=TP">
                             <i class="material-icons">view_list</i>
                             <span>Pais</span>
                         </a>
                     </li>
                     <li>
-                        <a href="PAISES?accion=CP">
+                        <a href="Pais?accion=CP">
                             <i class="material-icons">dashboard</i>
-                            <span>Preinscripcion</span>
+                            <span>Ciudad</span>
                         </a>
                     </li>
                     <li>

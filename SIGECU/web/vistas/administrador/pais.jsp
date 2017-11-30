@@ -99,7 +99,7 @@
                         <div class="modal-header">
                             <h4 class="modal-title" id="largeModalLabel">Agregar Pais</h4>
                         </div>
-                        <form id="form_advanced_validation" action="PAIS" method="POST">
+                        <form id="form_advanced_validation" action="Pais" method="GET">
                         <div class="modal-body">
                              <div class="demo-masked-input">
                                 <div class="row clearfix">
@@ -127,68 +127,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--
-                                    <div class="col-md-6">
-                                        <b>Apellido Materno</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">person</i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Nombre" name="C" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Numero de telefono</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">phone_iphone</i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control mobile-phone-number" name="telefonoa" placeholder="Ex: +00 (000) 000-00-00" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Email</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">email</i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control email" placeholder="Ex: example@example.com" name="emaila" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Notbook</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">computer</i>
-                                            </span>
-                                            <div class="demo-radio-button">
-                                                <input name="notbook" type="radio" id="radio_1" checked value="Si" />
-                                                <label for="radio_1">SI</label>
-                                                <input name="notbook" type="radio" id="radio_2" value="No"/>
-                                                <label for="radio_2">NO</label>
-                                                <br>
-                                                <br>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Carrera</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">school</i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Ingenieria en TIC'S" name="acarrera" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                   -->
                                 </div>
                             </div>
                                     
@@ -204,10 +142,10 @@
             </div>
                                                     
                            
-                                         <!--
+                                         
                                          <div>${msj.mensaje}</div>
                                     <div>${msj.id}</div>
-                                         -->
+                                         
                         </div>
                     </div>
                 </div>
@@ -219,7 +157,7 @@
         <div class="container-fluid">
             <div class="block-header">
                 <h2>
-                    Alumnos Inscritos
+                    Paises
                 </h2>
             </div><div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -263,7 +201,7 @@
                                         <tr>
                                             <!--<td>$320,800</td>-->
                                              <td><button type="button" class="btn btn-warning waves-effect
-                                                        btn-large" data-toggle="modal" data-target="#largeModal${pais.ispais}">
+                                                        btn-large" data-toggle="modal" data-target="#largeModal${pais.idpais}">
                                                     <i class="material-icons left">update</i> MODIFICAR</button> 
                                             </td>
                                             <td>${pais.idpais}</td>
@@ -302,7 +240,7 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Region" name="apellidop" value="${datos.aParterno}">
+                                                <input type="text" class="form-control " placeholder="Region" name="region" value="${datos.aParterno}">
                                             </div>
                                         </div>
                                     </div>

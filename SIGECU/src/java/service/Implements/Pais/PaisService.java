@@ -7,6 +7,7 @@ package service.Implements.Pais;
 
 import dao.Implements.Pais.PaisDAO;
 import dao.Interface.IPais.IPaisDAO;
+import dto.Ciudad;
 import dto.Pais;
 import exception.BusinessException;
 import java.util.ArrayList;
@@ -60,4 +61,46 @@ public class PaisService implements IPaisService{
             throw be;
         } 
      }
+     @Override
+      public void insertarCiudad(Ciudad ci) throws  BusinessException{
+           try
+        {
+            IPaisDAO paisDAO = new PaisDAO();
+            paisDAO.insertarCiudad(ci);
+        }
+        catch (BusinessException e)
+        {
+            throw e;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setIdException("201");
+            be.setMensaje("Error en la capa de negocio, conexion en crear Evento");
+            throw be;
+        } 
+      }
+      
+     @Override
+       public List<Pais> listarCiudades() throws BusinessException{
+              try
+        {
+            IPaisDAO paisDAO = new PaisDAO();
+            List<Pais> datosPais = new ArrayList<>();
+            datosPais = paisDAO.listarCiudades();
+            return datosPais; 
+        }
+        catch (BusinessException e) {
+            throw e;  
+	}
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setIdException("201");
+            be.setMensaje("Error en la capa de negocio, conexion a listar eventos");
+            throw be;
+        } 
+       }
 }
