@@ -12,8 +12,10 @@ import java.sql.ResultSet;
 import java.util.List;
 import jdbc.ConectionDB;
 import dao.Interface.Evento.IEventoDAO;
+import dto.Ciudad;
 import dto.IdentificadoresEvento;
 import dto.Instructor;
+import dto.Lugar;
 import dto.MensajesDTO;
 import exception.BusinessException;
 import extras.Convierte;
@@ -345,11 +347,11 @@ public class EventoDAO implements IEventoDAO {
         String []sql = new String [9];
         
         sql[INSTRUCTOR] = "SELECT idinstructor, iNombre, iPaterno FROM instructor;";
-        sql[CIUDAD]= "SELECT idCiudad, nombre FROM ciudad";
-        sql [TEMPLETE]= "SELECT idtempletes, descripcion FROM templetes;";
-        sql[PROMOCION] = "SELECT idpromociones, tipo FROM promociones;";
-        sql[PAIS] = "SELECT idpais, nombre FROM pais;";
-        sql[CURSO] = "SELECT idcursos, nombre FROM cursos;";
+        sql[CIUDAD]= "SELECT idCiudad, cNombre FROM ciudad;";
+        sql [TEMPLETE]= "SELECT idtempletes, tDescripcion FROM templetes;";
+        sql[PROMOCION] = "SELECT idpromociones, nombre FROM promociones;";
+        sql[PAIS] = "SELECT idPais, pNombre FROM pais;";
+        sql[CURSO] = "SELECT idcursos, cNombre FROM cursos;";
         sql[LUGAR] = "SELECT idlugar, lNombre FROM lugar;";
         sql[PRECIO] = "SELECT idprecios, precio FROM precios;";
         sql[DESTINATARIOS] = "SELECT iddestinatario, dNombre FROM destinatario;";
@@ -434,5 +436,73 @@ public class EventoDAO implements IEventoDAO {
             throw be;
         }
         return evento;
+    }
+
+    @Override
+    public List<Ciudad> cargarCiudades(int idPais) throws BusinessException {
+        
+        String sql = "SELECT idCiudad, cNombre FROM ciudad WHERE p_idPais = ?;";
+        List <Ciudad> listaCiudad= new ArrayList<>();
+        try {
+            Connection connection = database.getConnection();
+            PreparedStatement ps;
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, idPais);
+
+            
+            ResultSet rs= ps.executeQuery();
+            
+            while(rs.next())
+            {
+                Ciudad ciudad = new Ciudad();
+                ciudad.setIdCiudad(rs.getInt(1));
+                ciudad.setNombreCiudad(rs.getString(2));
+                listaCiudad.add(ciudad);
+            }
+            
+            ps.close();
+            connection.close();
+            return listaCiudad;
+        } catch (Exception ex) {
+            BusinessException be = new BusinessException();
+            be.setIdException("0001");
+            be.setMensaje("Error en la capa de base de datos");
+            throw be;
+        }
+        
+    }
+
+    @Override
+    public List<Lugar> cargarLugares(int idCiudad) throws BusinessException {
+        
+        String sql = "SELECT idlugar, lNombre FROM lugar WHERE c_idCiudad = ?;";
+        List <Lugar> listaLugar= new ArrayList<>();
+        try {
+            Connection connection = database.getConnection();
+            PreparedStatement ps;
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, idCiudad);
+
+            
+            ResultSet rs= ps.executeQuery();
+            
+            while(rs.next())
+            {
+                Lugar lugar = new Lugar();
+                lugar.setIdLugar(rs.getInt(1));
+                lugar.setNombreLugar(rs.getString(2));
+                listaLugar.add(lugar);
+            }
+            
+            ps.close();
+            connection.close();
+            return listaLugar;
+        } catch (Exception ex) {
+            BusinessException be = new BusinessException();
+            be.setIdException("0001");
+            be.setMensaje("Error en la capa de base de datos");
+            throw be;
+        }
+        
     }
 }

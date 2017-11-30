@@ -5,8 +5,10 @@
  */
 package service.Interface.Evento;
 
+import dto.Ciudad;
 import dto.Evento;
 import dto.IdentificadoresEvento;
+import dto.Lugar;
 import exception.BusinessException;
 import java.util.List;
 
@@ -24,5 +26,7 @@ public interface IEventoService {
     public String confirmarEvento(int idEvento) throws BusinessException ;
     public Evento detallesEvento(int idEvento) throws BusinessException;
     public List<Evento> listarEventosPublicos() throws BusinessException;
+    public List<Ciudad> cargarCiudades(int idPais) throws BusinessException;
+    public List<Lugar> cargarLugares(int idCiudad) throws BusinessException;
     
 }

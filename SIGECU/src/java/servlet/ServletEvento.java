@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import dto.Ciudad;
 import dto.Evento;
 import dto.IdentificadoresEvento;
 import dto.Instructor;
@@ -411,4 +412,5 @@ public class ServletEvento extends HttpServlet{
             direccionar = "Eventos?accion=LEC";
         }
     }
+     
 }

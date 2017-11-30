@@ -7,8 +7,10 @@ package service.Implements.Evento;
 
 import dao.Implements.Evento.EventoDAO;
 import dao.Interface.Evento.IEventoDAO;
+import dto.Ciudad;
 import dto.Evento;
 import dto.IdentificadoresEvento;
+import dto.Lugar;
 import exception.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
@@ -197,6 +199,25 @@ public class EventoService implements IEventoService{
         IEventoDAO eventoDAO = new EventoDAO();
         Evento evento = eventoDAO.buscarEventoDAO(idEvento);
         return evento;
+    }
+
+    @Override
+    public List<Ciudad> cargarCiudades(int idPais) throws BusinessException {
+       
+        EventoDAO evento = new EventoDAO();
+        List<Ciudad> listaCiudad = evento.cargarCiudades(idPais);
+        
+        return listaCiudad;
+    }
+
+    @Override
+    public List<Lugar> cargarLugares(int idCiudad) throws BusinessException {
+        
+        EventoDAO evento = new EventoDAO();
+        List<Lugar> listaLugar = evento.cargarLugares(idCiudad);
+        
+        return listaLugar;
+        
     }
     
 }
