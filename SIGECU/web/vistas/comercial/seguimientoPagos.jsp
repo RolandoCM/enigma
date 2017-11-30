@@ -59,7 +59,25 @@
                                 <form id="form_advanced_validation" action="" >
                                     <input type="hidden" name="accion" value="BE">
                                    <div class="row clearfix">
-                                       <div class="col-md-6">
+                                        <div class="col-md-6">
+                                            <p>
+                                                <b>Curso</b>
+                                            </p>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="material-icons">label</i>
+                                                    </span>
+                                                    <select name="idEvento" id="idEvento" class="form-control show-tick" tabindex="-98" required class="required validate">
+                                                        <option selected="" disabled value=""> Seleccionar Evento</option>
+                                                        <c:forEach var="ins" items="${eventos}">
+                                                            <option  value="${ins.id}">${ins.nombre}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       <!--div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line ">
                                                     <select class=" form-control show-tick" name="idEvento"  required>
@@ -71,7 +89,7 @@
                                                 </div>
                                                 <div class="help-info">Seleccione el nombre</div>
                                             </div>
-                                        </div>
+                                        </div-->
                                        <div class="col-md-6">
                                             <div class="col-md-12">
                                                 <button class="btn btn-block btn-lg btn-primary waves-effect" type="submit">Buscar</button>              
@@ -162,7 +180,7 @@
         <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
 
         <!-- Select Plugin Js -->
-        <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+        <!--script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script-->
 
         <!-- Slimscroll Plugin Js -->
         <script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
