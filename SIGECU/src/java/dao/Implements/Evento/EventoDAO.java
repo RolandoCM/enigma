@@ -177,7 +177,7 @@ public class EventoDAO implements IEventoDAO {
                 evento.setDescripcion(result.getString(4));
                 evento.setPrograma(result.getString(5));
                 Instructor ins= new Instructor();
-                ins.setNombre(result.getString(6)+result.getString(7)+result.getString(8));
+                ins.setiNombre(result.getString(6)+result.getString(7)+result.getString(8));
                 evento.setInstructor(ins);
                 evento.setLugar(result.getString(9));
                 evento.setCiudad(result.getString(10));
