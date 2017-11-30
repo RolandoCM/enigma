@@ -5,6 +5,7 @@
  */
 package service.Interface.PagoPreInscripcion;
 import dto.Cheque;
+import dto.Evento;
 import dto.Pago;
 import dto.Tarjeta;
 import exception.BusinessException;
@@ -15,10 +16,15 @@ import java.util.List;
  * @author Anayeli
  */
 public interface IPagoService {
+    /*Metodos pertenecen a alumno o o preinscrito*/
     public void registrarPago(Pago pago) throws BusinessException;
     public List<Pago> historialPagos(String alumno) throws BusinessException;
-     public List<Pago> mostrarDatos()throws  BusinessException;
-     public void tarjetaCredito(Tarjeta tarjeta) throws BusinessException;
-      public void cheque(Cheque cheque) throws BusinessException;
+  
+    
+    /*Metodos pertenecen a comercial*/
+    public List<Pago> seguimientoPagos(int idEvento) throws BusinessException;
+    public void confirmarPagos(int idHistorial, int idUsuario) throws BusinessException;
+    public List<Evento> cargarEvento()throws BusinessException;
+    public List<Pago> seguimientoPagos() throws BusinessException;
     
 }

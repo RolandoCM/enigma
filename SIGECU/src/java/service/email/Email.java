@@ -84,5 +84,31 @@ public class Email {
             transport.sendMessage(message, message.getAllRecipients());
         }
     }//fin del metodo send
+     
+    public static void send(String toMail, String subject, String body, String html) throws AddressException, MessagingException
+    {
+        Properties props = System.getProperties();
+        String host = "smtp.gmail.com";
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.user", FROM);
+        props.put("mail.smtp.password", PASSWORD);
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+
+        message.setFrom(new InternetAddress(FROM));
+
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(toMail));
+
+        message.setSubject(subject);
+        message.setText(body,"utf-8", html);
+        try (Transport transport = session.getTransport("smtp")) {
+            transport.connect(host, FROM, PASSWORD);
+            transport.sendMessage(message, message.getAllRecipients());
+        }
+    }  //fin del metodo
 }
 

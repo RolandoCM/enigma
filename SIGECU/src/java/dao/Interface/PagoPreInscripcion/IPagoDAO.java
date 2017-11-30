@@ -6,6 +6,7 @@
 package dao.Interface.PagoPreInscripcion;
 
 import dto.Cheque;
+import dto.Evento;
 import dto.Pago;
 import dto.Tarjeta;
 import exception.BusinessException;
@@ -22,11 +23,11 @@ public interface IPagoDAO {
     public Pago buscarIdHistorialPago(Pago pago) throws BusinessException;
     public Pago buscarIdUsuario(Pago pago) throws BusinessException;
     
-    
-    
-    public List<Pago> mostrarDatos() throws BusinessException;
-    public void tarjetaCredito(Tarjeta Tarjeta) throws BusinessException;
-    public void cheque(Cheque cheque) throws BusinessException;
-    
+    /*Metodos pertenecientes a comercial*/
+    public List<Pago> seguimientoPagos(int idEvento) throws BusinessException;
+    public List<Evento> cargarEvento()throws BusinessException;
+    public List<Pago> seguimientoPagos() throws BusinessException;
+    public boolean confirmarPago(int idhistorial) throws BusinessException;
+    public String correo(int idUsuario) throws BusinessException;
     
 }

@@ -42,15 +42,15 @@ public class ServletPais extends HttpServlet {
                     break;
                     //CREAR EVENTOS 
                case "MP":
-                   modificarPerfil(perfil , request, response);
+                  // modificarPerfil(perfil , request, response);
                    break;
                     //todos los alumnos registrados
                    case "TA":
-                    listarAlumnosRegistrados(perfil , request, response);
+                   // listarAlumnosRegistrados(perfil , request, response);
                    break;
                    //INSERTAR ALUMNOS
                     case "IA":
-                    insertarAlumnos(perfil , request, response);
+                   // insertarAlumnos(perfil , request, response);
                    break;
                 default:
                    
