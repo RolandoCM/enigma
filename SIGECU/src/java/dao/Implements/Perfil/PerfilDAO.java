@@ -110,7 +110,7 @@ public class PerfilDAO implements IPerfilDAO{
         @Override
      public List<Alumno> alumnosInscritos() throws BusinessException{
           List<Alumno> datosAlumno1 = new ArrayList<>();
-         String sql="SELECT idalumno,aNombre,aPaterno,aMaterno,telefono, email,carrera,notebook FROM alumno";
+         String sql="SELECT idalumno,aNombre,aPaterno,aMaterno,aTelefono, aEmail,aCarrera,aNotebook FROM alumno";
          
          try {
              Connection conection = database.getConnection();

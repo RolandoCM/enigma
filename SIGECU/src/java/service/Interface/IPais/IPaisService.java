@@ -7,6 +7,7 @@ package service.Interface.IPais;
 
 import dto.Pais;
 import exception.BusinessException;
+import java.util.List;
 
 /**
  *
@@ -14,4 +15,5 @@ import exception.BusinessException;
  */
 public interface IPaisService {
      public void insertar(Pais pa) throws  BusinessException;
+     public List<Pais> listarPaises() throws BusinessException;
 }

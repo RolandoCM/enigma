@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Crear Evento</title>
+    <title>SIGECU</title>
     <!-- Favicon-->
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
     <!-- Google Fonts -->
@@ -90,14 +90,14 @@
                             
                             <button type="button" class="btn btn-primary waves-effect
                                                         btn-large" data-toggle="modal" data-target="#insertarAlumno">
-                                                    <i class="material-icons left">group_add</i> Agregar Pais</button> 
+                                                    <i class="material-icons left">group_add</i> Agregar Ciudad</button> 
                                           
                                                     
                <div class="modal fade" id="insertarAlumno" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="largeModalLabel">Agregar Pais</h4>
+                            <h4 class="modal-title" id="largeModalLabel">Agregar Ciudad</h4>
                         </div>
                         <form id="form_advanced_validation" action="PAIS" method="POST">
                         <div class="modal-body">
@@ -112,83 +112,15 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Nombre del pais" name="nombrepais" required>
-                                            </div>
+                                                <select class=" form-control show-tick" name="idPais"  required>
+                                                    <c:forEach var="paisess" items="${datosPais}">
+                                                        <option  value="${paisess.idpais}">${paisess.nombrepais}</option>
+                                                    </c:forEach>
+                                                </select>                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <b>Region</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">person</i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Region" name="region" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--
-                                    <div class="col-md-6">
-                                        <b>Apellido Materno</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">person</i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Nombre" name="C" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Numero de telefono</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">phone_iphone</i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control mobile-phone-number" name="telefonoa" placeholder="Ex: +00 (000) 000-00-00" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Email</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">email</i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control email" placeholder="Ex: example@example.com" name="emaila" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Notbook</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">computer</i>
-                                            </span>
-                                            <div class="demo-radio-button">
-                                                <input name="notbook" type="radio" id="radio_1" checked value="Si" />
-                                                <label for="radio_1">SI</label>
-                                                <input name="notbook" type="radio" id="radio_2" value="No"/>
-                                                <label for="radio_2">NO</label>
-                                                <br>
-                                                <br>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Carrera</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">school</i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Ingenieria en TIC'S" name="acarrera" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                   -->
+                                    
+                                    
                                 </div>
                             </div>
                                     

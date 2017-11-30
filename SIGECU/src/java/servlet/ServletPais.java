@@ -5,10 +5,12 @@
  */
 package servlet;
 
-import dto.Alumno;
 import dto.MensajesDTO;
+import dto.Pais;
+import exception.BusinessException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +24,7 @@ import service.Interface.IPais.IPaisService;
  *
  * @author Dell
  */
-@WebServlet( name="/Pais", urlPatterns ={"/vistas/administrador/Pais" })
+@WebServlet( name="/PAISES", urlPatterns ={"/vistas/administrador/PAISES" })
 public class ServletPais extends HttpServlet {
 
      private String direccionar = null;
@@ -37,24 +39,38 @@ public class ServletPais extends HttpServlet {
             switch(accion)
             {
                 // INSERTAR PAIS
-                case "LDP":
+                case "IP":
                     insertarPais(pais , request, response);
                     break;
+                case "CP":
+                    listarPaises(pais , request, response);
+                    break;
                     //CREAR EVENTOS 
-               case "MP":
-                  // modificarPerfil(perfil , request, response);
-                   break;
-                    //todos los alumnos registrados
-                   case "TA":
-                   // listarAlumnosRegistrados(perfil , request, response);
-                   break;
+
+//               case "MP":
+//                  // modificarPerfil(perfil , request, response);
+//                   break;
+//                    //todos los alumnos registrados
+//                   case "TA":
+//                   // listarAlumnosRegistrados(perfil , request, response);
+//                   break;
                    //INSERTAR ALUMNOS
-                    case "IA":
+                   // case "IA":
                    // insertarAlumnos(perfil , request, response);
+
+//               case "MP":
+//                   modificarPerfil(perfil , request, response);
+//                   break;
+                    //todos los paises registrados
+                   case "TP":
+                    listarPaises(pais , request, response);
+
                    break;
+//                   //INSERTAR ALUMNOS
+//                    case "IA":
+//                    insertarAlumnos(perfil , request, response);
+//                   break;
                 default:
-                   
-                 
                     break;
             }
             
@@ -67,10 +83,52 @@ public class ServletPais extends HttpServlet {
 
     private void insertarPais(IPaisService pais, HttpServletRequest request, HttpServletResponse response) {
         MensajesDTO msjDTO = new MensajesDTO();
-        Alumno alu = new Alumno();
-         
+        Pais pa= new Pais();
+        try {
+            pa.setNombrepais(request.getParameter("nombrepais"));
+            pa.setRegion(request.getParameter("region"));
+            pais.insertar(pa);
+          msjDTO.setId("000");
+            msjDTO.setMensaje("Se ha encontrado el pais");
+            request.setAttribute("msj", msjDTO);
         
+        }catch(BusinessException ex)
+        {
+            msjDTO.setId(ex.getIdException());
+            msjDTO.setMensaje(ex.getMensaje());
+            request.setAttribute("mensajeCrear", msjDTO);
+        }catch(Exception e){
+            e.printStackTrace();
+            msjDTO.setId("301");
+            msjDTO.setMensaje("Error en la llamada a recursos");
+            request.setAttribute("mensajeCrear", msjDTO);
+        }
+        direccionar = "pais.jsp";  
+    }
 
+    private void listarPaises(IPaisService pais, HttpServletRequest request, HttpServletResponse response) {
+
+         MensajesDTO msjDTO = new MensajesDTO();
+        try {
+            List<Pais> listaPais = pais.listarPaises();
+            request.setAttribute("datosPais", listaPais); 
+            msjDTO.setId("000");
+            msjDTO.setMensaje("Ejecuxion OK");
+            request.setAttribute("msj", msjDTO);
+        } catch (BusinessException ex) {
+            msjDTO.setId(ex.getIdException());
+            msjDTO.setMensaje(ex.getMensaje());
+            request.setAttribute("msj", msjDTO);
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            msjDTO.setId("301");
+            msjDTO.setMensaje("Error en la llamada de recursos");
+            request.setAttribute("msj", msjDTO);
+        }
+        finally{
+            direccionar = "pais.jsp";
+        }
     }
     
         
