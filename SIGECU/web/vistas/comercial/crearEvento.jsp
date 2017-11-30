@@ -175,7 +175,7 @@
                                 </div>
 
                                 <div class="row clearfix">
-                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
                                         <p>
                                             <b>Pais</b>
                                         </p>
@@ -194,7 +194,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
                                         <p>
                                             <b>Ciudad</b>
                                         </p>
@@ -210,7 +210,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
                                         <p>
                                             <b>Lugar</b>
                                         </p>
@@ -227,7 +227,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
                                         <p>
                                             <b>Templete</b>
                                         </p>
@@ -245,6 +245,28 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <p>
+                                            <b>Destinarario</b>
+                                        </p>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="material-icons">person</i>
+                                                </span>
+                                                <select name="selectDestinatario" id="selectDestinatario" class="form-control show-tick" tabindex="-98" required class="required validate">
+                                                    <option selected="" disabled value=""> >--Seleccionar un destinatario--< </option>
+                                                   <c:forEach var="des" items="${datosParaEvento.get(8)}">
+                                                        <option  value="${des.id}">${des.nombre}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+
                                 </div>
 
                                 <div class="row clearfix">
@@ -397,6 +419,9 @@
             $('#selectCiudad').change(actualizarLugares);
 
             function actualizarCiudades(){
+                $('#selectLugar').empty();
+                $('#selectLugar').html('<option selected="" disabled value=""> >--Seleccionar un Lugar--< </option>');
+
                 $(".reloadCiudad").addClass('ispin');
                 idPais = $("#selectPais").val();
                 opcion="CC";
@@ -409,7 +434,7 @@
                     setTimeout(function() {
                         $(".reloadCiudad").removeClass('ispin');
                     }, 1000);
-                });
+                });                
             }
 
             function actualizarLugares(){
