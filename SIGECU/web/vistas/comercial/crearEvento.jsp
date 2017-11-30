@@ -156,7 +156,7 @@
                                                 <i class="material-icons">date_range</i>
                                             </span>
                                             <div class="form-line">
-                                                <input class="datepicker form-control" name="fechaI" placeholder="Fecha de Inicio DD-MM-YYYY" data-dtp="dtp_y2TTW" type="text" required="" aria-required="true">
+                                                <input class="datepicker form-control" name="fechaI" placeholder="Fecha de Inicio YYYY-MM-DD" data-dtp="dtp_y2TTW" type="text" required="" aria-required="true">
                                             </div>
                                         </div>
                                     </div>
@@ -168,7 +168,7 @@
                                                 <i class="material-icons">date_range</i>
                                             </span>
                                             <div class="form-line">
-                                                <input class="datepicker form-control" name="fechaT" placeholder="Fecha de Termino DD-MM-YYYY" data-dtp="dtp_y2TTW" type="text" required="" aria-required="true">
+                                                <input class="datepicker form-control" name="fechaT" placeholder="Fecha de Termino YYYY-MM-DD" data-dtp="dtp_y2TTW" type="text" required="" aria-required="true">
                                             </div>
                                         </div>
                                     </div>
@@ -458,7 +458,7 @@
             autosize($('textarea.auto-growth'));
 
             $('.datepicker').bootstrapMaterialDatePicker({
-                format: 'DD-MM-YYYY',
+                format: 'YYYY-MM-DD',
                 clearButton: true,
                 weekStart: 1,
                 time: false
