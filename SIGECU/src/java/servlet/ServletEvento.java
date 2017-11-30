@@ -255,8 +255,8 @@ public class ServletEvento extends HttpServlet{
         try
         {
             datosParaEvento = eventoService.consultaDatosCrearEvento();
-            Evento eventoBuscado = eventoService.buscarEvento(idEvento);
-            request.setAttribute("eventoBuscado", eventoBuscado);
+            //Evento eventoBuscado = eventoService.buscarEvento(idEvento);
+           // request.setAttribute("eventoBuscado", eventoBuscado);
             request.setAttribute("datosParaEvento", datosParaEvento);
             msjDTO.setId("000");
             msjDTO.setMensaje("Se ha encontrado el evento");

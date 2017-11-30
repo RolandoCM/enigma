@@ -49,6 +49,7 @@ public class ServletCursoCatalogo extends HttpServlet {
                     break;
                 case "BE":
                     buscarEspecialidad(request, response, serviceCurso);
+                    break;
                 default:break;
             }
         }catch(Exception e)

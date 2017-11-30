@@ -123,18 +123,40 @@
                             <span>Listar Instructores</span>
                         </a>
                     </li>
-                        <li>
-                             <a href="ServletInstructorCatalogo?accion=BE">
-                                <i class="material-icons">note_add</i>
-                                <span>Crear Instructores</span>
-                            </a>
-                        </li>
-                        <li>
-                         <a href="pais.jsp">
+                    <li>
+                        <a href="ServletInstructorCatalogo?accion=BE">
+                            <i class="material-icons">note_add</i>
+                            <span>Crear Instructores</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="pais.jsp">
                             <i class="material-icons">note_add</i>
                             <span>Pais</span>
                         </a>
                     </li>
+                    
+                    <!--lista de lugares-->
+                    <li>
+
+                        <i class="material-icons">note_add</i>
+                         <span>Lugar</span>
+                    <li>
+                        <a href="ServletLugarCatalogo?accion=LL">
+                            <i class="material-icons">note_add</i>
+                            <span>Listar Lugar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="ServletLugarCatalogo?accion=BC">
+                            <i class="material-icons">note_add</i>
+                            <span>Crear Lugar</span>
+                        </a>
+                    </li>
+                    </li>
+                    
                     
                     
                     
