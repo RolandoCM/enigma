@@ -5,20 +5,15 @@
  */
 package service.Implements.PagoPreInscripcion;
 
-import service.Implements.Evento.*;
-import dao.Implements.Evento.EventoDAO;
+
 import dao.Implements.PagoPreIncripcion.PagoDAO;
-import dao.Interface.Evento.IEventoDAO;
 import dao.Interface.PagoPreInscripcion.IPagoDAO;
-import dto.Cheque;
 import dto.Evento;
-import dto.IdentificadoresEvento;
 import dto.Pago;
-import dto.Tarjeta;
 import exception.BusinessException;
-import java.util.ArrayList;
 import java.util.List;
 import service.Interface.PagoPreInscripcion.IPagoService;
+import service.email.Email;
 
 /**
  *
@@ -49,23 +44,6 @@ public class PagoService implements IPagoService{
             throw mens;
         }
     }
-    @Override
-    public List<Pago> mostrarDatos() throws BusinessException {
-        try{
-            IPagoDAO pagoDAO=new PagoDAO();
-            List<Pago> mostrarDatos=new ArrayList<>();
-            mostrarDatos=pagoDAO.mostrarDatos();
-            return mostrarDatos;
-        }
-        catch(Exception ex){
-            ex.printStackTrace();
-            BusinessException be=new BusinessException();
-            be.setIdException("2");
-            be.setMensaje("Error al listar los datos");
-            throw be;
-        }
-    }
-    
     
     @Override
     public List<Pago> historialPagos( String alumno) throws  BusinessException{
@@ -93,33 +71,98 @@ public class PagoService implements IPagoService{
         }
     }
 
+
+
     @Override
-    public void tarjetaCredito(Tarjeta tarjeta) throws BusinessException {
-         try{
-            IPagoDAO pagoDAO= new PagoDAO();
-            pagoDAO.tarjetaCredito(tarjeta);
-        }catch(Exception ex){
-            
+    public List<Pago> seguimientoPagos(int idEvento) throws BusinessException {
+        try{
+            IPagoDAO pagoDAO=new PagoDAO();
+            List<Pago> seguirPagos;
+            seguirPagos = pagoDAO.seguimientoPagos(idEvento);
+            return seguirPagos;
+        }catch(BusinessException e)
+        {
+            throw e;
+        }
+        catch (Exception ex)
+        {
             ex.printStackTrace();
-            BusinessException mens=new BusinessException();
-            mens.setIdException("1");
-            mens.setMensaje("Error al registrar el pago");
-            throw mens;
+            BusinessException be = new BusinessException();
+            be.setIdException("2");
+            be.setMensaje("Error para listar el historial");
+            throw be;
         }
     }
 
     @Override
-    public void cheque(Cheque cheque) throws BusinessException {
-         try{
-            IPagoDAO pagoDAO= new PagoDAO();
-            pagoDAO.cheque(cheque);
-        }catch(Exception ex){
-            
+    public void confirmarPagos(int idHistorial, int idUsuario) throws BusinessException {
+        try{
+            IPagoDAO pagoDAO=new PagoDAO();
+             boolean confirmado = pagoDAO.confirmarPago(idHistorial);
+             
+             if(confirmado==true)
+             {
+                 String correo = pagoDAO.correo(idUsuario);
+                 String body = "<meta charset=\"utf-8\">\n" +
+                    "<p>Usted a realizado el pago del curso</p>\n" +
+                    "<a href=\"http://localhost:8084/SIGECU/vistas/alumno/listadoPagos.jsp\"><button >Confirmar Resepción</button></a>";
+                 Email.send(correo, "Confirmo pago a curso", body, "html");
+                 Email.send("sigecu0@gmail.com", "Pago completo", "El alumno x a realizado su pago");
+             }
+             
+        }catch(BusinessException e)
+        {
+            throw e;
+        }
+        catch (Exception ex)
+        {
             ex.printStackTrace();
-            BusinessException mens=new BusinessException();
-            mens.setIdException("1");
-            mens.setMensaje("Error al registrar el pago");
-            throw mens;
+            BusinessException be = new BusinessException();
+            be.setIdException("2");
+            be.setMensaje("Error para listar el historial");
+            throw be;
+        }
+    }
+
+    @Override
+    public List<Evento> cargarEvento() throws BusinessException {
+       try{
+            IPagoDAO pagoDAO=new PagoDAO();
+            List<Evento> eventos;
+            eventos = pagoDAO.cargarEvento();
+            return eventos;
+        }catch(BusinessException e)
+        {
+            throw e;
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setIdException("2");
+            be.setMensaje("Error para listar el historial");
+            throw be;
+        }
+    }
+
+    @Override
+    public List<Pago> seguimientoPagos() throws BusinessException {
+       try{
+            IPagoDAO pagoDAO=new PagoDAO();
+            List<Pago> seguirPagos;
+            seguirPagos = pagoDAO.seguimientoPagos();
+            return seguirPagos;
+        }catch(BusinessException e)
+        {
+            throw e;
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setIdException("2");
+            be.setMensaje("Error para listar el historial");
+            throw be;
         }
     }
 

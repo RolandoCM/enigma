@@ -137,7 +137,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="ServletSeguimientoPagos?accion=LE">
                             <i class="material-icons">payment</i>
                             <span>Seguimiento de Pago</span>
                         </a>

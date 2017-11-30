@@ -7,6 +7,7 @@
 package service.Implements.CatalogosService;
 import dao.Implements.CatalogosDAO.InstructorDAO;
 import dao.Interface.ICatalogos.IInstructorDAO;
+import dto.Especialidad;
 import dto.Instructor;
 import exception.BusinessException;
 import java.util.List;
@@ -20,7 +21,20 @@ public class InstructorService implements IInstructorService{
 
     @Override
     public void crearInstructor(Instructor instructor) throws BusinessException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try
+        {
+            IInstructorDAO instructorDAO = new InstructorDAO();
+            instructorDAO.crearInstructor(instructor);
+        }catch(BusinessException e){
+            throw e;
+        }
+        catch(Exception e){
+            BusinessException be = new BusinessException();
+            be.setIdException("2001");
+            be.setMensaje("Error en la capa de negocio");
+            throw be;
+        }
+        
     }
 
     @Override
@@ -31,6 +45,24 @@ public class InstructorService implements IInstructorService{
             IInstructorDAO instructorDAO = new InstructorDAO();
             List<Instructor> instructor = instructorDAO.listarInstructor();
             return instructor;
+        }catch(BusinessException e){
+            throw e;
+        }
+        catch(Exception e){
+            BusinessException be = new BusinessException();
+            be.setIdException("2001");
+            be.setMensaje("Error en la capa de negocio");
+            throw be;
+        }
+    }
+
+    @Override
+    public List<Especialidad> buscarEspecialidad() throws BusinessException {
+        try
+        {
+            IInstructorDAO instructorDAO = new InstructorDAO();
+            List<Especialidad> especialidad= instructorDAO.buscarEspecialidad();
+            return especialidad;
         }catch(BusinessException e){
             throw e;
         }

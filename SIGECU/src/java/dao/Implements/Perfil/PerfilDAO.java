@@ -6,6 +6,7 @@
 package dao.Implements.Perfil;
 
 import dao.Interface.Iperfil.IPerfilDAO;
+import dto.Alumno;
 import dto.Evento;
 import dto.Perfil;
 import dto.Usuario;
@@ -106,6 +107,41 @@ public class PerfilDAO implements IPerfilDAO{
         }
      }
     
+        @Override
+     public List<Alumno> alumnosInscritos() throws BusinessException{
+          List<Alumno> datosAlumno1 = new ArrayList<>();
+         String sql="SELECT idalumno,aNombre,aPaterno,aMaterno,aTelefono, aEmail,aCarrera,aNotebook FROM alumno";
+         
+         try {
+             Connection conection = database.getConnection();
+             PreparedStatement ps = conection.prepareStatement(sql);
+              ResultSet result = ps.executeQuery();
+            while(result.next())
+            {
+                Alumno al= new Alumno();
+                al.setIdAlumno(result.getInt(1));
+                al.setNombre(result.getString(2));
+                al.setaParterno(result.getString(3));
+                al.setaMaterno(result.getString(4));
+                al.setTelefono(result.getString(5));
+                al.setEmail(result.getString(6));
+                al.setCarrera(result.getString(7));
+                al.setNotbook(result.getString(8));
+                datosAlumno1.add(al);
+            }
+             conection.close();
+             ps.close();
+             return datosAlumno1;
+         } catch (Exception ex) {
+             ex.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.printStackTrace();
+            be.setMensaje("Error en la capa de base de datos");
+            be.setIdException("0001");
+            throw be;
+        }
+     }
+     
      
 public void EventosPorAlumno(Evento eve) throws BusinessException{ 
     
@@ -120,4 +156,37 @@ public void EventosPorAlumno(Evento eve) throws BusinessException{
             + "alumno a WHERE e.idevento=ah.e_idevento AND a.idalumno=ah.a_idalumno";
     
 }   
+
+public void insertarAlumnos(Alumno alu) throws  BusinessException{
+    
+    String sql="INSERT INTO alumno(aNombre,aPaterno,aMaterno,telefono,email,e_idEmpresa,carrera,notebook,status)"
+            + " VALUES (?,?,?,?,?,?,?,?,?)";
+    
+    try {
+        Connection con= database.getConnection();
+        PreparedStatement ps= con.prepareStatement(sql);
+        
+        ps.setString(1,alu.getNombre());
+                ps.setString(2,alu.getaParterno());
+                ps.setString(3,alu.getaMaterno());
+                ps.setString(4,alu.getTelefono());
+                ps.setString(5,alu.getEmail());
+                ps.setInt(6,1);
+                ps.setString(7,alu.getCarrera());
+                ps.setString(8,alu.getNotbook());
+                ps.setString(9,"on");
+                int exec=ps.executeUpdate();
+                
+         ps.close();
+            con.close();
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setMensaje("error en la capa de base de datos");
+            be.setIdException("001");
+            throw be;
+        }
+}
+
 }

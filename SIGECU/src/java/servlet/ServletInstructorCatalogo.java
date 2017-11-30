@@ -6,9 +6,11 @@
 package servlet;
 
 
+import dto.Especialidad;
 import dto.Instructor;
 import dto.MensajesDTO;
 import exception.BusinessException;
+import extras.Convierte;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -43,6 +45,8 @@ public class ServletInstructorCatalogo extends HttpServlet {
                 case "CI":
                     crearInstructor(request, response, iService);
                     break;
+                case "BE":
+                    buscarEspecialidad(request, response, iService);
                 default:
                     break;
                     
@@ -79,7 +83,65 @@ public class ServletInstructorCatalogo extends HttpServlet {
     }
 
     private void crearInstructor(HttpServletRequest request, HttpServletResponse response, IInstructorService iService) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MensajesDTO msjDTO = new MensajesDTO();
+        try {
+            
+            Instructor instructor = new Instructor();
+            instructor.setIdEspecialidad(Convierte.aInteger(request.getParameter("idEspecialidad")));
+            instructor.setiNombre(request.getParameter("iNombre"));
+            instructor.setiPaterno(request.getParameter("iPaterno"));
+            instructor.setiMaterno(request.getParameter("iMaterno"));
+            instructor.setCarrera(request.getParameter("iCarrera"));
+            instructor.setiEmail(request.getParameter("iEmail"));
+            instructor.setiDireccion(request.getParameter("iDireccion"));
+            instructor.setPassword(request.getParameter("iPassword"));
+            instructor.setUsername(request.getParameter("iUsername"));
+            instructor.setiTelefono(request.getParameter("iTelefono"));
+            instructor.setImagen("sin imagen");
+            instructor.setRole("instructor");
+            instructor.setDescripcion("sin descripcion");
+            iService.crearInstructor(instructor);
+            /*msjDTO.setId("000");
+            msjDTO.setMensaje("Ejecuxion OK");
+            request.setAttribute("msj", msjDTO);*/
+        } catch (BusinessException ex) {
+            msjDTO.setId(ex.getIdException());
+            msjDTO.setMensaje(ex.getMensaje());
+            request.setAttribute("msj", msjDTO);
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            msjDTO.setId("301");
+            msjDTO.setMensaje("Error en la llamada de recursos");
+            request.setAttribute("msj", msjDTO);
+        }
+        finally{
+            direccionar = "ServletCursoCatalogo?accion=LC";
+        }
+    }
+
+    private void buscarEspecialidad(HttpServletRequest request, HttpServletResponse response, IInstructorService iService) {
+        MensajesDTO msjDTO = new MensajesDTO();
+        try {
+            List<Especialidad> listaEspecialidad = iService.buscarEspecialidad();
+            request.setAttribute("especialidad", listaEspecialidad); 
+            /*msjDTO.setId("000");
+            msjDTO.setMensaje("Ejecuxion OK");
+            request.setAttribute("msj", msjDTO);*/
+        } catch (BusinessException ex) {
+            msjDTO.setId(ex.getIdException());
+            msjDTO.setMensaje(ex.getMensaje());
+            request.setAttribute("msj", msjDTO);
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            msjDTO.setId("301");
+            msjDTO.setMensaje("Error en la llamada de recursos");
+            request.setAttribute("msj", msjDTO);
+        }
+        finally{
+            direccionar = "CrearInstructor.jsp";
+        }
     }
 
 }

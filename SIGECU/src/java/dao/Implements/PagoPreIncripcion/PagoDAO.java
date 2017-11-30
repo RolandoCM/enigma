@@ -34,34 +34,6 @@ public class PagoDAO implements IPagoDAO{
         
         
     }
-     //Método para mortrar el nombre del alumno y del evento al momento de realizar el pago
-      @Override
-   public List<Pago> mostrarDatos() {
-        List<Pago> mostrar=new ArrayList<>();
-     Pago pago=new Pago();
-       String sql="Select a.Nombre, c.nombre from alumno as a inner join alumno_has_cursos as ac\n" +
-       "on a.idalumno=ac.a_idalumno inner join cursos as c on ac.c_idcursos=c.idcursos\n" +
-       "inner join cursos_has_pagos as cp on c.idcursos=cp.c_idcursos\n" +
-       "inner join pagos as p on cp.p_idpagos=p.idpagos where p.idpagos= "+pago.getIdPago()+";";
-       try{
-           Connection connection=database.getConnection();
-           PreparedStatement ps=connection.prepareStatement(sql);
-           ResultSet result=ps.executeQuery();
-           while(result.next()){
-               Alumno a=new Alumno();
-               Curso c=new Curso();
-               a.setNombre(result.getString(1));
-               c.setNombre(result.getString(2));               
-           }mostrar.add(pago);
-                   
-       }catch (Exception e){
-         e.printStackTrace();
-            BusinessException be = new BusinessException();
-            be.setMensaje("Error al conectar en la base de datos");
-            be.setIdException("1");
-    }
-       return mostrar;
-   }
   /*Registro de un pago */
     @Override
     public void registrarPago(Pago pago){
@@ -137,55 +109,6 @@ public class PagoDAO implements IPagoDAO{
             throw be;
         }
             
-    }
-    @Override
-    public void tarjetaCredito(Tarjeta tarjeta){
-       
-     String sql= "INSERT INTO tarjeta(numero_tarjeta, "
-             + "titular_tarjeta, fecha_expiracion, codigo_seguridad) values(?,?,?,?);";
-     try{
-         Connection conection= database.getConnection();
-         PreparedStatement ps=conection.prepareStatement(sql);
-         ps.setInt(1,tarjeta.getNumeroTarjeta());
-         ps.setString(2, tarjeta.getTitularTarjeta());
-         ps.setString(3,tarjeta.getFechaExpiracion());
-         ps.setInt(4,tarjeta.getCodigo());
-         
-         int exec =ps.executeUpdate();
-         ps.close();
-         conection.close();    
-     } catch (Exception e){
-         e.printStackTrace();
-            BusinessException be = new BusinessException();
-            be.setMensaje("Error al conectar en la base de datos");
-            be.setIdException("1");
-          
-    }
-
-        
-    }
-    public void cheque(Cheque cheque){
-       
-     String sql= "INSERT INTO cheque(numero_seguridad, cantidad) values(?,?);";
-     try{
-         Connection conection= database.getConnection();
-         PreparedStatement ps=conection.prepareStatement(sql);
-         
-         ps.setInt(1,cheque.getNumeroSeguridad());
-         ps.setInt(4,cheque.getCantidad());
-         
-         int exec =ps.executeUpdate();
-         ps.close();
-         conection.close();    
-     } catch (Exception e){
-         e.printStackTrace();
-            BusinessException be = new BusinessException();
-            be.setMensaje("Error al conectar en la base de datos");
-            be.setIdException("1");
-          
-    }
-
-        
     }
     
     /*Buscamos el id del tipo de pago de acuerdo al nombre del tipo de pago 
@@ -279,7 +202,194 @@ public class PagoDAO implements IPagoDAO{
             throw be;
         }
     }
+
+    @Override
+    public List<Pago> seguimientoPagos(int idEvento) throws BusinessException {
+         String sql = "SELECT hp.idhistorialPagos, c.cNombre, pre.precio, e.eFechaInicio, a.aNombre, tp.tpNombre, a.idalumno\n"+
+                    "FROM eventos e, cursos c, pagos p, historialPagos hp, alumno_has_eventos ae, precios pre,\n" +
+                    "	eventos_precios_destinatarios epd, alumno a, tipoPago tp\n" +
+                    "WHERE e.cursos_idcursos=c.idcursos AND pre.idprecios=epd.p_idprecios AND epd.e_idevento=e.idevento\n" +
+                    "	AND ae.e_idevento=e.idevento AND ae.a_idalumno=a.idalumno AND hp.idhistorialPagos=p.hP_idhistorialPagos\n" +
+                    "    AND ae.a_idalumno=hp.ahe_a_idalumno AND hp.ahe_e_idevento=ae.e_idevento AND tp.idtipoPago=p.tP_idtipoPago\n" +
+                    "    AND hp.pagoCompleto='0' AND e.idevento=?\n" +
+                    "GROUP BY  hp.idhistorialPagos, c.cNombre, pre.precio, p.pCantidad,e.eFechaInicio, a.aNombre, tp.tpNombre, a.idalumno;";
+        try
+        {
+            List<Pago> pagosPendientes =new ArrayList<>();
+            Connection cn = database.getConnection();
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, idEvento);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                Pago pago = new Pago();
+                pago.setIdHistorial(rs.getInt(1));
+                pago.setQuePago(rs.getString(2));
+                pago.setPrecio(rs.getDouble(3));
+                try{
+                  String fecha= Convierte.fechaString(rs.getDate(4));
+                  pago.setFechaPago(fecha);
+                }
+                catch(SQLException e){
+                   pago.setFechaPago("0000-00-00");
+                }
+                pago.setNombreAlumno(rs.getString(5));
+                pago.setFormaPago(rs.getString(6));
+                pago.setIdUsuario(rs.getInt(7));
+                pagosPendientes.add(pago);
+                
+                
+            }
+            ps.close();
+            cn.close();
+            return pagosPendientes;
+        }catch (Exception e)
+        {
+            
+            e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setMensaje("error en la capa de base de datos");
+            be.setIdException("001");
+            throw be;
+        }
     }
+
+    @Override
+    public List<Evento> cargarEvento() throws BusinessException {
+        String sql = "select e.idevento, c.cNombre  from eventos e, cursos c \n" +
+                        "where e.cursos_idcursos=c.idcursos;";
+        List<Evento> listaEventos = new ArrayList<>();
+        try
+        {
+            Connection cn = database.getConnection();
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                Evento event = new Evento();
+                event.setId(rs.getString(1));
+                event.setNombre(rs.getString(2));
+                listaEventos.add(event);
+                
+                
+            }
+            ps.close();
+            cn.close();
+            return listaEventos;
+        }catch (Exception e)
+        {
+            
+            e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setMensaje("error en la capa de base de datos");
+            be.setIdException("001");
+            throw be;
+        }
+    }
+
+    @Override
+    public List<Pago> seguimientoPagos() throws BusinessException {
+        String sql = "SELECT hp.idhistorialPagos, c.cNombre, pre.precio, e.eFechaInicio, a.aNombre, tp.tpNombre, a.idalumno\n"+
+                    "FROM eventos e, cursos c, pagos p, historialPagos hp, alumno_has_eventos ae, precios pre,\n" +
+                    "	eventos_precios_destinatarios epd, alumno a, tipoPago tp\n" +
+                    "WHERE e.cursos_idcursos=c.idcursos AND pre.idprecios=epd.p_idprecios AND epd.e_idevento=e.idevento\n" +
+                    "	AND ae.e_idevento=e.idevento AND ae.a_idalumno=a.idalumno AND hp.idhistorialPagos=p.hP_idhistorialPagos\n" +
+                    "    AND ae.a_idalumno=hp.ahe_a_idalumno AND hp.ahe_e_idevento=ae.e_idevento AND tp.idtipoPago=p.tP_idtipoPago\n" +
+                    "    AND hp.pagoCompleto='0' " +
+                    "GROUP BY  hp.idhistorialPagos, c.cNombre, pre.precio, p.pCantidad,e.eFechaInicio, a.aNombre, tp.tpNombre, a.idalumno;";
+        try
+        {
+            List<Pago> pagosPendientes =new ArrayList<>();
+            Connection cn = database.getConnection();
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                Pago pago = new Pago();
+                pago.setIdHistorial(rs.getInt(1));
+                pago.setQuePago(rs.getString(2));
+                pago.setPrecio(rs.getDouble(3));
+                try{
+                  String fecha= Convierte.fechaString(rs.getDate(4));
+                  pago.setFechaPago(fecha);
+                }
+                catch(SQLException e){
+                   pago.setFechaPago("0000-00-00");
+                }
+                pago.setNombreAlumno(rs.getString(5));
+                pago.setFormaPago(rs.getString(6));
+                pago.setIdUsuario(rs.getInt(7));
+                pagosPendientes.add(pago);
+                
+                
+            }
+            ps.close();
+            cn.close();
+                return pagosPendientes;
+        }catch (Exception e)
+        {
+            
+            e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setMensaje("error en la capa de base de datos");
+            be.setIdException("001");
+            throw be;
+        }
+    }
+
+    @Override
+    public boolean confirmarPago(int idhistorial) throws BusinessException {
+        boolean confirmado= false;
+        String sql = "update historialPagos set pagoCompleto=1 WHERE idhistorialPagos=?;";
+        
+        try{
+         Connection conection= database.getConnection();
+         PreparedStatement ps=conection.prepareStatement(sql);
+         ps.setInt(1, idhistorial);
+         ps.executeUpdate();
+         confirmado=true;
+         ps.close();
+         conection.close();    
+     } catch (Exception e){
+         e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setMensaje("Error al conectar en la base de datos");
+            be.setIdException("1");
+          
+    }
+        return confirmado;
+    }
+
+    @Override
+    public String correo(int idUsuario) throws BusinessException {
+        try
+        {
+            String correo="";
+            String sql = "select aEmail from alumno where idalumno=?;";
+            Connection cn = database.getConnection();
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, idUsuario);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                correo = rs.getString(1);
+                
+                
+            }
+            ps.close();
+            cn.close();
+            return correo;
+        }catch (Exception e)
+        {
+            
+            e.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setMensaje("error en la capa de base de datos");
+            be.setIdException("001");
+            throw be;
+        }
+    }
+}
 
 
    

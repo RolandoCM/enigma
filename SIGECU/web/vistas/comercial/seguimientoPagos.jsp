@@ -56,28 +56,90 @@
                                 </h2>
                             </div>
                             <div class="body">
-                               <div></div>
+                                <form id="form_advanced_validation" action="" >
+                                    <input type="hidden" name="accion" value="BE">
+                                   <div class="row clearfix">
+                                       <div class="col-md-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line ">
+                                                    <select class=" form-control show-tick" name="idEvento"  required>
+                                                        <option value="">Ninguno</option>
+                                                        <c:forEach var="ins" items="${eventos}">
+                                                            <option  value="${ins.id}">${ins.nombre}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                                <div class="help-info">Seleccione el nombre</div>
+                                            </div>
+                                        </div>
+                                       <div class="col-md-6">
+                                            <div class="col-md-12">
+                                                <button class="btn btn-block btn-lg btn-primary waves-effect" type="submit">Buscar</button>              
+                                            </div>
+                                        </div>
+                                   </div>
+                                        
+                                  
+                                 
+                                   
+                               </form>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                         <thead>
                                             <tr>
                                                 <th>Alumno</th>
-                                                <th>Enento</th>
+                                                <th>Nombre Evento</th>
                                                 <th>Fecha</th>
                                                 <th>Estado de pago</th>
-
+                                                
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th>Alumno</th>
-                                                <th>Enento</th>
+                                                <th>Nombre Evento</th>
                                                 <th>Fecha</th>
                                                 <th>Estado de pago</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
-                                            
+                                            <c:forEach var="data" items="${pagos}">
+                                                <tr class="bg-teal">
+                                                    <td>${data.quePago}</td>
+                                                    <td>${data.fechaPago}</td>
+                                                    <td>${data.nombreAlumno}</td>
+                                                    <td>${data.precio}</td>
+                                                    <td>${data.formaPago}</td>
+                                                   <td>
+                                                        <div class="button-demo js-modal-buttons">
+                                                            <button data-toggle="modal" data-target="#ModalConfirmar${data.idHistorial}" data-color="red" class="btn bg-red waves-effect">Confirmar</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                
+                                                <!--Modal Confirmar-->
+                                                <div class="modal fade" id="ModalConfirmar${data.idHistorial}" tabindex="-1" role="dialog">
+                                                    <div class="modal-dialog modal-sm" role="document">
+                                                        <div class="modal-content modal-col-red">
+
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="smallModalLabel">SEGURO QUE DESEA CANCELAR EL EVENTO:
+                                                                <br> ${data.quePago}, ${data.idHistorial}?</h4>
+                                                            </div>
+
+                                                            <div class="modal-body">
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a role="button" class="btn btn-link waves-effect" href="ServletSeguimientoPagos?accion=CE&idHistorial=${data.idHistorial}&idUsuario=${data.idUsuario}">Si</a>
+                                                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
 

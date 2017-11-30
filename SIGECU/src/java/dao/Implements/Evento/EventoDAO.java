@@ -47,7 +47,7 @@ public class EventoDAO implements IEventoDAO {
             PreparedStatement ps = conection.prepareStatement(sql);
             
             ps.setString(1, evento.getNombre());
-            ps.setString(2, evento.getInstructor().getId());
+            ps.setInt(2, evento.getInstructor().getIdinstructor());
             ps.setString(3, evento.getDestinatarios());
             ps.setString(4, evento.getFechaTermino());
             ps.setString(5, evento.getFecha());
@@ -179,7 +179,7 @@ public class EventoDAO implements IEventoDAO {
                 evento.setDescripcion(result.getString(4));
                 evento.setPrograma(result.getString(5));
                 Instructor ins= new Instructor();
-                ins.setNombre(result.getString(6)+result.getString(7)+result.getString(8));
+                ins.setiNombre(result.getString(6)+result.getString(7)+result.getString(8));
                 evento.setInstructor(ins);
                 evento.setLugar(result.getString(9));
                 evento.setCiudad(result.getString(10));
@@ -220,7 +220,7 @@ public class EventoDAO implements IEventoDAO {
             ps.setString(2, evento.getFecha());
             ps.setString(3, evento.getDescripcion());
             ps.setString(4, evento.getPrograma());
-            ps.setString(5, evento.getInstructor().getId());
+            ps.setInt(5, evento.getInstructor().getIdinstructor());
             ps.setString(6, evento.getLugar());
             ps.setString(7, evento.getCiudad());
             ps.setInt(8, evento.getCapacidad());
