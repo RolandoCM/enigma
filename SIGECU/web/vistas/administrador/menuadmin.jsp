@@ -124,13 +124,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="Eventos?accion=LEP">
+                        <a href="PAISES?accion=TP">
                             <i class="material-icons">view_list</i>
-                            <span>Lista de Eventos Publicos</span>
+                            <span>Pais</span>
                         </a>
                     </li>
                     <li>
-                        <a href="preInscripcion?accion=LE">
+                        <a href="PAISES?accion=CP">
                             <i class="material-icons">dashboard</i>
                             <span>Preinscripcion</span>
                         </a>
