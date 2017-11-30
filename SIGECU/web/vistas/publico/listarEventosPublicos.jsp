@@ -82,7 +82,7 @@
                                     </p>
                                     <p>
                                         <b>Instructor: </b>
-                                        ${data.instructor.nombre}
+                                        ${data.instructor.iNombre}
                                     </p>
                                     <p>
                                         <b>Lugar: </b>
