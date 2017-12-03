@@ -131,7 +131,7 @@
                     </li>
                     <li>
                         <a href="Pais?accion=CP">
-                            <i class="material-icons">dashboard</i>
+                            <i class="material-icons">location_city</i>
                             <span>Ciudad</span>
                         </a>
                     </li>

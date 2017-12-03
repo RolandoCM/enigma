@@ -41,6 +41,7 @@ public class PaisService implements IPaisService{
         } 
      }
      
+     @Override
      public List<Pais> listarPaises() throws BusinessException{
           try
         {
@@ -83,13 +84,13 @@ public class PaisService implements IPaisService{
       }
       
      @Override
-       public List<Pais> listarCiudades() throws BusinessException{
+       public List<Ciudad> listarCiudades() throws BusinessException{
               try
         {
             IPaisDAO paisDAO = new PaisDAO();
-            List<Pais> datosPais = new ArrayList<>();
-            datosPais = paisDAO.listarCiudades();
-            return datosPais; 
+            List<Ciudad> datosCiudad = new ArrayList<>();
+            datosCiudad = paisDAO.listarCiudades();
+            return datosCiudad; 
         }
         catch (BusinessException e) {
             throw e;  
@@ -100,6 +101,48 @@ public class PaisService implements IPaisService{
             BusinessException be = new BusinessException();
             be.setIdException("201");
             be.setMensaje("Error en la capa de negocio, conexion a listar eventos");
+            throw be;
+        } 
+       }
+       
+     @Override
+       public void modificarPais(Pais pa) throws BusinessException{
+            try
+        {
+            IPaisDAO paisDAO = new PaisDAO();
+            paisDAO.modificarPais(pa);
+        }
+        catch (BusinessException e)
+        {
+            throw e;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setIdException("201");
+            be.setMensaje("Error en la capa de negocio, conexion en crear Evento");
+            throw be;
+        } 
+       }
+       
+     @Override
+       public void modificarCiudad(Ciudad ciu) throws BusinessException{
+             try
+        {
+            IPaisDAO CiudadDAO = new PaisDAO();
+            CiudadDAO.modificarCiudad(ciu);
+        }
+        catch (BusinessException e)
+        {
+            throw e;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            BusinessException be = new BusinessException();
+            be.setIdException("201");
+            be.setMensaje("Error en la capa de negocio, conexion en crear Evento");
             throw be;
         } 
        }

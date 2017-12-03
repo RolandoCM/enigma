@@ -18,5 +18,7 @@ public interface IPaisService {
      public void insertar(Pais pa) throws  BusinessException;
      public List<Pais> listarPaises() throws BusinessException;
       public void insertarCiudad(Ciudad ci) throws  BusinessException;
-       public List<Pais> listarCiudades() throws BusinessException;
+       public List<Ciudad> listarCiudades() throws BusinessException;
+       public void modificarPais(Pais pa) throws BusinessException;
+       public void modificarCiudad(Ciudad ciu) throws BusinessException;
 }

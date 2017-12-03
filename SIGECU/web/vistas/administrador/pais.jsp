@@ -11,7 +11,7 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Crear Evento</title>
     <!-- Favicon-->
@@ -229,7 +229,7 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Nombre del Pais" name="nombrep" value="${datos.nombre}">
+                                                <input type="text" class="form-control " placeholder="Nombre del Pais" name="nombrep" value="${pais.nombrepais}">
                                             </div>
                                         </div>
                                     </div>
@@ -240,7 +240,9 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Region" name="region" value="${datos.aParterno}">
+                                                <input type="text" class="form-control " placeholder="Region" name="region" value="${pais.region}">
+                                                <input type="number" name="idpais" value="${pais.idpais}" hidden>
+
                                             </div>
                                         </div>
                                     </div>
@@ -266,36 +268,7 @@
             </div>
         </div>
  </section>
-                        
-   <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content">
-                        
-                        <div class="modal-body">
-                            
-   <form action="/" id="frmFileUploa" class="dropzone" method="post" enctype="multipart/form-data">
-                                 
-                                <div class="col-md-12">
-                                <div class="dz-message">
-                                    <div class="drag-icon-cph">
-                                        <i class="material-icons">touch_app</i>
-                                    </div>
-                                    <h3>Click para cambiar la foto de perfil</h3>
-                                    
-                                </div>
-                                <div class="fallback">
-                                    <input name="fotuser" type="file"  />
-                                </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+               
    
    <!-- Jquery Core Js -->
     <script src="../../plugins/jquery/jquery.min.js"></script>

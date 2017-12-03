@@ -69,7 +69,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                    <div class="demo-google-material-icon"> <i class="material-icons">person</i> <span class="icon-name">Alumnos Registrados</span> </div>
+                                    <div class="demo-google-material-icon"> <i class="material-icons">location_city</i> <span class="icon-name">Ciudades Registradas</span> </div>
                                 </h2>
                             <!--
                             <ul class="header-dropdown m-r--5">
@@ -160,16 +160,12 @@
    
  <section class="content">
         <div class="container-fluid">
-            <div class="block-header">
-                <h2>
-                    Alumnos Inscritos
-                </h2>
-            </div><div class="row clearfix">
+            <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
                             <h2>
-                                EXPORTABLE TABLE
+                              <div class="demo-google-material-icon"> <i class="material-icons">location_city</i> <span class="icon-name">Ciudades Registradas</span> </div>
                             </h2>
                             <!--
                             <ul class="header-dropdown m-r--5">
@@ -194,30 +190,29 @@
                                             <!--<th>Elimniar</th>-->
                                             <th>Modificar</th>
                                             <th>Id</th>
+                                            <th>Ciudad</th>
                                             <th>Pais</th>
-                                            <th>Region</th>
-                                            
                                             
                                         </tr>
                                     </thead>
                                    
                                     <tbody>
-                                         <c:forEach var="pais" items="${datosPais}">
+                                         <c:forEach var="ciudad" items="${ciudades}">
                                         <tr>
                                             <!--<td>$320,800</td>-->
                                              <td><button type="button" class="btn btn-warning waves-effect
-                                                        btn-large" data-toggle="modal" data-target="#largeModal${pais.idpais}">
+                                                        btn-large" data-toggle="modal" data-target="#largeModal${ciudad.idCiudad}">
                                                     <i class="material-icons left">update</i> MODIFICAR</button> 
                                             </td>
-                                            <td>${pais.idpais}</td>
-                                            <td>${pais.nombrepais} </td>
-                                            <td>${pais.region}</td>
+                                            <td>${ciudad.idCiudad}</td>
+                                            <td>${ciudad.nombreCiudad} </td>
+                                            <td>${ciudad.nombrepais}</td>
                                             
                                            
                                             
                                         </tr>
                                         
-                                         <div class="modal fade" id="largeModal${pais.idpais}" tabindex="-1" role="dialog">
+                                         <div class="modal fade" id="largeModal${ciudad.idCiudad}" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -226,27 +221,33 @@
                         <form id="form_advanced_validation" action="Pais" method="POST">
                         <div class="modal-body">
                             
-                                        <input type="hidden" name="accion" value="MP">
+                                        <input type="hidden" name="accion" value="MC">
                                     <div class="col-md-6">
-                                        <b>Nombre</b>
+                                        <b>Nombre de la Ciudad</b>
                                         <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="material-icons">person</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Nombre del Pais" name="nombrep" value="${datos.nombre}">
+                                                <input type="text" class="form-control " placeholder="Nombre del Pais" name="nombreCiudad" value="${ciudad.nombreCiudad}">
+                                                <input type="text"  name="idciudad" value="${ciudad.idCiudad}" hidden>
                                             </div>
                                         </div>
                                     </div>
                                             <div class="col-md-6">
-                                        <b>Region</b>
+                                        <b>Pais</b>
                                         <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="material-icons">person</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control " placeholder="Region" name="apellidop" value="${datos.aParterno}">
-                                            </div>
+                                                      <select class=" form-control show-tick" name="idPais"  required>
+                                                          <option value="${ciudad.idpais}" disabled>${ciudad.nombrepais}</option>
+
+                                                    <c:forEach var="paisess" items="${datosPais}">
+                                                        <option  value="${paisess.idpais}">${paisess.nombrepais}</option>
+                                                    </c:forEach>
+                                                </select>                                               </div>
                                         </div>
                                     </div>
                                     
@@ -272,36 +273,7 @@
         </div>
  </section>
                         
-   <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content">
-                        
-                        <div class="modal-body">
-                            
-   <form action="/" id="frmFileUploa" class="dropzone" method="post" enctype="multipart/form-data">
-                                 
-                                <div class="col-md-12">
-                                <div class="dz-message">
-                                    <div class="drag-icon-cph">
-                                        <i class="material-icons">touch_app</i>
-                                    </div>
-                                    <h3>Click para cambiar la foto de perfil</h3>
-                                    
-                                </div>
-                                <div class="fallback">
-                                    <input name="fotuser" type="file"  />
-                                </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-   
+  
    <!-- Jquery Core Js -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
 
